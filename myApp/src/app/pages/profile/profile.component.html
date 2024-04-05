@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div *ngIf="selectedOption === 'profile'" class="profile-form">
 
   <div class="profile-form">
@@ -105,3 +106,112 @@
     <button (click)="selectOption('favorites')" class="menu-item" [class.selected]="activeOption === 'favorites'">Favourites</button>
   </div>
 </div>
+=======
+<div *ngIf="selectedOption === 'profile'" class="profile-form">
+
+  <div class="profile-form">
+    <h1>My account</h1>
+    <h2>My profile</h2>
+    
+      <div class="form-group">
+        <label class="Name" for="name">Name</label>
+        <input type="text" id="name" name="name" required placeholder="Name">
+      </div>
+      <div class="form-group">
+        <label class="lastName" for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" required placeholder="Last Name">
+      </div>
+      <div class="form-group">
+        <label class="email" for="email">Email address</label>
+        <input type="email" id="email" name="email" required placeholder="name@example.com">
+      </div>
+      <div class="form-group">
+        <label class="password" for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="***********">
+      </div>
+        <button class="delete-account">Delete my account</button>
+        <div class="menu-container">
+          <button (click)="selectOption('profile')" class="menu-item" [class.selected]="activeOption === 'profile'">My Profile</button>
+          <button (click)="selectOption('products')" class="menu-item" [class.selected]="activeOption === 'products'">My Products</button>
+          <button (click)="selectOption('income')" class="menu-item" [class.selected]="activeOption === 'income'">View Income</button>
+          <button (click)="selectOption('subscriptions')" class="menu-item" [class.selected]="activeOption === 'subscriptions'">My Subscriptions</button>
+          <button (click)="selectOption('orders')" class="menu-item" [class.selected]="activeOption === 'orders'">My Orders</button>
+          <button (click)="selectOption('favorites')" class="menu-item" [class.selected]="activeOption === 'favorites'">Favourites</button>
+        </div>
+      </div>
+</div>
+
+<div *ngIf="selectedOption === 'products'" class="profile-form">
+  <h1>My account</h1>
+  <h2>My products</h2>
+  <div class="menu-container">
+    <button (click)="selectOption('profile')" class="menu-item" [class.selected]="activeOption === 'profile'">My Profile</button>
+    <button (click)="selectOption('products')" class="menu-item" [class.selected]="activeOption === 'products'">My Products</button>
+    <button (click)="selectOption('income')" class="menu-item" [class.selected]="activeOption === 'income'">View Income</button>
+    <button (click)="selectOption('subscriptions')" class="menu-item" [class.selected]="activeOption === 'subscriptions'">My Subscriptions</button>
+    <button (click)="selectOption('orders')" class="menu-item" [class.selected]="activeOption === 'orders'">My Orders</button>
+    <button (click)="selectOption('favorites')" class="menu-item" [class.selected]="activeOption === 'favorites'">Favourites</button>
+  </div>
+</div>
+
+<div *ngIf="selectedOption === 'income'" class="profile-form">
+  <h1>My statistics</h1>
+
+  <select class="dropdown_menu_1">
+    <option value="option1_1">Country</option>
+    <option value="option1_2">Profits</option>
+    <option value="option1_3">Bestseller</option>
+  </select>
+
+  <select class="dropdown_menu_2">
+    <option value="option2_1">Pie Chart</option>
+    <option value="option2_2">Bart chart</option>
+    <option value="option2_3">Scatter plot</option>
+    <option value="option2_4">Line graph</option>
+  </select>
+  
+</div>
+
+<div *ngIf="selectedOption === 'subscriptions'" class="profile-form">
+  <h1>My account</h1>
+  <h2>My subscribers</h2>
+  <div class="menu-container">
+    <button (click)="selectOption('profile')" class="menu-item" [class.selected]="activeOption === 'profile'">My Profile</button>
+    <button (click)="selectOption('products')" class="menu-item" [class.selected]="activeOption === 'products'">My Products</button>
+    <button (click)="selectOption('income')" class="menu-item" [class.selected]="activeOption === 'income'">View Income</button>
+    <button (click)="selectOption('subscriptions')" class="menu-item" [class.selected]="activeOption === 'subscriptions'">My Subscriptions</button>
+    <button (click)="selectOption('orders')" class="menu-item" [class.selected]="activeOption === 'orders'">My Orders</button>
+    <button (click)="selectOption('favorites')" class="menu-item" [class.selected]="activeOption === 'favorites'">Favourites</button>
+  </div>
+</div>
+
+<div *ngIf="selectedOption === 'orders'" class="profile-form">
+  <h1>My account</h1>
+  <div class="menu_orders">
+    <button (click)="selectOption('my_orders')" class="menu-item" [class.selected]="activeOption === 'my_orders'">My orders</button>
+    <button (click)="selectOption('customers_orders')" class="menu-item" [class.selected]="activeOption === 'customers_orders'">Customer orders</button>
+  </div>
+
+  <div class="menu-container">
+    <button (click)="selectOption('profile')" class="menu-item" [class.selected]="activeOption === 'profile'">My Profile</button>
+    <button (click)="selectOption('products')" class="menu-item" [class.selected]="activeOption === 'products'">My Products</button>
+    <button (click)="selectOption('income')" class="menu-item" [class.selected]="activeOption === 'income'">View Income</button>
+    <button (click)="selectOption('subscriptions')" class="menu-item" [class.selected]="activeOption === 'subscriptions'">My Subscriptions</button>
+    <button (click)="selectOption('orders')" class="menu-item" [class.selected]="activeOption === 'orders'">My Orders</button>
+    <button (click)="selectOption('favorites')" class="menu-item" [class.selected]="activeOption === 'favorites'">Favourites</button>
+  </div>
+</div>
+
+<div *ngIf="selectedOption === 'favorites'" class="profile-form">
+  <h1>My account</h1>
+  <h2>My favourites</h2>
+  <div class="menu-container">
+    <button (click)="selectOption('profile')" class="menu-item" [class.selected]="activeOption === 'profile'">My Profile</button>
+    <button (click)="selectOption('products')" class="menu-item" [class.selected]="activeOption === 'products'">My Products</button>
+    <button (click)="selectOption('income')" class="menu-item" [class.selected]="activeOption === 'income'">View Income</button>
+    <button (click)="selectOption('subscriptions')" class="menu-item" [class.selected]="activeOption === 'subscriptions'">My Subscriptions</button>
+    <button (click)="selectOption('orders')" class="menu-item" [class.selected]="activeOption === 'orders'">My Orders</button>
+    <button (click)="selectOption('favorites')" class="menu-item" [class.selected]="activeOption === 'favorites'">Favourites</button>
+  </div>
+</div>
+>>>>>>> f017c7606ebad355fd52d80e5f43b9da2f5c701b
