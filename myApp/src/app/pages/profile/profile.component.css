@@ -1,0 +1,99 @@
+/* profile */
+body{
+  font-family: 'Poppins', sans-serif; /* Poppins */
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-form h1 {
+  border-bottom: 2px solid black; 
+  padding-bottom: 10px; 
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.profile-form h2 {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-top: 5px; /* Ajusta el espacio entre la etiqueta y el input */
+  
+}
+
+.delete-account{
+  width: 140px;
+  height: 35px;
+  border: 0cm;
+}
+
+.menu-container {
+    margin-top: 20px;
+  }
+
+  .menu-item {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #000;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
+  }
+
+  .menu-item:hover {
+    background-color: #00ADB5;
+  }
+
+  .selected {
+    background-color: #00ADB5;
+  }
+
+  .delete-account {
+
+    background-color: #E15555;
+  }
+
+  /* products */
+
+  /* income */
+
+  .dropdown_menu_1 {
+    width: 100px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px; /* Ajusta el margen superior según sea necesario */
+}
+
+  .dropdown_menu_2 {
+    width: 100px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px; /* Ajusta el margen superior según sea necesario */
+}
+
+/* subscriptions */
+
+/* orders */
+.menu_orders {
+  display: flex;
+  text-decoration: none;
+  color: #000;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* favourites */
