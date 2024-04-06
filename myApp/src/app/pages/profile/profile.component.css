@@ -1,12 +1,10 @@
-
 /* profile */
-body{
+body {
   font-family: 'Poppins', sans-serif; /* Poppins */
 }
 
 .profile-form {
-  display: flex;
-  flex-direction: column;
+  font-weight: bold;
 }
 
 .profile-form h1 {
@@ -17,54 +15,91 @@ body{
 }
 
 .profile-form h2 {
-  margin-left: 50px;
+  margin-left: 225px;
   margin-right: 50px;
 }
 
-.form-group {
+.columns-container {
+  display: flex;
+}
+
+.column {
+  margin-left: 30px;
+}
+
+.form-group_1,
+.form-group_2 {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 10px;
+  padding-left: 195px;
 }
 
-label {
-  display: block;
-  margin-top: 5px; /* Ajusta el espacio entre la etiqueta y el input */
-  
+.form-group_1 label,
+.form-group_2 label {
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
-.delete-account{
+.form-group_1 input,
+.form-group_2 input {
+  width: 100%;
+  height: 30px;
+  border-radius: 7px;
+  border: 1px solid #000; /* Borde fino de color gris claro */
+  padding-left: 20px;
+}
+
+.delete-account {
   width: 140px;
-  height: 35px;
+  height: 40px;
   border: 0cm;
+  background-color: #E15555;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-weight: bold;
+  margin-left: 470px;
+}
+
+.delete-account:active {
+  background-color: #c42e2e;
+}
+
+.menu-wrapper {
+  display: flex; /* Esto es para ajustar el tamaño del contenedor al tamaño del contenido */
+  margin-bottom: 20px; 
 }
 
 .menu-container {
-    margin-top: 20px;
-  }
+  margin-top: 20px;
+  border: 1px solid #000;
+  border-radius: 7px;
+  width: 150px;
+  margin-left: 20px;
+}
 
-  .menu-item {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: #000;
-    border: none;
-    background: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    
-  }
+.menu-item {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%; /* Ajusta el ancho de los botones al 100% del contenedor */
+  text-align: left; /* Alinea el texto a la izquierda */
+  font-weight: bold;
+}
 
-  .menu-item:hover {
-    background-color: #00ADB5;
-  }
+.menu-item:hover {
+  background-color: #00ADB5;
+}
 
-  .selected {
-    background-color: #00ADB5;
-  }
+.selected {
+  background-color: #00ADB5;
+}
 
-  .delete-account {
-
-    background-color: #E15555;
-  }
 
   /* products */
 
@@ -75,6 +110,7 @@ label {
     display: flex;
     justify-content: flex-end;
     margin-top: 10px; /* Ajusta el margen superior según sea necesario */
+    font-weight: bold;
 }
 
   .dropdown_menu_2 {
@@ -82,6 +118,7 @@ label {
     display: flex;
     justify-content: flex-end;
     margin-top: 10px; /* Ajusta el margen superior según sea necesario */
+    font-weight: bold;
 }
 
 /* subscriptions */
@@ -95,6 +132,7 @@ label {
   background: none;
   cursor: pointer;
   transition: background-color 0.3s;
+   font-weight: bold;
 }
 
 /* favourites */
