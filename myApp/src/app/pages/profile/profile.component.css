@@ -8,7 +8,7 @@ body {
 }
 
 .profile-form h1 {
-  border-bottom: 2px solid black; 
+  border-bottom: 3px solid black; 
   padding-bottom: 10px; 
   margin-left: 100px;
   margin-right: 100px;
@@ -24,7 +24,7 @@ body {
 
 .columns-container {
   display: flex;
-  margin-left: 30%;
+  margin-left: 23%;
 }
 
 .column {
@@ -36,7 +36,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
-  padding-left: 20px;
+  padding-left: 5px;
 }
 
 .form-group_1 label,
@@ -47,11 +47,11 @@ body {
 
 .form-group_1 input,
 .form-group_2 input {
-  width: 325px;
+  width: 372px;
   height: 40px;
   border-radius: 7px;
   border: 1px solid #000; /* Borde fino de color gris claro */
-  padding-left: 20px;
+  padding-left: 10px;
   background-color: #EEEEEE;
 }
 
@@ -63,7 +63,7 @@ body {
   border-top-left-radius: 10px;
   border-bottom-right-radius: 10px;
   font-weight: bold;
-  margin-left: 665px;
+  margin-left: 550px;
   margin-top: 192px;
 }
 
@@ -87,6 +87,7 @@ body {
   border-radius: 7px;
   width: 150px;
   background-color: #EEEEEE;
+  
 }
 
 .menu-container {
@@ -145,15 +146,32 @@ body {
 /* subscriptions */
 
 /* orders */
+.menu_orders .menu-item {
+  font-size: 40px;
+  text-align: center;
+}
+
 .menu_orders {
   display: flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
   color: #000;
   border: none;
-  background: none;
+  background: #EEEEEE;
   cursor: pointer;
   transition: background-color 0.3s;
-   font-weight: bold;
+  font-weight: bold;
+  width: 700px;
+  border: 1px solid #000;
+  margin-left: 500px;
+}
+
+.menu-wrapper {
+  display: flex;
+  position: absolute;
+  margin-bottom: 20px;
+  margin-left: 70px;
 }
 
 /* favourites */

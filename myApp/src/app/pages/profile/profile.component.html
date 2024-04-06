@@ -1,3 +1,4 @@
+<body>
 <div *ngIf="selectedOption === 'profile'" class="profile-form">
 
   <div class="profile-form">
@@ -88,9 +89,11 @@
 
 <div *ngIf="selectedOption === 'orders'" class="profile-form">
   <h1>My account</h1>
-  <div class="menu_orders">
-    <button (click)="selectOption('my_orders')" class="menu-item" [class.selected]="activeOption === 'my_orders'">My orders</button>
-    <button (click)="selectOption('customers_orders')" class="menu-item" [class.selected]="activeOption === 'customers_orders'">Customer orders</button>
+  <div class="menu-wrapper_2">
+    <div class="menu_orders">
+      <button (click)="selectOption('my_orders')" class="menu-item" [class.selected]="activeOption === 'my_orders'">My orders</button>
+      <button (click)="selectOption('customers_orders')" class="menu-item" [class.selected]="activeOption === 'customers_orders'">Customer orders</button>
+    </div>
   </div>
 
   <div class="menu-wrapper">
@@ -119,3 +122,4 @@
     </div>
   </div>
 </div>
+</body>
