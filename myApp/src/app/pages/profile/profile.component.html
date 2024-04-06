@@ -22,19 +22,21 @@
         </div>
       </div>
     </div>
-        <div class="menu-wrapper">
-          <div class="menu-container">
-            <button (click)="selectOption('profile')" class="menu-item" [class.selected]="activeOption === 'profile'">My Profile</button>
-            <button (click)="selectOption('products')" class="menu-item" [class.selected]="activeOption === 'products'">My Products</button>
-            <button (click)="selectOption('income')" class="menu-item" [class.selected]="activeOption === 'income'">View Income</button>
-            <button (click)="selectOption('subscriptions')" class="menu-item" [class.selected]="activeOption === 'subscriptions'">My Subscriptions</button>
-            <button (click)="selectOption('orders')" class="menu-item" [class.selected]="activeOption === 'orders'">My Orders</button>
-            <button (click)="selectOption('favorites')" class="menu-item" [class.selected]="activeOption === 'favorites'">Favourites</button>
-          </div>
-        </div>
+    
+    <div class="menu-wrapper">
+      <div class="menu-container">
+        <button (click)="selectOption('profile')" class="menu-item" [class.selected]="activeOption === 'profile'">My Profile</button>
+        <button (click)="selectOption('products')" class="menu-item" [class.selected]="activeOption === 'products'">My Products</button>
+        <button (click)="selectOption('income')" class="menu-item" [class.selected]="activeOption === 'income'">View Income</button>
+        <button (click)="selectOption('subscriptions')" class="menu-item" [class.selected]="activeOption === 'subscriptions'">My Subscriptions</button>
+        <button (click)="selectOption('orders')" class="menu-item" [class.selected]="activeOption === 'orders'">My Orders</button>
+        <button (click)="selectOption('favorites')" class="menu-item" [class.selected]="activeOption === 'favorites'">Favourites</button>
       </div>
       <button class="delete-account">Delete my account</button>
+    </div>
+  </div>
 </div>
+
 
 <div *ngIf="selectedOption === 'products'" class="profile-form">
   <h1>My account</h1>
