@@ -50,7 +50,7 @@ body {
   width: 372px;
   height: 40px;
   border-radius: 7px;
-  border: 1px solid #000; /* Borde fino de color gris claro */
+  border: 1px solid #000; 
   padding-left: 10px;
   background-color: #EEEEEE;
 }
@@ -82,7 +82,7 @@ body {
 
 
 .menu-container {
-  margin-top: 20px; /* Ajusta este valor según sea necesario */
+  margin-top: 20px; 
   border: 1px solid #000;
   border-radius: 7px;
   width: 150px;
@@ -118,7 +118,7 @@ body {
 
 .selected {
   background-color: #00ADB5;
-  box-shadow: 0px -3px 3px -3px rgba(0, 0, 0, 0.5); /* Ajusta los valores según necesites */
+  box-shadow: 0px -3px 3px -3px rgba(0, 0, 0, 0.5); 
 }
 
 
@@ -127,23 +127,48 @@ body {
 
   /* income */
 
-  .dropdown_menu_1 {
-    width: 100px;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px; /* Ajusta el margen superior según sea necesario */
-    font-weight: bold;
+.dropdown_menu_1,
+.dropdown_menu_2 {
+  font-size: 32px;
+  padding: 10px; 
+  margin-right: 70px; 
+  background-color: #EEEEEE; 
+  position: relative; 
+  width: 312px;
+  float: right; 
+  right: 32px;
 }
 
-  .dropdown_menu_2 {
-    width: 100px;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px; /* Ajusta el margen superior según sea necesario */
-    font-weight: bold;
+.dropdown_menu_1::after,
+.dropdown_menu_2::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent; 
+  border-right: 8px solid transparent; 
+  border-top: 12px solid #000; 
+  transform: translateY(-50%);
 }
 
 /* subscriptions */
+
+/* subscriptions */
+.div_subscriptions {
+  display: flex; 
+  align-items: center; 
+}
+
+.div_subscriptions h2 {
+  margin-right: 10px; 
+}
+
+.subscribers {
+  text-decoration: none; 
+  color: #00ADB5; 
+}
+
 
 /* orders */
 .menu_orders .menu-item {

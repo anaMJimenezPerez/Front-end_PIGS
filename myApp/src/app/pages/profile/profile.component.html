@@ -69,12 +69,14 @@
     <option value="option2_3">Scatter plot</option>
     <option value="option2_4">Line graph</option>
   </select>
-  
 </div>
 
 <div *ngIf="selectedOption === 'subscriptions'" class="profile-form">
   <h1>My account</h1>
-  <h2>My subscribers</h2>
+  <div class div_subscriptions>
+  <h2>My subscriptions</h2>
+  <a class="subscribers" href="/subscribers">View my subscribers</a>
+  </div>
   <div class="menu-wrapper">
     <div class="menu-container">
       <button (click)="selectOption('profile')" class="menu-item" [class.selected]="activeOption === 'profile'">My Profile</button>
