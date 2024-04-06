@@ -4,44 +4,82 @@ footer {
   color: white;
 }
 
-h5{
-  margin-left: 15%;
-  text-decoration-line: underline;
-  text-decoration-skip: ink;
+h5 {
+  text-decoration: underline;
+  font-size: 100%;
 }
 
 ul {
   list-style-type: none;
-  margin-left: 5%;
+  padding-left: 0;
+  font-size:100%;
 }
 
-li{
-  margin-top: 4%;
+li {
+  margin-top: 10px;
 }
 
-.footer-container {
-  display: flex;
-  justify-content: space-between;
+.sizeColumHelp{
+  max-width: 33%;
 }
 
-.column {
-  flex: 1;
-  padding: 0 10px;
+.sizeColumPayment{
+  max-width: 33%;
 }
 
-.payment-images img {
-
-  max-width: 12%;
-  margin-left: 1%;
-  margin-right: 5%;
-
+.sizeColumSocial{
+  max-width: 30%;
+  margin-left: 10%;
 }
+
+.textCenter{
+  text-align: center;
+}
+
+.payment-images img{
+  max-width:60%;
+  max-height: 60%;
+}
+
 
 .social-images img {
-  max-width: 10%;
-  margin-right: 5%;
+  max-width: 70%;
+  max-height: 70%;
 }
 
-.centerOurSocial {
-  margin-left: 20%;
+@media only screen and (max-width: 480px) {
+
+  footer {
+    padding: 2px 0;
+  }
+
+  h5{
+    font-size: 30%;
+  }
+
+  ul{
+    font-size: 20%;
+  }
+
+  .sizeColumHelp{
+    max-width: 20%;
+  }
+
+  .sizeColumPayment{
+    max-width: 30%;
+  }
+
+  .sizeColumSocial{
+    max-width: 40%;
+  }
+
+  .payment-images img{
+    max-width: 40%;
+    max-height: 40%;
+  }
+
+  .social-images img {
+    max-width: 40%;
+    max-height: 40%;
+  }
 }
