@@ -10,18 +10,21 @@ body {
 .profile-form h1 {
   border-bottom: 2px solid black; 
   padding-bottom: 10px; 
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 100px;
+  font-size: 40px;
 }
 
 .profile-form h2 {
-  margin-left: 225px;
-  margin-right: 50px;
+  margin-left: 25%;
+  font-size: 40px;
+
 }
 
 .columns-container {
   display: flex;
-  margin-left: 175px;
+  margin-left: 30%;
 }
 
 .column {
@@ -45,10 +48,11 @@ body {
 .form-group_1 input,
 .form-group_2 input {
   width: 325px;
-  height: 35px;
+  height: 40px;
   border-radius: 7px;
   border: 1px solid #000; /* Borde fino de color gris claro */
   padding-left: 20px;
+  background-color: #EEEEEE;
 }
 
 .delete-account {
@@ -59,7 +63,7 @@ body {
   border-top-left-radius: 10px;
   border-bottom-right-radius: 10px;
   font-weight: bold;
-  margin-left: 335px;
+  margin-left: 665px;
   margin-top: 192px;
 }
 
@@ -68,9 +72,21 @@ body {
 }
 
 .menu-wrapper {
-  display: flex; /* Esto es para ajustar el tamaño del contenedor al tamaño del contenido */
+  display: flex; 
+  position: absolute;
   margin-bottom: 20px; 
-  margin-left: 20px;
+  margin-left: 70px;
+  
+}
+
+
+
+.menu-container {
+  margin-top: 20px; /* Ajusta este valor según sea necesario */
+  border: 1px solid #000;
+  border-radius: 7px;
+  width: 150px;
+  background-color: #EEEEEE;
 }
 
 .menu-container {
@@ -90,8 +106,8 @@ body {
   background: none;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 100%; /* Ajusta el ancho de los botones al 100% del contenedor */
-  text-align: left; /* Alinea el texto a la izquierda */
+  width: 100%; 
+  text-align: left; 
   font-weight: bold;
 }
 
@@ -101,7 +117,9 @@ body {
 
 .selected {
   background-color: #00ADB5;
+  box-shadow: 0px -3px 3px -3px rgba(0, 0, 0, 0.5); /* Ajusta los valores según necesites */
 }
+
 
 
   /* products */
