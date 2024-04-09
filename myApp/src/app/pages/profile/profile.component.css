@@ -1,6 +1,9 @@
 /* profile */
-body {
+html, body {
   font-family: 'Poppins', sans-serif; /* Poppins */
+  height: 100vmax;
+  width: 100vmax;
+  margin: 0;
 }
 
 .profile-form {
@@ -10,9 +13,8 @@ body {
 .profile-form h1 {
   border-bottom: 3px solid black; 
   padding-bottom: 10px; 
-  margin-left: 100px;
-  margin-right: 100px;
-  margin-top: 100px;
+  margin-left: 50PX;
+  margin-right: 50px;
   font-size: 40px;
 }
 
@@ -142,7 +144,7 @@ body {
 .dropdown_menu_1::after,
 .dropdown_menu_2::after {
   content: '';
-  position: absolute;
+  /*position: absolute;*/
   top: 50%;
   width: 0;
   height: 0;
