@@ -1,5 +1,3 @@
-<html>
-
 <body>
   <div *ngIf="selectedOption === 'profile'" class="profile-form">
 
@@ -38,8 +36,8 @@
             [class.selected]="activeOption === 'subscriptions'">My Subscriptions</button>
           <button (click)="selectOption('orders')" class="menu-item" [class.selected]="activeOption === 'orders'">My
             Orders</button>
-          <button (click)="selectOption('favorites')" class="menu-item"
-            [class.selected]="activeOption === 'favorites'">Favourites</button>
+          <button (click)="selectOption('favourites')" class="menu-item"
+            [class.selected]="activeOption === 'favourites'">Favourites</button>
         </div>
         <button class="delete-account">Delete my account</button>
       </div>
@@ -62,8 +60,8 @@
           [class.selected]="activeOption === 'subscriptions'">My Subscriptions</button>
         <button (click)="selectOption('orders')" class="menu-item" [class.selected]="activeOption === 'orders'">My
           Orders</button>
-        <button (click)="selectOption('favorites')" class="menu-item"
-          [class.selected]="activeOption === 'favorites'">Favourites</button>
+        <button (click)="selectOption('favourites')" class="menu-item"
+          [class.selected]="activeOption === 'favourites'">Favourites</button>
       </div>
     </div>
   </div>
@@ -103,8 +101,8 @@
           [class.selected]="activeOption === 'subscriptions'">My Subscriptions</button>
         <button (click)="selectOption('orders')" class="menu-item" [class.selected]="activeOption === 'orders'">My
           Orders</button>
-        <button (click)="selectOption('favorites')" class="menu-item"
-          [class.selected]="activeOption === 'favorites'">Favourites</button>
+        <button (click)="selectOption('favourites')" class="menu-item"
+          [class.selected]="activeOption === 'favourites'">Favourites</button>
       </div>
     </div>
   </div>
@@ -132,13 +130,13 @@
           [class.selected]="activeOption === 'subscriptions'">My Subscriptions</button>
         <button (click)="selectOption('orders')" class="menu-item" [class.selected]="activeOption === 'orders'">My
           Orders</button>
-        <button (click)="selectOption('favorites')" class="menu-item"
-          [class.selected]="activeOption === 'favorites'">Favourites</button>
+        <button (click)="selectOption('favourites')" class="menu-item"
+          [class.selected]="activeOption === 'favourites'">Favourites</button>
       </div>
     </div>
   </div>
 
-  <div *ngIf="selectedOption === 'favorites'" class="profile-form">
+  <div *ngIf="selectedOption === 'favourites'" class="profile-form">
     <h1>My account</h1>
     <h2>My favourites</h2>
     <div class="menu-wrapper">
@@ -153,11 +151,9 @@
           [class.selected]="activeOption === 'subscriptions'">My Subscriptions</button>
         <button (click)="selectOption('orders')" class="menu-item" [class.selected]="activeOption === 'orders'">My
           Orders</button>
-        <button (click)="selectOption('favorites')" class="menu-item"
-          [class.selected]="activeOption === 'favorites'">Favourites</button>
+        <button (click)="selectOption('favourites')" class="menu-item"
+          [class.selected]="activeOption === 'favourites'">Favourites</button>
       </div>
     </div>
   </div>
 </body>
-
-</html>

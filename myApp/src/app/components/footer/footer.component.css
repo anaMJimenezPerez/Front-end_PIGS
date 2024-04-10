@@ -1,0 +1,99 @@
+footer {
+  background-color: #393E46;
+  padding: 10px 0;
+  color: white;
+}
+
+h5 {
+  text-decoration: underline;
+  font-size: 100%;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  font-size:100%;
+}
+
+li {
+  margin-top: 10px;
+}
+
+.sizeColumHelp{
+  max-width: 33%;
+}
+
+.sizeColumPayment{
+  max-width: 33%;
+}
+
+.sizeColumSocial{
+  max-width: 30%;
+  margin-left: 10%;
+}
+
+.textCenter{
+  text-align: center;
+}
+
+.payment-images img{
+  max-width:60%;
+  max-height: 60%;
+}
+
+
+.social-images img {
+  max-width: 70%;
+  max-height: 70%;
+}
+
+@media only screen and (max-width: 480px) {
+
+  footer {
+    padding: 2px 0;
+  }
+
+  h5{
+    font-size: 30%;
+  }
+
+  ul{
+    font-size: 20%;
+  }
+
+  .sizeColumHelp{
+    max-width: 20%;
+  }
+
+  .sizeColumPayment{
+    max-width: 30%;
+  }
+
+  .sizeColumSocial{
+    max-width: 40%;
+  }
+
+  .payment-images img{
+    max-width: 40%;
+    max-height: 40%;
+  }
+
+  .social-images img {
+    max-width: 40%;
+    max-height: 40%;
+  }
+}
+
+
+/* Hace la barra de desplazamiento invisible pero aún permite el desplazamiento */
+/* Barra de desplazamiento vertical */
+::-webkit-scrollbar {
+  width: 0px;  /* Ancho de la barra de desplazamiento vertical */
+  height: 0px; /* Altura de la barra de desplazamiento vertical */
+  background: transparent; /* Color de fondo transparente */
+}
+
+/* Barra de desplazamiento horizontal (para WebKit) */
+::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Color del área de desplazamiento */
+}
