@@ -1,0 +1,205 @@
+/* profile */
+html, body {
+  font-family: 'Poppins', sans-serif; /* Poppins */
+  height: 100vmax;
+  width: 100vmax;
+  margin: 0;
+}
+
+.profile-form {
+  font-weight: bold;
+}
+
+.profile-form h1 {
+  border-bottom: 3px solid black; 
+  padding-bottom: 10px; 
+  margin-left: 50PX;
+  margin-right: 50px;
+  font-size: 40px;
+}
+
+.profile-form h2 {
+  margin-left: 25%;
+  font-size: 40px;
+
+}
+
+.columns-container {
+  display: flex;
+  margin-left: 23%;
+}
+
+.column {
+  margin-left: 30px;
+}
+
+.form-group_1,
+.form-group_2 {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+.form-group_1 label,
+.form-group_2 label {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.form-group_1 input,
+.form-group_2 input {
+  width: 372px;
+  height: 40px;
+  border-radius: 7px;
+  border: 1px solid #000; 
+  padding-left: 10px;
+  background-color: #EEEEEE;
+}
+
+.delete-account {
+  width: 140px;
+  height: 40px;
+  border: 0cm;
+  background-color: #E15555;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-weight: bold;
+  margin-left: 550px;
+  margin-top: 192px;
+}
+
+.delete-account:active {
+  background-color: #c42e2e;
+}
+
+.menu-wrapper {
+  display: flex; 
+  position: absolute;
+  margin-bottom: 20px; 
+  margin-left: 70px;
+  
+}
+
+
+
+.menu-container {
+  margin-top: 20px; 
+  border: 1px solid #000;
+  border-radius: 7px;
+  width: 150px;
+  background-color: #EEEEEE;
+  
+}
+
+.menu-container {
+  margin-top: 20px;
+  border: 1px solid #000;
+  border-radius: 7px;
+  width: 150px;
+  margin-left: 20px;
+}
+
+.menu-item {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%; 
+  text-align: left; 
+  font-weight: bold;
+}
+
+.menu-item:hover {
+  background-color: #00ADB5;
+}
+
+.selected {
+  background-color: #00ADB5;
+  box-shadow: 0px -3px 3px -3px rgba(0, 0, 0, 0.5); 
+}
+
+
+
+  /* products */
+
+  /* income */
+
+.dropdown_menu_1,
+.dropdown_menu_2 {
+  font-size: 32px;
+  padding: 10px; 
+  margin-right: 70px; 
+  background-color: #EEEEEE; 
+  position: relative; 
+  width: 312px;
+  float: right; 
+  right: 32px;
+}
+
+.dropdown_menu_1::after,
+.dropdown_menu_2::after {
+  content: '';
+  /*position: absolute;*/
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent; 
+  border-right: 8px solid transparent; 
+  border-top: 12px solid #000; 
+  transform: translateY(-50%);
+}
+
+/* subscriptions */
+
+/* subscriptions */
+.div_subscriptions {
+  display: flex; 
+  align-items: center; 
+}
+
+.div_subscriptions h2 {
+  margin-right: 10px; 
+}
+
+.subscribers {
+  text-decoration: none; 
+  color: #00ADB5; 
+}
+
+
+/* orders */
+.menu_orders .menu-item {
+  font-size: 40px;
+  text-align: center;
+}
+
+.menu_orders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  border: none;
+  background: #EEEEEE;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+  width: 700px;
+  border: 1px solid #000;
+  margin-left: 500px;
+}
+
+.menu-wrapper {
+  display: flex;
+  position: absolute;
+  margin-bottom: 20px;
+  margin-left: 70px;
+}
+
+/* favourites */
+
