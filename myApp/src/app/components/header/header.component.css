@@ -1,0 +1,131 @@
+.placeShop{
+  display: contents;
+  font-size: 1.5rem;
+}
+
+.container {
+  max-width: 100%;
+  padding: 20px;
+}
+
+#shop-logo{
+  width: 30%;
+}
+
+.links-proper {
+  max-width: 6%;
+}
+
+
+#shop-header{
+  display: inline-block;
+}
+
+
+.pHeader{
+  color: white;
+  margin-top: 4%;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #393E46;
+  padding: 1rem;
+}
+
+.left-content {
+  display: flex;
+  align-items: center;
+}
+
+.right-content {
+  display: flex;
+  align-items: center;
+}
+
+.search-trending-wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  color: white;
+  justify-content: right;
+}
+
+.menu-icon {
+  display: none;
+}
+
+.search-trending-wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.placeSearch,
+.placeTrending,
+.buttonHeader {
+  margin-right: 10px;
+}
+
+.buttonHeader{
+  min-width: 2rem;
+  padding: 0.2rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  font-size: 1rem;
+  color:white;
+  border-radius: 3px;
+  border: 2px solid #ccc;
+  background-color: transparent;
+}
+
+@media (max-width: 426px) {
+
+  #shop-logo{
+    width: 1rem;
+  }
+
+  .header-content {
+    height: 2rem;
+  }
+
+  .pHeader{
+    font-size: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .left-content{
+    margin-left: 0.6rem;
+    margin-top: 0.4rem;
+  }
+
+  .right-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu-icon {
+    display: block;
+    width: 3rem;
+  }
+
+  .links-proper {
+    max-width: 1rem;
+    margin-top: -0.6rem;
+  }
+
+  .left-content {
+    margin-bottom: 10px;
+  }
+
+  .search-trending-wrapper {
+    display: none;
+  }
+
+  .show-menu .search-trending-wrapper {
+    display: flex;
+  }
+
+}
