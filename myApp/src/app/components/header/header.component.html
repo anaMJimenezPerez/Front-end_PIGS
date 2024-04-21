@@ -16,8 +16,14 @@
           <p class="placeTrending pHeader mr-4"> Trending </p>
           <button class="buttonHeader"> Login </button>
         </div>
-        <div class="menu-icon d-md-none">
+        <div class="menu-icon d-md-none" (click)="mostrarOpciones()">
           <img src="../../../assets/header/menu.png" class="img-fluid mx-1 links-proper" alt="Menu">
+
+          <div class="menu-options" *ngIf="mostrarMenu">
+            <p>Search</p>
+            <p>Trending</p>
+          </div>
+
         </div>
       </div>
     </div>

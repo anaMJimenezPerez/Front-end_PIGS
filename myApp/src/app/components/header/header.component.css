@@ -128,4 +128,15 @@
     display: flex;
   }
 
+  .menu-options {
+    position: absolute;
+    top: 1.3rem;
+    left: 21rem;
+    font-size: 0.6rem;
+    background-color: transparent;
+    border: 1px solid black;
+    padding: 5px;
+  }
+
+
 }

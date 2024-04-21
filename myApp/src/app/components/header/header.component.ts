@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  mostrarMenu: boolean = false;
+
+  mostrarOpciones() {
+    this.mostrarMenu = !this.mostrarMenu;
+  }
+
 }
