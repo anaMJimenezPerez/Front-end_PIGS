@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top:1rem;
+}
+
+.filter {
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 0.4rem 1rem;
+  margin-right: 0.6rem;
+  font-size: 1rem;
+}
+
+.title {
+  font-size: 1.6rem;
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+.line {
+  width: 94%;
+  height: 1px;
+  background-color: #000000;
+  margin-top: 1rem;
+  margin-left: 1.4rem;
+}
+
+
+@media (max-width: 426px) {
+
+  .filter {
+    padding: 0.2rem 0.2rem;
+    margin-right: 0.6rem;
+    font-size: 0.6rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .line {
+    width: 90%;
+    height: 0.8px;
+  }
+
+}
