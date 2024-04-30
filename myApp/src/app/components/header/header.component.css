@@ -57,12 +57,6 @@
   display: none;
 }
 
-.search-trending-wrapper {
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
-}
-
 .placeSearch,
 .placeTrending,
 .buttonHeader {
@@ -99,6 +93,7 @@
   .left-content{
     margin-left: 0.6rem;
     margin-top: 0.4rem;
+    margin-bottom: 10px;
   }
 
   .right-content {
@@ -114,10 +109,6 @@
   .links-proper {
     max-width: 1rem;
     margin-top: -0.6rem;
-  }
-
-  .left-content {
-    margin-bottom: 10px;
   }
 
   .search-trending-wrapper {

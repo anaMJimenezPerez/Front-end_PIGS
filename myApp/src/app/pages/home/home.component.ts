@@ -93,34 +93,27 @@ export class HomeComponent {
   showAllRowsFavorite: boolean = false;
   showAllRows: boolean = false;
 
-  showMore(id: number, list: any[], totalRowsToShow: number, showAllRows: boolean) {
-    if (id === 1) {
-      if (showAllRows) {
-        this.totalRowsToShow = 4;
-        this.showAllRows = false;
-      } else {
-        this.totalRowsToShow += this.rowsPerPage;
-        if (this.totalRowsToShow >= list.length) {
-          this.totalRowsToShow = list.length;
-          this.showAllRows = true;
-        } else {
-          this.showAllRows = false;
-        }
-      }
-    } else if (id === 2) {
-      if (showAllRows) {
-        this.totalRowsToShowFavorite = 4;
-        this.showAllRowsFavorite = false;
-      } else {
-        this.totalRowsToShowFavorite += this.rowsPerPage;
-        if (this.totalRowsToShowFavorite >= list.length) {
-          this.totalRowsToShowFavorite = list.length;
-          this.showAllRowsFavorite = true;
-        } else {
-          this.showAllRowsFavorite = false;
-        }
-      }
+  adjustTotalRows(id: number, totalRowsToShow: number, list: any[], showAllRows: boolean) {
+    const rowsPerPage = 4;
+    const newTotalRowsToShow = totalRowsToShow + rowsPerPage;
+    const isEndOfList = newTotalRowsToShow >= list.length;
+
+    if (showAllRows) {
+      return Math.min(rowsPerPage, list.length);
+    } else {
+      return isEndOfList ? list.length : newTotalRowsToShow;
     }
   }
+
+  showMore(id: number, list: any[], totalRowsToShow: number, showAllRows: boolean) {
+    if (id === 1) {
+      this.totalRowsToShow = this.adjustTotalRows(id, this.totalRowsToShow, list, showAllRows);
+      this.showAllRows = !showAllRows && this.totalRowsToShow === list.length;
+    } else if (id === 2) {
+      this.totalRowsToShowFavorite = this.adjustTotalRows(id, this.totalRowsToShowFavorite, list, showAllRows);
+      this.showAllRowsFavorite = !showAllRows && this.totalRowsToShowFavorite === list.length;
+    }
+  }
+
 
 }

@@ -125,7 +125,7 @@ form p {
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin-bottom: 1rem;;
+    margin-bottom: 1rem;
 }
 
 #registerBtn {
@@ -143,7 +143,7 @@ form p {
         height: auto;
         width: 15rem;
     }
-    
+
 }
 
 @media (max-width: 630px){
@@ -156,7 +156,7 @@ form p {
     #title_log{
         font-size: 15px;
     }
-    
+
     .field, .button, .options, .registerBtn{
         width: 8rem;
     }
