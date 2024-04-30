@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { MenuProfileComponent } from './components/menu-profile/menu-profile.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 
 const routes: Routes = [
-  { 
-    path: 'profile', 
-    component: ProfileComponent,
-  }
+  { path: 'profile', component: ProfileComponent, },
+  { path: 'loginPage', component: LoginPageComponent },
+
 ];
 
 @NgModule({
