@@ -83,17 +83,3 @@ li {
     max-height: 40%;
   }
 }
-
-
-/* Hace la barra de desplazamiento invisible pero aún permite el desplazamiento */
-/* Barra de desplazamiento vertical */
-::-webkit-scrollbar {
-  width: 0px;  /* Ancho de la barra de desplazamiento vertical */
-  height: 0px; /* Altura de la barra de desplazamiento vertical */
-  background: transparent; /* Color de fondo transparente */
-}
-
-/* Barra de desplazamiento horizontal (para WebKit) */
-::-webkit-scrollbar-thumb {
-  background-color: transparent; /* Color del área de desplazamiento */
-}
