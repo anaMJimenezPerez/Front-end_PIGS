@@ -28,8 +28,33 @@
   </div>
 
   <div class="container">
-    <button class="buttonFormat" (click)="showMore()">
+    <button class="buttonFormat" (click)="showMore(1, filteredProducts, totalRowsToShow, showAllRows)">
       {{ showAllRows ? 'Show Less' : 'Show More' }}
+    </button>
+  </div>
+
+  <div class="title">From our best creators</div>
+  <div class="line"></div>
+
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let product of productsFavorite.slice(0, totalRowsToShowFavorite)" class="col-md-3">
+        <div class="card mb-4">
+          <img src="../../../assets/favorite.svg" alt="Favorite" class="styleImage">
+          <img class="card-img-top" [src]="product.urlImage" alt="Card image cap">
+          <div class="card-body" style="text-align:center;">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.price}}</p>
+            <a href="#" class="buttonFormat addCart">Add to cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <button class="buttonFormat" (click)="showMore(2, productsFavorite , totalRowsToShowFavorite, showAllRowsFavorite)">
+      {{ showAllRowsFavorite ? 'Show Less' : 'Show More' }}
     </button>
   </div>
 
