@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Photo 1",
+    "user_id": "1",
+    "image_path": "https://elcomercio.pe/resizer/6YotkuHIEUGzf-GUZAGbznSRoYQ=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/VFKAZST5J5BE5BEPH7TTUHWNRQ.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Photo 2",
+    "user_id": "2",
+    "image_path": "https://media.es.wired.com/photos/641b2076880298eb68cc9b8a/16:9/w_1920,c_limit/Todd_Namban_Create_a_photorrealistic_portrait_of_a_red_fox_usin_cd0b7e04-868d-45d4-beaf-b7515e6154ca.png"
+  },
+  {
+    "id": 3,
+    "name": "Photo 3",
+    "user_id": "3",
+    "image_path": "https://retinatendencias.com/wp-content/uploads/2022/06/botto-3-1536x1536.jpg"
+  }
+]
