@@ -1,4 +1,15 @@
 <body>
+
+  <!-- Template icon -->
+  <ng-template #profilePictureTemplate>
+    <div class="profile-picture" (click)="selectProfilePicture()">
+      <input type="file" id="profile-picture" accept="image/*" style="display: none" (change)="onProfilePictureSelected($event)">
+      <div class="profile-picture-container">
+        <img *ngIf="profilePictureUrl" [src]="profilePictureUrl" alt="Profile Picture">
+      </div>
+    </div>
+  </ng-template>
+
   <!-- Profile -->
   <div *ngIf="selectedOption === 'profile'" class="profile-form">
 
@@ -9,13 +20,8 @@
 
       <div class="columns-container">
         <!-- Icon -->
-        <div class="profile-picture" (click)="selectProfilePicture()" (mousedown)="removeProfilePicture($event)">
-          <input type="file" id="profile-picture" accept="image/*" style="display: none" (change)="onProfilePictureSelected($event)">
-          <div class="profile-picture-container">
-            <img *ngIf="profilePictureUrl" [src]="profilePictureUrl" alt="Profile Picture" id="profile-image">
-          </div>
-        </div>
 
+        <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
         <!-- Formulary -->
         <div class="column">
           <div class="form-group_1">
@@ -35,7 +41,7 @@
         </div>
       </div>
 
-      <div>
+      <div class="delete_menu">
         <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
         <button class="delete-account" (click)="confirmDelete()">Delete my account</button>
       </div>
@@ -47,6 +53,9 @@
   <div *ngIf="selectedOption === 'products'" class="profile-form">
     <h1>My account</h1>
     <h2>My products</h2>
+    <div class="columns-container">
+      <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+    </div>
     <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
   </div>
 
@@ -57,10 +66,12 @@
       <h2>My subscriptions</h2>
       <a class="subscribers" href="/subscribers">View my subscribers</a>
     </div>
+    <div class="columns-container">
+      <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+    </div>
     <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
   </div>
 
-  <!-- Orders -->
   <!-- Orders -->
 <div *ngIf="selectedOption === 'orders'" class="profile-form">
   <h1>My account</h1>
@@ -70,15 +81,16 @@
       <button (click)="selectMenuOption('customer_orders')" class="menu-item" [class.selected]="selectedMenuOption === 'customer_orders'">Customer orders</button>
     </div>
   </div>
+  <div class="columns-container">
+    <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+  </div>
   <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
   
-  <!-- Mostrar elementos según la opción seleccionada -->
+
   <div *ngIf="shouldShowMyOrders()">
-    <!-- Aquí coloca los elementos que deseas mostrar cuando se selecciona "My orders" -->
     <p>Content My orders</p>
   </div>
   <div *ngIf="shouldShowCustomerOrders()">
-    <!-- Aquí coloca los elementos que deseas mostrar cuando se selecciona "Customer orders" -->
     <p>Content Customer orders</p>
   </div>
 </div>
@@ -87,6 +99,9 @@
   <div *ngIf="selectedOption === 'favourites'" class="profile-form">
     <h1>My account</h1>
     <h2>My favourites</h2>
+    <div class="columns-container">
+      <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+    </div>
     <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
   </div>
 </body>

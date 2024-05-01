@@ -8,11 +8,10 @@ html, body {
 }
 
 
-
 .profile-picture-container {
-  width: 200px; /* Ancho deseado del recuadro de la foto de perfil */
-  height: 200px; /* Alto deseado del recuadro de la foto de perfil */
-  border: 1px solid #000000; /* Añade un borde alrededor del contenedor */
+  width: 200px; 
+  height: 200px; 
+  border: 1px solid #000000; 
   border-radius: 15px;
   overflow: hidden;
   background-color: #00ADB5;
@@ -49,7 +48,7 @@ html, body {
 }
 
 
-@media (min-width: 1300px) {
+@media (min-width: 1200px) {
 .columns-container {
   display: flex;
   margin-left: 90px;
@@ -76,8 +75,8 @@ html, body {
 
 .form-group_1 input,
 .form-group_2 input {
-  width: 372px;
-  height: 40px;
+  width: 380px;
+  height: 50px;
   border-radius: 7px;
   border: 1px solid #000; 
   padding-left: 20px;
@@ -92,16 +91,25 @@ html, body {
   border-top-left-radius: 10px;
   border-bottom-right-radius: 10px;
   font-weight: bold;
-  margin-left: 980px;
-  margin-top: 200px;
+  margin-left: 720px;
   font-size: 14px;
+  white-space: nowrap;
+  margin-top: 180px;
 }
 
 .delete-account:active {
   background-color: #c42e2e;
 }
 
+.delete_menu {
+  display: flex;
+  align-items: center; 
+  justify-content: start; 
+  width: 100%; 
 }
+
+}
+
 
 
 
@@ -127,40 +135,41 @@ html, body {
 
 
 /* orders */
-.menu_orders .menu-item {
-  font-size: 40px;
-  text-align: center;
-}
-
 .menu_orders {
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
   color: #000;
-  border: none;
   background: #EEEEEE;
   cursor: pointer;
   transition: background-color 0.3s;
   font-weight: bold;
   width: 700px;
   border: 1px solid #000;
-  margin-left: 500px;
+  margin-left: 600px; 
+  margin-top: 50px;
 }
 
-.menu-wrapper {
-  display: flex;
-  position: absolute;
-  margin-bottom: 20px;
-  margin-left: 70px;
+.menu-item {
+  font-size: 40px;
+  text-align: center;
+  background: #EEEEEE; 
+  border: none; 
+  flex-grow: 1; 
+  width: 800px;
+  font-weight: bold;
+  color: #000;
+  transition: background-color 0.3s;
 }
 
-.menu-item:hover {
-  background-color: #00ADB5;
+.menu-item:hover, .selected {
+  background-color: #00ADB5; 
 }
 
 .selected {
   background-color: #00ADB5;
+  box-shadow: none; 
 }
 
 /* favourites */

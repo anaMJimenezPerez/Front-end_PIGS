@@ -14,8 +14,8 @@ export class ProfileComponent {
 
   @ViewChild('profileImage') profileImage: ElementRef | undefined;
 
-  profilePictureWidth: number = 200; // Ancho deseado del recuadro de la foto de perfil
-  profilePictureHeight: number = 200; // Alto deseado del recuadro de la foto de perfil
+  profilePictureWidth: number = 200;
+  profilePictureHeight: number = 200; 
 
   selectOption(option: string) {
     this.selectedOption = option;
@@ -81,21 +81,10 @@ export class ProfileComponent {
       }
     }
   }
-
-  /* delete icon  */
-  removeProfilePicture(event: MouseEvent) {
-    if (event.button === 2 && this.profilePictureUrl) { // Verifica si el clic fue con el botón derecho y si hay una imagen
-      event.preventDefault(); // Evita que se abra el menú contextual predeterminado del navegador
-      if (window.confirm('Are you sure you want to delete the image?')) {
-        this.profilePictureUrl = null; // Elimina la imagen estableciendo su URL a null
-      }
-    }
-  }
   
   /* delete button*/ 
   confirmDelete() {
     if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
-      // Aquí puedes agregar la lógica para eliminar la cuenta
       console.log('Account deleted');
     }
   }

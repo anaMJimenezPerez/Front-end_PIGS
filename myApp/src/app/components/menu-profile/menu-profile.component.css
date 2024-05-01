@@ -1,8 +1,8 @@
 .menu-wrapper {
     display: flex; 
-    position: absolute;
     margin-bottom: 20px; 
     margin-left: 70px;
+    position: static;
     
   }
   
