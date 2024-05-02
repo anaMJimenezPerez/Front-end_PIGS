@@ -7,7 +7,6 @@ html, body {
   background-color: #eee;
 }
 
-
 .profile-picture-container {
   width: 200px; 
   height: 200px; 
@@ -47,13 +46,13 @@ html, body {
 
 }
 
-
+/* PC */
 @media (min-width: 1200px) {
 
 .columns-container {
   display: flex;
   margin-left: 90px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 .column {
@@ -64,13 +63,11 @@ html, body {
 .form-group_2 {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
   padding-left: 5px;
 }
 
 .form-group_1 label,
 .form-group_2 label {
-  margin-bottom: 10px;
   margin-top: 20px;
 }
 
@@ -150,6 +147,7 @@ html, body {
   border: 1px solid #000;
   margin-left: 600px; 
   margin-top: 50px;
+  margin-bottom: 24px
 }
 
 .menu-item {

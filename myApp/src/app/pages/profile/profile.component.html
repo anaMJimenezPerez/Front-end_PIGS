@@ -63,7 +63,6 @@
     <h1>My account</h1>
     <div class div_subscriptions>
       <h2>My subscriptions</h2>
-      <a class="subscribers" href="/subscribers">View my subscribers</a>
     </div>
     <div class="columns-container">
       <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
@@ -80,18 +79,18 @@
       <button (click)="selectMenuOption('customer_orders')" class="menu-item" [class.selected]="selectedMenuOption === 'customer_orders'">Customer orders</button>
     </div>
   </div>
+
   <div class="columns-container">
     <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+    <div class="my_orders_content" *ngIf="shouldShowMyOrders()">
+      <p>Content My orders</p>
+    </div>
+    <div class="my_costumers_content" *ngIf="shouldShowCustomerOrders()">
+      <p>Content Customer orders</p>
+    </div>
   </div>
   <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
   
-
-  <div *ngIf="shouldShowMyOrders()">
-    <p>Content My orders</p>
-  </div>
-  <div *ngIf="shouldShowCustomerOrders()">
-    <p>Content Customer orders</p>
-  </div>
 </div>
 
   <!-- Favourites -->

@@ -8,7 +8,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 
 export class ProfileComponent {
   selectedOption: string = 'profile';
-  selectedMenuOption: string = ''; 
+  selectedMenuOption: string = 'my_orders'; 
 
   profilePictureUrl: string | ArrayBuffer | null = null;
 
