@@ -7,8 +7,7 @@
     "creation_time": "01/03/2024",
     "address": "Las Palmas",
     "last_viewed": 5,
-    "favorites": ["1","4"],
-    "totalLikes": 4
+    "favorites": ["1","4"]
   },
   {
     "id": 2,
@@ -18,8 +17,7 @@
     "creation_time": "01/04/2024",
     "address": "Las Palmas",
     "last_viewed": 4,
-    "favorites": ["3","9"],
-    "totalLikes": 10
+    "favorites": ["3","9"]
   },
   {
     "id": 3,
@@ -29,7 +27,6 @@
     "creation_time": "01/02/2024",
     "address": "Las Palmas",
     "last_viewed": 8,
-    "favorites": [""],
-    "totalLikes": 6
+    "favorites": [""]
   }
 ]
