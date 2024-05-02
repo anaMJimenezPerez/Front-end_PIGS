@@ -11,6 +11,7 @@ import { MenuProfileComponent } from './components/menu-profile/menu-profile.com
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { DirectionFormComponent } from './pages/direction-form/direction-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DirectionFormComponent } from './pages/direction-form/direction-form.co
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

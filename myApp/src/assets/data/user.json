@@ -6,8 +6,9 @@
     "password": "userA",
     "creation_time": "01/03/2024",
     "address": "Las Palmas",
-    "last_viewed": "5",
-    "favorites": ["1","4"]
+    "last_viewed": 5,
+    "favorites": ["1","4"],
+    "totalLikes": 4
   },
   {
     "id": 2,
@@ -16,8 +17,9 @@
     "password": "userB",
     "creation_time": "01/04/2024",
     "address": "Las Palmas",
-    "last_viewed": "4",
-    "favorites": ["3","9"]
+    "last_viewed": 4,
+    "favorites": ["3","9"],
+    "totalLikes": 10
   },
   {
     "id": 3,
@@ -26,7 +28,8 @@
     "password": "userC",
     "creation_time": "01/02/2024",
     "address": "Las Palmas",
-    "last_viewed": "8",
-    "favorites": ["null"]
+    "last_viewed": 8,
+    "favorites": [""],
+    "totalLikes": 6
   }
 ]
