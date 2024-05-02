@@ -31,7 +31,7 @@ html, body {
 .profile-form h1 {
   border-bottom: 3px solid black; 
   padding-bottom: 10px; 
-  margin-left: 50PX;
+  margin-left: 50px;
   margin-right: 50px;
   font-size: 40px;
   font-weight: bold;
@@ -45,9 +45,6 @@ html, body {
   margin-bottom: 40px;
 
 }
-
-/* PC */
-@media (min-width: 1200px) {
 
 .columns-container {
   display: flex;
@@ -106,8 +103,73 @@ html, body {
   width: 100%; 
 }
 
+
+/* Tablet */
+@media (max-width: 1349px) {
+
+  .profile-form h1, .profile-form h2 {
+    text-align: center;
+  }
+
+  .profile-form h2 {
+    margin: 20px 0px 30px 0px;
+    font-size: 35px;
+  }
+
+  .columns-container {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .column{
+    margin: 0;
+  }
+
+  .profile-picture-container {
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
+  .form-group_1 input,
+  .form-group_2 input {
+    width: 300px; 
+  }
+
+  .delete-account {
+    margin-left: auto;
+    margin-right: auto;
+    width: 120px;
+    margin-top: 20px;
+  }
+
 }
 
+/* Mobile */
+@media (max-width: 768px) {
+  .columns-container {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .profile-picture-container {
+    margin-bottom: 15px;
+  }
+
+  .profile-form h1, .profile-form h2 {
+    font-size: 30px; 
+    text-align: center;
+    padding: 10px 10px;
+  }
+
+  .profile-form h2 {
+    font-size: 25px; 
+    margin: 0 auto;
+  }
+
+
+}
 
 
 
@@ -169,6 +231,39 @@ html, body {
 .selected {
   background-color: #00ADB5;
   box-shadow: none; 
+}
+
+/* my orders */
+
+/* my customers */
+.paragraph{
+  margin-left: 165px;
+}
+
+.buttons {
+  display: flex; 
+  justify-content: center; 
+  width: 100%;
+  margin-left: 95px; 
+}
+
+
+.my_costumers_content .sort-button {
+  font-weight: bold;
+  background-color: #D9D9D9;  
+  border: 2px solid #000;
+  color: black;               
+  padding: 5px 15px; 
+  margin: 0 20px;     
+  border-radius: 10px;       
+  font-size: 16px;            
+  cursor: pointer;            
+  transition: all 0.3s ease;  
+
+}
+
+.my_costumers_content .sort-button:hover {
+  background-color: #B0B0B0;  
 }
 
 /* favourites */

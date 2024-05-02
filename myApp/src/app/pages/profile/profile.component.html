@@ -82,16 +82,26 @@
 
   <div class="columns-container">
     <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+    
+    <!-- My Orders -->
     <div class="my_orders_content" *ngIf="shouldShowMyOrders()">
       <p>Content My orders</p>
     </div>
+
+    <!-- My Customer Orders -->
     <div class="my_costumers_content" *ngIf="shouldShowCustomerOrders()">
-      <p>Content Customer orders</p>
+      <div class="sort-options">
+        <p class="paragraph"> Sort by: </p>
+        <div class="buttons">
+          <button (click)="sortOrders('earliest')" class="sort-button">Earliest orders</button>
+          <button (click)="sortOrders('recent')" class="sort-button">Recent orders</button>
+          <button (click)="sortOrders('product')" class="sort-button">Product ordered</button>
+        </div>
+      </div>
     </div>
   </div>
   <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
-  
-</div>
+  </div>
 
   <!-- Favourites -->
   <div *ngIf="selectedOption === 'favourites'" class="profile-form">

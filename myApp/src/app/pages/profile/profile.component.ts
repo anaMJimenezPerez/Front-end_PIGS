@@ -9,6 +9,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 export class ProfileComponent {
   selectedOption: string = 'profile';
   selectedMenuOption: string = 'my_orders'; 
+  orders: any[] = [];
 
   profilePictureUrl: string | ArrayBuffer | null = null;
 
@@ -21,6 +22,7 @@ export class ProfileComponent {
     this.selectedOption = option;
   }
 
+  /* Orders */
   selectMenuOption(option: string) {
     this.selectedMenuOption = option;
   }
@@ -31,6 +33,17 @@ export class ProfileComponent {
 
   shouldShowCustomerOrders(): boolean {
     return this.selectedMenuOption === 'customer_orders';
+  }
+
+  /* Customers Orders */
+  sortOrders(criteria: string): void {
+    if (criteria === 'earliest') {
+      this.orders.sort((a, b) => a.date - b.date);
+    } else if (criteria === 'recent') {
+      this.orders.sort((a, b) => b.date - a.date);
+    } else if (criteria === 'product') {
+      this.orders.sort((a, b) => a.productName.localeCompare(b.productName));
+    }
   }
 
   /* icon */
