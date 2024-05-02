@@ -1,22 +1,14 @@
 <body>
-  <div class="container">
-    <div role="group">
-      <button class="buttonFormat filter" (click)="changeColor(0); filterProducts('cat1')" [style.background-color]="colors[0]" >Cat 1</button>
-      <button class="buttonFormat filter" (click)="changeColor(1); filterProducts('cat2')" [style.background-color]="colors[1]">Cat 2</button>
-      <button class="buttonFormat filter" (click)="changeColor(2); filterProducts('cat3')" [style.background-color]="colors[2]">Cat 3</button>
-      <button class="buttonFormat filter" (click)="changeColor(3); filterProducts('cat4')" [style.background-color]="colors[3]">Cat 4</button>
-    </div>
-  </div>
 
-  <div class="title">Your favorite creators</div>
+  <div class="title">What can you find here</div>
   <div class="line"></div>
 
   <div class="container">
     <div class="row">
-      <div *ngFor="let product of filteredProducts.slice(0, totalRowsToShow)" class="col-md-3">
+      <div *ngFor="let product of products.slice(0, totalRowsToShow)" class="col-md-3">
         <div class="card mb-4">
-          <img src="../../../assets/favorite.svg" alt="Favorite" class="styleImage">
-          <img class="card-img-top" [src]="product.urlImage" alt="Card image cap">
+          <img src="../../../assets/images/favorite.png" alt="Favorite" class="styleImage">
+          <img class="card-img-top" *ngIf="product.images_path && product.images_path.length > 0" [src]="product.images_path[0]" alt="Card image cap">
           <div class="card-body" style="text-align:center;">
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">{{product.price}}</p>
@@ -28,20 +20,20 @@
   </div>
 
   <div class="container">
-    <button class="buttonFormat" (click)="showMore(1, filteredProducts, totalRowsToShow, showAllRows)">
+    <button class="buttonFormat" (click)="showMore(1, products, totalRowsToShow, showAllRows)">
       {{ showAllRows ? 'Show Less' : 'Show More' }}
     </button>
   </div>
 
-  <div class="title">From our best creators</div>
+  <!--div class="title">From our best creators</div>
   <div class="line"></div>
 
   <div class="container">
     <div class="row">
       <div *ngFor="let product of productsFavorite.slice(0, totalRowsToShowFavorite)" class="col-md-3">
         <div class="card mb-4">
-          <img src="../../../assets/favorite.svg" alt="Favorite" class="styleImage">
-          <img class="card-img-top" [src]="product.urlImage" alt="Card image cap">
+          <img src="../../../assets/images/favorite.png" alt="Favorite" class="styleImage">
+          <img class="card-img-top" [src]="product.images_path" alt="Card image cap">
           <div class="card-body" style="text-align:center;">
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">{{product.price}}</p>
@@ -55,6 +47,31 @@
   <div class="container">
     <button class="buttonFormat" (click)="showMore(2, productsFavorite , totalRowsToShowFavorite, showAllRowsFavorite)">
       {{ showAllRowsFavorite ? 'Show Less' : 'Show More' }}
+    </button>
+  </div -->
+
+  <div class="title">New articles</div>
+  <div class="line"></div>
+
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let product of newProducts.slice(0, totalRowsToShowNewProducts)" class="col-md-3">
+        <div class="card mb-4">
+          <img src="../../../assets/images/favorite.png" alt="Favorite" class="styleImage">
+          <img class="card-img-top" *ngIf="product.images_path && product.images_path.length > 0" [src]="product.images_path[0]" alt="Card image cap">
+          <div class="card-body" style="text-align:center;">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.price}}</p>
+            <a href="#" class="buttonFormat addCart">Add to cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <button class="buttonFormat" (click)="showMore(3, newProducts , totalRowsToShowNewProducts, showAllRowsNewProducts)">
+      {{ showAllRowsNewProducts ? 'Show Less' : 'Show More' }}
     </button>
   </div>
 
