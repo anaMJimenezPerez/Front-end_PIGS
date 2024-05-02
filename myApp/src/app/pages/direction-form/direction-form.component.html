@@ -1,0 +1,63 @@
+<head>
+    <title>Iniciar sesión</title>
+</head>
+
+<body>
+
+    <div class="direction_container row">
+        <div class="image_container col-md-4">
+            <img src="../../../assets/images/street.jpg" alt="signupImage" class="img-fluid">
+        </div>
+        <div class="form_container col-md-8">
+            <h2 id="title_log" class="text-center">Account details</h2>
+            <div class="row">
+                <div class="form_content_left col-md-6">
+                    <form id="form">
+                        <div class="field">
+                            <label>Street<br></label>
+                            <input matInput class="text" id="street" type="text">
+                        </div>
+                        <div class="field">
+                            <label>Postal code<br></label>
+                            <input matInput class="text" id="postalCode" type="text">
+                        </div>
+                        <div class="field">
+                            <label>Province<br></label>
+                            <input class="text" id="province" name="password" type="text">
+                        </div>
+                    </form>
+                </div>
+                <div class="form_content_right col-md-6">
+                    <form id="form">
+                        <div class="field">
+                            <label>Number<br></label>
+                            <input matInput class="text" id="number" type="text">
+                        </div>
+                        <div class="field">
+                            <label>City<br></label>
+                            <input matInput class="text" id="city" type="text">
+                        </div>
+                        <div class="field">
+                            <label>Country<br></label>
+                            <input class="text" id="province" name="password" type="text">
+                        </div>
+                        <div class="check">
+                            <input type="checkbox" id="miCheckbox" name="miCheckbox" >
+                            <label for="miCheckbox">I agree to the </label>
+                            <a class="terms" href="terms&Conditions"> Terms & Conditions</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="buttons col">
+                <div class="field">
+                    <input class="button" type="submit" value="Save & finish" (click)="navigateToDirectionFormPage()">
+                </div>
+                <div class="field">
+                    <input class="button" id="buttonSkip" type="submit" value="SKIP">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>

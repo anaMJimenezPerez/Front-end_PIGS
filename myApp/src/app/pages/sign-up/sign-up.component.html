@@ -4,16 +4,20 @@
 
 <body>
 
-    <div class="login_container">
+    <div class="signup_container">
         <div class="form_container">
             <div class="image_container">
-                <img src="../../../assets/images/login/shop1.png" alt="loginImage">
+                <img src="../../../assets/images/signup/signup.jpg" alt="signupImage">
             </div>
             <div class="form_content">
-                <form id="formularioLogIn">
-                    <h2 id="title_log">Welcome</h2>
+                <form id="form">
+                    <h2 id="title_log">Create new account</h2>
                     <div class="field">
-                        <label>Email address:<br></label>
+                        <label>Name<br></label>
+                        <input matInput class="text" id="name" name="email" type="text" placeholder="name">
+                    </div>
+                    <div class="field">
+                        <label>Email address<br></label>
                         <input matInput class="text" id="email" name="email" type="email" placeholder="name@example.com"
                             formControlName="email">
                     </div>
@@ -22,21 +26,16 @@
                         <input class="text" id="password" name="password" type="password" placeholder="••••••••••"
                             formControlName="password">
                     </div>
-                    <div class="options">
-                        <div class="check">
-                            <input type="checkbox" id="miCheckbox" name="miCheckbox" >
-                            <label for="miCheckbox">Remember me</label>
-                        </div>
-                            <a class="restore_pass" href="restorePass">Forgot password?</a>
+                    <div class="field">
+                        <label>Confirm password<br></label>
+                        <input class="text" id="verifyPassword" name="password" type="password" placeholder="••••••••••"
+                            formControlName="password">
                     </div>
                     <div class="field">
-                        <input class="button" type="submit" value="Login">
-                    </div>
-                    <div class="field">
-                        <input class="button" id="registerBtn" type="submit" value="Register now" (click)="navigateToDirectionFormPage()">
+                        <button class="button" (click)="navigateToDirectionFormPage()">Next</button>
                     </div>
                 </form>
-
+                
             </div>
         </div>
     </div>
