@@ -27,6 +27,7 @@ export class LoginPageComponent {
       next: isAuthenticated => {
         if (isAuthenticated) {
           this.navigateToHomePage();
+          this.authService.login(this.email, this.password);
         } else {
           window.alert('Nombre de usuario o contraseña incorrectos');
         }
