@@ -8,24 +8,22 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-  isAuthenticated = false;
+export class HeaderComponent implements OnDestroy {
+  isAuthenticated$ = this.authService.currentUser$;
   private authSubscription!: Subscription;
 
-  constructor(private router: Router, private authService: AuthUserService) {}
-
+  constructor(private router: Router, public authService: AuthUserService) {
+    this.authSubscription = this.isAuthenticated$.subscribe(user => {
+      this.mostrarMenu = !!user; // Mostrar el menú solo si el usuario está autenticado
+    });
+  }
   mostrarMenu: boolean = false;
 
   navigateToLogInPage() {
     this.router.navigateByUrl('/loginPage');
   }
-
   mostrarOpciones() {
     this.mostrarMenu = !this.mostrarMenu;
-  }
-
-  ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuthenticated();
   }
 
   ngOnDestroy(): void {
@@ -34,7 +32,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout(): void {
     this.authService.logout();
-    this.isAuthenticated = this.authService.isAuthenticated();
   }
-
 }
