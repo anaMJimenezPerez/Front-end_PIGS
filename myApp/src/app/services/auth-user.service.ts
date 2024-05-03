@@ -10,8 +10,10 @@ export class AuthUserService {
 
   private usersUrl = '../assets/data/user.json';
 
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+
+  isAuthenticated$ = this.isAuthenticated();
+
+  private authenticatedKey = 'isAuthenticated';
 
   constructor(private http: HttpClient) { }
 
@@ -19,12 +21,17 @@ export class AuthUserService {
     return this.http.get<any[]>(this.usersUrl).pipe(
       map(users => {
         const user = users.find(u => u.email == userEmail && u.password == password);
-        this.isAuthenticatedSubject.next(true);
+        localStorage.setItem(this.authenticatedKey, 'true');
         return !!user; 
       })
     );
   }
   logout(): void {
-    this.isAuthenticatedSubject.next(false);
+    localStorage.removeItem(this.authenticatedKey);
   }
+
+  isAuthenticated(): boolean {
+    return localStorage.getItem(this.authenticatedKey) === 'true';
+  }
+  
 }
