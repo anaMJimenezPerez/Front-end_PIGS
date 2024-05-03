@@ -10,17 +10,17 @@
                 <img src="../../../assets/images/login/shop1.png" alt="loginImage">
             </div>
             <div class="form_content">
-                <form id="formularioLogIn">
+                <form id="formularioLogIn" (submit)="onSubmit()">
                     <h2 id="title_log">Welcome</h2>
                     <div class="field">
                         <label>Email address:<br></label>
-                        <input matInput class="text" id="email" name="email" type="email" placeholder="name@example.com"
-                            formControlName="email">
+                        <input matInput class="text" id="email" name="email" type="email" placeholder="name@example.com" 
+                        [(ngModel)]="email">
                     </div>
                     <div class="field">
                         <label>Password<br></label>
                         <input class="text" id="password" name="password" type="password" placeholder="••••••••••"
-                            formControlName="password">
+                        [(ngModel)]="password" >
                     </div>
                     <div class="options">
                         <div class="check">
@@ -33,7 +33,7 @@
                         <input class="button" type="submit" value="Login">
                     </div>
                     <div class="field">
-                        <input class="button" id="registerBtn" type="submit" value="Register now" (click)="navigateToDirectionFormPage()">
+                        <input class="button" id="registerBtn" type="submit" value="Register now" (click)="navigateToSignUpPage()">
                     </div>
                 </form>
 

@@ -14,7 +14,8 @@
           <p class="placeSearch pHeader mr-4"> Search </p>
           <img src="../../../assets/images/header/trending.png" class="img-fluid mx-1 links-proper" alt="Trending">
           <p class="placeTrending pHeader mr-4"> Trending </p>
-          <button class="buttonHeader"> Login </button>
+          <button *ngIf="!isAuthenticated" class="buttonHeader" (click)="navigateToLogInPage()"> Login </button>
+          <li *ngIf="isAuthenticated"><i class="bi bi-person-circle"></i></li>
         </div>
         <div class="menu-icon d-md-none" (click)="mostrarOpciones()">
           <img src="../../../assets/images/header/menu.png" class="img-fluid mx-1 links-proper" alt="Menu">
