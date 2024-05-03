@@ -16,8 +16,6 @@
     <div class="profile-form">
       <h1>My account</h1>
       <h2>My profile</h2>
-
-
       <div class="columns-container">
         <!-- Icon -->
         <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
@@ -39,12 +37,10 @@
           </div>
         </div>
       </div>
-
       <div class="delete_menu">
         <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
         <button class="delete-account" (click)="confirmDelete()">Delete my account</button>
       </div>
-
     </div>
   </div>
 

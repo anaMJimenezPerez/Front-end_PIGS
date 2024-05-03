@@ -27,10 +27,10 @@ html, body {
   font-weight: bold;
 }
 
-
 .profile-form h1 {
   border-bottom: 3px solid black; 
   padding-bottom: 10px; 
+  padding-top: 10px;
   margin-left: 50px;
   margin-right: 50px;
   font-size: 40px;
@@ -38,7 +38,7 @@ html, body {
 }
 
 .profile-form h2 {
-  margin-left: 470px;
+  margin-left: 525px;
   font-size: 40px;
   font-weight: bold;
   margin-top: 50px;
@@ -48,7 +48,7 @@ html, body {
 
 .columns-container {
   display: flex;
-  margin-left: 90px;
+  margin-left: 150px;
   margin-bottom: 30px;
 }
 
@@ -111,14 +111,12 @@ html, body {
   }
 
   .profile-form h2{
-    margin: 20px 0px 30px 340px;
+    margin: 20px 0px 30px 400px;
   }
 
 
   .profile-picture-container {
-    margin: 0px 30px 0px 0px;
-    width: 180px;
-    height: 180px;
+    margin: 0px 0px 0px 0px;
   }
 
   .column {
@@ -126,6 +124,7 @@ html, body {
     flex-direction: column;
     align-items: flex-start;
   }
+  
 
   .form-group_1 input,
   .form-group_2 input {
@@ -133,46 +132,50 @@ html, body {
   }
 
   .delete-account {
-    margin-left: 200px;
-    margin-top: 20px;
+    margin-left: 185px;
+
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
+
+  .profile-form h1{
+    text-align: center;
+    font-size: 35px;
+  }
+
+  .profile-form h2 {
+    margin: 0px 10px 30px 0px;
+    text-align: center;
+    font-size: 30px;
+  }
+
   .profile-picture-container {
-    width: 100px;
-    height: 100px;
+    width: 170px;
+    height: 170px;  
+
   }
 
-  .profile-form h1, .profile-form h2 {
-    font-size: 20px;
-    margin: 10px;
+  .columns-container{
+    margin-left:  70px;
   }
 
-  .columns-container {
-    flex-direction: column;
+  .column{
     margin-left: 10px;
-  }
-
-  .column {
-    margin-left: 0;
   }
 
   .form-group_1 input,
   .form-group_2 input {
-    width: 250px;
+    width: 180px;
   }
 
   .delete-account {
-    width: 100px;
-    height: 30px;
-    font-size: 12px;
-    margin-left: 10px;
-    margin-top: 10px;
+    margin-left: 135px;
   }
-}
 
+}
+  
 
 
 /* products */
