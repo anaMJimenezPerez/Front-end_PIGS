@@ -34,14 +34,13 @@ html, body {
   font-size: 40px;
   font-weight: bold;
   text-align: left; 
+  margin-bottom: 30px;
 }
 
 .profile-form h2 {
   font-size: 40px;
   font-weight: bold;
-  margin-top: 20px;
   margin-bottom: 40px;
-  text-align: left;
   margin-left: 320px;
 }
 
@@ -128,7 +127,6 @@ html, body {
 }
 
   .delete-account{
-    margin-bottom: 200px;
     margin-left: 200px;
   }
   

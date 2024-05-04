@@ -64,30 +64,40 @@
 </div>
 
   <!-- Products -->
-  <div *ngIf="selectedOption === 'products'" class="profile-form">
+<div *ngIf="selectedOption === 'products'" class="container mt-3">
+  <div class="profile-form">
     <h1>My account</h1>
     <h2>My products</h2>
-    <div class="columns-container">
-      <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+    <div class="row">
+      <div class="col-lg-12">
+        <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+      </div>
     </div>
-    <div class="delete_menu">
-      <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+    <div class="row">
+      <div class="col-lg-12">
+        <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+      </div>
     </div>
   </div>
+</div>
 
-  <!-- Subscriptions -->
-  <div *ngIf="selectedOption === 'subscriptions'" class="profile-form">
+<!-- Subscriptions -->
+<div *ngIf="selectedOption === 'subscriptions'" class="container mt-3">
+  <div class="profile-form">
     <h1>My account</h1>
-    <div class div_subscriptions>
-      <h2>My subscriptions</h2>
+    <h2>My subscriptions</h2>
+    <div class="row">
+      <div class="col-lg-12">
+        <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+      </div>
     </div>
-    <div class="columns-container">
-      <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
-    </div>
-    <div class="delete_menu">
-      <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+    <div class="row">
+      <div class="col-lg-12">
+        <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+      </div>
     </div>
   </div>
+</div>
 
   <!-- Orders -->
 <div *ngIf="selectedOption === 'orders'" class="profile-form">
@@ -147,14 +157,19 @@
   </div>
 
   <!-- Favourites -->
-  <div *ngIf="selectedOption === 'favourites'" class="profile-form">
+<div *ngIf="selectedOption === 'favourites'" class="container mt-3">
+  <div class="profile-form">
     <h1>My account</h1>
     <h2>My favourites</h2>
-    <div class="columns-container">
-      <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+    <div class="row">
+      <div class="col-lg-12">
+        <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+      </div>
     </div>
-    <div class="delete_menu">
-      <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+    <div class="row">
+      <div class="col-lg-12">
+        <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+      </div>
     </div>
   </div>
-</body>
+</div>
