@@ -1,6 +1,6 @@
-/* profile */
+/* Profile */
 html, body {
-  font-family: 'Poppins', sans-serif; /* Poppins */
+  font-family: 'Poppins', sans-serif;
   height: 100vh;
   width: 100vw;
   margin: 0;
@@ -10,17 +10,17 @@ html, body {
 .profile-picture-container {
   width: 200px; 
   height: 200px; 
-  border: 1px solid #000000; 
+  border: 1px solid #000;
   border-radius: 15px;
-  overflow: hidden;
   background-color: #00ADB5;
-  margin-right: 140px;
+  overflow: hidden;
+  margin-bottom: 40px;
 }
 
 .profile-picture-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
 }
 
 .profile-form {
@@ -30,162 +30,108 @@ html, body {
 .profile-form h1 {
   border-bottom: 3px solid black; 
   padding-bottom: 10px; 
-  padding-top: 10px;
-  margin-left: 50px;
-  margin-right: 50px;
+  padding-top: 30px;
   font-size: 40px;
   font-weight: bold;
+  text-align: left; 
 }
 
 .profile-form h2 {
-  margin-left: 525px;
   font-size: 40px;
   font-weight: bold;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-bottom: 40px;
-
+  text-align: left;
+  margin-left: 320px;
 }
 
 .columns-container {
   display: flex;
-  margin-left: 150px;
+  margin-left: 20px; 
   margin-bottom: 30px;
 }
 
 .column {
-  margin-left: 35px;
+  margin-left: 20px; 
 }
 
-.formulary {
-  display: flex;  
-  flex-direction: row; 
-  justify-content: flex-start;  
-}
-
-
-.form-group_1,
-.form-group_2 {
+.form-group {
   display: flex;
   flex-direction: column;
   padding-left: 5px;
-}
-
-.form-group_1 label,
-.form-group_2 label {
   margin-top: 20px;
 }
 
-.form-group_1 input,
-.form-group_2 input {
-  width: 380px;
+.form-group input {
+  width: calc(100% - 10px);
   height: 50px;
   border-radius: 7px;
-  border: 1px solid #000; 
+  border: 1px solid #000;
   padding-left: 20px;
   background-color: #EEEEEE;
 }
 
 .delete-account {
-  width: 140px;
+  width: 150px;
   height: 40px;
-  border: 0cm;
   background-color: #E15555;
-  border-top-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-radius: 10px 0px 10px 0px;
   font-weight: bold;
-  margin-left: 510px;
   font-size: 14px;
-  white-space: nowrap;
-  margin-top: 165px;
+  color: #000;
+  border: none;
+  margin-left: 310px;
 }
 
 .delete-account:active {
   background-color: #c42e2e;
 }
 
-.delete_menu {
-  display: flex;
-  align-items: center; 
-  justify-content: start; 
-  width: 100%; 
+.form-details {
+  flex-grow: 1; 
+  margin-left: 120px;
 }
 
-/* Tablet */
-@media (max-width: 1300px) {
-
-  .profile-form h1, .profile-form h2 {
-    font-size: 30px;
-  }
-
-  .profile-form h2{
-    margin: 20px 0px 30px 370px;
-  }
-
-
-  .profile-picture-container {
-    margin: 0px 0px 0px 0px;
-    width: 180px;
-    height: 180px;
-  }
-
-  .column {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-
-  .form-group_1 input,
-  .form-group_2 input {
-    width: 195px;
-  }
-
-  .delete-account {
-    margin-left: 185px;
-
-  }
+.form-details{
+  margin-bottom: 40px;
 }
 
-/* Mobile */
 @media (max-width: 768px) {
-  .profile-form h1 {
+  .profile-picture-container {
+      width: 180px;
+      height: 180px;
+  }
+
+  .form-group{
+    width: 240px;
+  }
+
+  .profile-form h1{
+    font-size: 36px;
     text-align: center;
-    font-size: 35px;
   }
 
   .profile-form h2 {
-    margin: 0px 10px 30px 0px;
-    text-align: center;
-    font-size: 30px;
+      font-size: 28px;
+      margin-left: 0; 
+      text-align: center;
+      margin-top: 10px;
   }
 
-  .profile-picture-container {
-    width: 170px;
-    height: 170px;
-    margin: auto;  
-    margin-bottom: 0;  
+
+  .form-details {
+      margin-left: 0; 
   }
 
-  .columns-container {
-    flex-direction: column;  
-    margin-left: 0; 
-    
-  }
-
-  .column {
-    margin-left: 0;  
-    margin: auto;
-  }
-
-  .form-group_1 input,
-  .form-group_2 input {
-    width: 100%;
-  }
+  .profile-image-container {
+    margin-right: 45px; 
+}
 
   .delete-account{
-    margin: 180px auto auto auto;
+    margin-bottom: 200px;
+    margin-left: 200px;
   }
-
+  
 }
 
 
@@ -250,6 +196,29 @@ html, body {
 }
 
 /* my orders */
+.menu_colum {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.menu_profile{
+  margin-top: 30px;
+  margin-right: 100px;
+}
+
+.my_orders_content {
+  max-height: 500px; /* Ajusta esta altura según la necesidad de tu diseño */
+  overflow-y: auto; /* Habilita el scroll vertical cuando el contenido excede la altura máxima */
+  scrollbar-width: none; /* Para Firefox */
+  -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+
+  /* Estilo para ocultar la barra de desplazamiento en Webkit (Chrome, Safari) */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 
 /* my customers */
 .paragraph{
@@ -258,9 +227,9 @@ html, body {
 
 .buttons {
   display: flex; 
-  justify-content: center; 
   width: 100%;
-  margin-left: 60px; 
+  margin-bottom: 20px;
+  margin-left: 90px;
 }
 
 
@@ -271,16 +240,53 @@ html, body {
   color: black;               
   padding: 5px 10px; 
   margin: 0 20px;     
-  border-radius: 10px;       
-  font-size: 16px;            
+  border-radius: 10px;                 
   cursor: pointer;            
   transition: all 0.3s ease;  
+}
 
+.my_costumers_content {
+  max-height: 500px;
+  overflow-y: auto;
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 
 .my_costumers_content .sort-button:hover {
   background-color: #B0B0B0;  
 }
+
+.product-image {
+  width: 150px; 
+  height: 150px; 
+  object-fit: cover; 
+  margin-right: 20px; 
+  margin-left: 10px;
+}
+
+.order-card {
+  width: 700px;
+  height: 187px;
+  background-color: #D9D9D9;
+  padding: 20px;
+  margin-bottom: 10px; 
+  font-size: 12px;
+  margin-left: 110px;
+}
+
+.order-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; 
+  padding: 10px; 
+}
+
+
+.order-details {
+  flex-grow: 1;
+  padding-top: 15px;
+}
+
 
 /* favourites */
 

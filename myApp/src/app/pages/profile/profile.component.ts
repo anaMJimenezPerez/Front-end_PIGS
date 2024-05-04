@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -10,6 +11,7 @@ export class ProfileComponent {
   selectedOption: string = 'profile';
   selectedMenuOption: string = 'my_orders'; 
   orders: any[] = [];
+  myOrders: any[] = [];
 
   profilePictureUrl: string | ArrayBuffer | null = null;
 
@@ -18,11 +20,15 @@ export class ProfileComponent {
   profilePictureWidth: number = 200;
   profilePictureHeight: number = 200; 
 
-  selectOption(option: string) {
-    this.selectedOption = option;
-  }
+  constructor(private http: HttpClient) {}
 
   /* Orders */
+
+  ngOnInit() {
+    this.loadOrders();
+    this.loadMyOrders();
+  }
+
   selectMenuOption(option: string) {
     this.selectedMenuOption = option;
   }
@@ -35,16 +41,41 @@ export class ProfileComponent {
     return this.selectedMenuOption === 'customer_orders';
   }
 
+  /* My Orders */
+  loadMyOrders() {
+    this.http.get<any[]>('assets/data/myorders.json').subscribe(data => {
+      this.myOrders = data;
+    }, error => {
+      console.error('Failed to load my orders:', error);
+    });
+  }
+
   /* Customers Orders */
   sortOrders(criteria: string): void {
     if (criteria === 'earliest') {
-      this.orders.sort((a, b) => a.date - b.date);
+      // Old date
+      this.orders.sort((a, b) => new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime());
     } else if (criteria === 'recent') {
-      this.orders.sort((a, b) => b.date - a.date);
+      // Recent date
+      this.orders.sort((a, b) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime());
     } else if (criteria === 'product') {
+      // Name of product
       this.orders.sort((a, b) => a.productName.localeCompare(b.productName));
     }
   }
+
+  loadOrders() {
+    this.http.get<any[]>('assets/data/orders.json').subscribe(data => {
+      this.orders = data;
+    }, error => {
+      console.error('Failed to load orders:', error);
+    });
+  }
+
+  selectOption(option: string) {
+    this.selectedOption = option;
+  }
+
 
   /* icon */
   selectProfilePicture() {
