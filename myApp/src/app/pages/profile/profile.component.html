@@ -20,6 +20,7 @@
         <!-- Icon -->
         <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
         <!-- Formulary -->
+        <div class="formulary">
         <div class="column">
           <div class="form-group_1">
             <label class="Name" for="name">Name</label>
@@ -37,6 +38,8 @@
           </div>
         </div>
       </div>
+    </div>
+    
       <div class="delete_menu">
         <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
         <button class="delete-account" (click)="confirmDelete()">Delete my account</button>

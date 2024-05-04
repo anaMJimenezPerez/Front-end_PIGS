@@ -56,6 +56,13 @@ html, body {
   margin-left: 35px;
 }
 
+.formulary {
+  display: flex;  
+  flex-direction: row; 
+  justify-content: flex-start;  
+}
+
+
 .form-group_1,
 .form-group_2 {
   display: flex;
@@ -111,12 +118,14 @@ html, body {
   }
 
   .profile-form h2{
-    margin: 20px 0px 30px 400px;
+    margin: 20px 0px 30px 370px;
   }
 
 
   .profile-picture-container {
     margin: 0px 0px 0px 0px;
+    width: 180px;
+    height: 180px;
   }
 
   .column {
@@ -139,8 +148,7 @@ html, body {
 
 /* Mobile */
 @media (max-width: 768px) {
-
-  .profile-form h1{
+  .profile-form h1 {
     text-align: center;
     font-size: 35px;
   }
@@ -153,29 +161,32 @@ html, body {
 
   .profile-picture-container {
     width: 170px;
-    height: 170px;  
-
+    height: 170px;
+    margin: auto;  
+    margin-bottom: 0;  
   }
 
-  .columns-container{
-    margin-left:  70px;
+  .columns-container {
+    flex-direction: column;  
+    margin-left: 0; 
+    
   }
 
-  .column{
-    margin-left: 10px;
+  .column {
+    margin-left: 0;  
+    margin: auto;
   }
 
   .form-group_1 input,
   .form-group_2 input {
-    width: 180px;
+    width: 100%;
   }
 
-  .delete-account {
-    margin-left: 135px;
+  .delete-account{
+    margin: 180px auto auto auto;
   }
 
 }
-  
 
 
 /* products */
@@ -242,14 +253,14 @@ html, body {
 
 /* my customers */
 .paragraph{
-  margin-left: 165px;
+  margin-left: 110px;
 }
 
 .buttons {
   display: flex; 
   justify-content: center; 
   width: 100%;
-  margin-left: 95px; 
+  margin-left: 60px; 
 }
 
 
@@ -258,7 +269,7 @@ html, body {
   background-color: #D9D9D9;  
   border: 2px solid #000;
   color: black;               
-  padding: 5px 15px; 
+  padding: 5px 10px; 
   margin: 0 20px;     
   border-radius: 10px;       
   font-size: 16px;            
