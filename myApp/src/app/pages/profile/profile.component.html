@@ -1,66 +1,104 @@
 <body>
-  <!-- Profile -->
-  <div *ngIf="selectedOption === 'profile'" class="profile-form">
 
-    <div class="profile-form">
-      <h1>My account</h1>
-      <h2>My profile</h2>
+  <!-- Template icon -->
+<ng-template #profilePictureTemplate>
+  <div class="profile-picture" (click)="selectProfilePicture()">
+    <input type="file" id="profile-picture" accept="image/*" style="display: none" (change)="onProfilePictureSelected($event)">
+    <div class="profile-picture-container d-flex justify-content-center align-items-center">
+      <img *ngIf="profilePictureUrl" [src]="profilePictureUrl" alt="Profile Picture" class="img-fluid">
+    </div>
+  </div>
+</ng-template>
 
-
-      <div class="columns-container">
-        <!-- Icon -->
-        <div class="profile-picture" (click)="selectProfilePicture()" (mousedown)="removeProfilePicture($event)">
-          <input type="file" id="profile-picture" accept="image/*" style="display: none" (change)="onProfilePictureSelected($event)">
-          <div class="profile-picture-container">
-            <img *ngIf="profilePictureUrl" [src]="profilePictureUrl" alt="Profile Picture" id="profile-image">
+ <!-- Profile -->
+<div *ngIf="selectedOption === 'profile'" class="container mt-3">
+   <div class="profile-form">
+    <h1>My account</h1>
+    <div class="row">
+      <!-- Formulario y imagen -->
+      <div class="col-lg-12 col-md-12 mb-3">
+        <h2>My profile</h2>
+        <!-- Contenedor para imagen y formulario -->
+        <div class="d-flex">
+          <!-- Contenedor de imagen -->
+          <div class="profile-image-container mr-3">
+            <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+            <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
           </div>
-        </div>
-
-        <!-- Formulary -->
-        <div class="column">
-          <div class="form-group_1">
-            <label class="Name" for="name">Name</label>
-            <input type="text" id="name" name="name" required placeholder="Name">
-            <label class="email" for="email">Email address</label>
-            <input type="email" id="email" name="email" required placeholder="name@example.com">
-          </div>
-        </div>
-        <div class="column">
-          <div class="form-group_2">
-            <label class="lastName" for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="LastName" required placeholder="Last Name">
-            <label class="password" for="password">Password</label>
-            <input type="password" id="password" name="password" required placeholder="***********">
+          <!-- Formulario, a la derecha de la imagen -->
+          <div class="form-details">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" class="form-control" required placeholder="Name">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input type="email" id="email" name="email" class="form-control" required placeholder="name@example.com">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" id="lastName" name="lastName" class="form-control" required placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" id="password" name="password" class="form-control" required placeholder="***********">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      <div>
-        <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+    </div>
+    <div class="row">
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-auto">
         <button class="delete-account" (click)="confirmDelete()">Delete my account</button>
       </div>
-
     </div>
   </div>
+</div>
 
   <!-- Products -->
-  <div *ngIf="selectedOption === 'products'" class="profile-form">
+<div *ngIf="selectedOption === 'products'" class="container mt-3">
+  <div class="profile-form">
     <h1>My account</h1>
     <h2>My products</h2>
-    <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
-  </div>
-
-  <!-- Subscriptions -->
-  <div *ngIf="selectedOption === 'subscriptions'" class="profile-form">
-    <h1>My account</h1>
-    <div class div_subscriptions>
-      <h2>My subscriptions</h2>
-      <a class="subscribers" href="/subscribers">View my subscribers</a>
+    <div class="row">
+      <div class="col-lg-12">
+        <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+      </div>
     </div>
-    <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+    <div class="row">
+      <div class="col-lg-12">
+        <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+      </div>
+    </div>
   </div>
+</div>
 
-  <!-- Orders -->
+<!-- Subscriptions -->
+<div *ngIf="selectedOption === 'subscriptions'" class="container mt-3">
+  <div class="profile-form">
+    <h1>My account</h1>
+    <h2>My subscriptions</h2>
+    <div class="row">
+      <div class="col-lg-12">
+        <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+      </div>
+    </div>
+  </div>
+</div>
+
   <!-- Orders -->
 <div *ngIf="selectedOption === 'orders'" class="profile-form">
   <h1>My account</h1>
@@ -70,23 +108,68 @@
       <button (click)="selectMenuOption('customer_orders')" class="menu-item" [class.selected]="selectedMenuOption === 'customer_orders'">Customer orders</button>
     </div>
   </div>
-  <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
-  
-  <!-- Mostrar elementos según la opción seleccionada -->
-  <div *ngIf="shouldShowMyOrders()">
-    <!-- Aquí coloca los elementos que deseas mostrar cuando se selecciona "My orders" -->
-    <p>Content My orders</p>
+
+  <div class="columns-container">
+    <div class="menu_colum">
+      <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+      <div class="menu_profile">
+        <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+      </div>
+    </div>
+    
+    <!-- My Orders -->
+    <div class="my_orders_content" *ngIf="shouldShowMyOrders()">
+        <div *ngFor="let order of myOrders" class="order-card">
+          <img [src]="order.imageUrl" alt="Product Image" class="product-image">
+          <div class="order-details">
+            <p>Product name: {{ order.productName }}</p>
+            <p>Seller's account: {{ order.sellerAccount }}</p>
+            <p>Purchase date: {{ order.purchaseDate }}</p>
+            <p>Price: {{ order.price | currency }}</p>
+          </div>
+        </div>
+      </div>
+
+    <!-- My Customer Orders -->
+    <div class="my_costumers_content" *ngIf="shouldShowCustomerOrders()">
+      <div class="sort-options">
+        <p class="paragraph"> Sort by: </p>
+        <div class="buttons">
+          <button (click)="sortOrders('earliest')" class="sort-button">Earliest orders</button>
+          <button (click)="sortOrders('recent')" class="sort-button">Recent orders</button>
+          <button (click)="sortOrders('product')" class="sort-button">Product ordered</button>
+        </div>
+      </div>
+      <div *ngIf="shouldShowCustomerOrders()">
+        <div *ngFor="let order of orders" class="order-card">
+          <img [src]="order.imageUrl" alt="Product Image" class="product-image">
+          <div class="order-details">
+            <p>Product name: {{ order.productName }}</p>
+            <p>Customer Account: {{ order.customerAccount }}</p>
+            <p>Order Date: {{ order.orderDate }}</p>
+            <p>Payment Method: {{ order.paymentMethod }}</p>
+            <p>Delivery Address: {{ order.deliveryAddress }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div *ngIf="shouldShowCustomerOrders()">
-    <!-- Aquí coloca los elementos que deseas mostrar cuando se selecciona "Customer orders" -->
-    <p>Content Customer orders</p>
   </div>
-</div>
 
   <!-- Favourites -->
-  <div *ngIf="selectedOption === 'favourites'" class="profile-form">
+<div *ngIf="selectedOption === 'favourites'" class="container mt-3">
+  <div class="profile-form">
     <h1>My account</h1>
     <h2>My favourites</h2>
-    <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+    <div class="row">
+      <div class="col-lg-12">
+        <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+      </div>
+    </div>
   </div>
-</body>
+</div>

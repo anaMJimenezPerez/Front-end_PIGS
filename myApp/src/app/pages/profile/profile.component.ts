@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -8,17 +9,24 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 
 export class ProfileComponent {
   selectedOption: string = 'profile';
-  selectedMenuOption: string = ''; 
+  selectedMenuOption: string = 'my_orders'; 
+  orders: any[] = [];
+  myOrders: any[] = [];
 
   profilePictureUrl: string | ArrayBuffer | null = null;
 
   @ViewChild('profileImage') profileImage: ElementRef | undefined;
 
-  profilePictureWidth: number = 200; // Ancho deseado del recuadro de la foto de perfil
-  profilePictureHeight: number = 200; // Alto deseado del recuadro de la foto de perfil
+  profilePictureWidth: number = 200;
+  profilePictureHeight: number = 200; 
 
-  selectOption(option: string) {
-    this.selectedOption = option;
+  constructor(private http: HttpClient) {}
+
+  /* Orders */
+
+  ngOnInit() {
+    this.loadOrders();
+    this.loadMyOrders();
   }
 
   selectMenuOption(option: string) {
@@ -32,6 +40,42 @@ export class ProfileComponent {
   shouldShowCustomerOrders(): boolean {
     return this.selectedMenuOption === 'customer_orders';
   }
+
+  /* My Orders */
+  loadMyOrders() {
+    this.http.get<any[]>('assets/data/myorders.json').subscribe(data => {
+      this.myOrders = data;
+    }, error => {
+      console.error('Failed to load my orders:', error);
+    });
+  }
+
+  /* Customers Orders */
+  sortOrders(criteria: string): void {
+    if (criteria === 'earliest') {
+      // Old date
+      this.orders.sort((a, b) => new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime());
+    } else if (criteria === 'recent') {
+      // Recent date
+      this.orders.sort((a, b) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime());
+    } else if (criteria === 'product') {
+      // Name of product
+      this.orders.sort((a, b) => a.productName.localeCompare(b.productName));
+    }
+  }
+
+  loadOrders() {
+    this.http.get<any[]>('assets/data/orders.json').subscribe(data => {
+      this.orders = data;
+    }, error => {
+      console.error('Failed to load orders:', error);
+    });
+  }
+
+  selectOption(option: string) {
+    this.selectedOption = option;
+  }
+
 
   /* icon */
   selectProfilePicture() {
@@ -81,21 +125,10 @@ export class ProfileComponent {
       }
     }
   }
-
-  /* delete icon  */
-  removeProfilePicture(event: MouseEvent) {
-    if (event.button === 2 && this.profilePictureUrl) { // Verifica si el clic fue con el botón derecho y si hay una imagen
-      event.preventDefault(); // Evita que se abra el menú contextual predeterminado del navegador
-      if (window.confirm('Are you sure you want to delete the image?')) {
-        this.profilePictureUrl = null; // Elimina la imagen estableciendo su URL a null
-      }
-    }
-  }
   
   /* delete button*/ 
   confirmDelete() {
     if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
-      // Aquí puedes agregar la lógica para eliminar la cuenta
       console.log('Account deleted');
     }
   }

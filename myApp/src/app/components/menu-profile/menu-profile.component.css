@@ -1,13 +1,12 @@
 .menu-wrapper {
     display: flex; 
-    position: absolute;
     margin-bottom: 20px; 
     margin-left: 70px;
+    position: static;
     
   }
   
   .menu-container {
-    margin-top: 20px; 
     border: 1px solid #000;
     border-radius: 7px;
     width: 150px;
@@ -18,11 +17,10 @@
   }
   
   .menu-container {
-    margin-top: 20px;
     border: 1px solid #000;
     border-radius: 10px;
     width: 200px;
-    margin-left: 20px;
+    margin-left: 80px;
   }
   
   .menu-item {
@@ -90,3 +88,19 @@
     box-shadow: 0px -3px 3px -3px rgba(0, 0, 0, 0.5); 
   }
   
+  @media (max-width: 1300px) {
+
+    .menu-container {
+      width: 180px;
+    }
+
+  }
+
+  @media (max-width: 768px) {
+
+    .menu-container {
+      width: 170px;
+      margin: 0px;
+    }
+
+  }
