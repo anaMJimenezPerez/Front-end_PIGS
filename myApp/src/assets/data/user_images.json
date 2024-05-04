@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Photo 1",
+    "user_id": 1,
+    "image_path": "https://elcomercio.pe/resizer/6YotkuHIEUGzf-GUZAGbznSRoYQ=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/VFKAZST5J5BE5BEPH7TTUHWNRQ.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Photo 2",
+    "user_id": 2,
+    "image_path": "https://media.es.wired.com/photos/641b2076880298eb68cc9b8a/16:9/w_1920,c_limit/Todd_Namban_Create_a_photorrealistic_portrait_of_a_red_fox_usin_cd0b7e04-868d-45d4-beaf-b7515e6154ca.png"
+  },
+  {
+    "id": 3,
+    "name": "Photo 3",
+    "user_id": 3,
+    "image_path": "https://retinatendencias.com/wp-content/uploads/2022/06/botto-3-1536x1536.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Photo 4",
+    "user_id": 4,
+    "image_path": "https://media.es.wired.com/photos/641b2076880298eb68cc9b8a/16:9/w_1920,c_limit/Todd_Namban_Create_a_photorrealistic_portrait_of_a_red_fox_usin_cd0b7e04-868d-45d4-beaf-b7515e6154ca.png"
+  },
+  {
+    "id": 5,
+    "name": "Photo 5",
+    "user_id": 5,
+    "image_path": "https://retinatendencias.com/wp-content/uploads/2022/06/botto-3-1536x1536.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Photo 6",
+    "user_id": 6,
+    "image_path": "https://media.es.wired.com/photos/641b2076880298eb68cc9b8a/16:9/w_1920,c_limit/Todd_Namban_Create_a_photorrealistic_portrait_of_a_red_fox_usin_cd0b7e04-868d-45d4-beaf-b7515e6154ca.png"
+  },
+  {
+    "id": 7,
+    "name": "Photo 7",
+    "user_id": 7,
+    "image_path": "https://retinatendencias.com/wp-content/uploads/2022/06/botto-3-1536x1536.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Photo 8",
+    "user_id": 8,
+    "image_path": "https://media.es.wired.com/photos/641b2076880298eb68cc9b8a/16:9/w_1920,c_limit/Todd_Namban_Create_a_photorrealistic_portrait_of_a_red_fox_usin_cd0b7e04-868d-45d4-beaf-b7515e6154ca.png"
+  },
+  {
+    "id": 9,
+    "name": "Photo 9",
+    "user_id": 9,
+    "image_path": "https://retinatendencias.com/wp-content/uploads/2022/06/botto-3-1536x1536.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Photo 10",
+    "user_id": 10,
+    "image_path": "https://media.es.wired.com/photos/641b2076880298eb68cc9b8a/16:9/w_1920,c_limit/Todd_Namban_Create_a_photorrealistic_portrait_of_a_red_fox_usin_cd0b7e04-868d-45d4-beaf-b7515e6154ca.png"
+  },
+  {
+    "id": 11,
+    "name": "Photo 11",
+    "user_id": 11,
+    "image_path": "https://retinatendencias.com/wp-content/uploads/2022/06/botto-3-1536x1536.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Photo 12",
+    "user_id": 12,
+    "image_path": "https://media.es.wired.com/photos/641b2076880298eb68cc9b8a/16:9/w_1920,c_limit/Todd_Namban_Create_a_photorrealistic_portrait_of_a_red_fox_usin_cd0b7e04-868d-45d4-beaf-b7515e6154ca.png"
+  }
+]

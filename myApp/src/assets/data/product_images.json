@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Image 1",
+    "product_id": 1,
+    "images_path":["https://s1.eestatic.com/2020/08/05/imprescindibles/branded_content-marcas_destacadas-amazon_510709568_157068665_1706x960.jpg", "https://thelogisticsworld.com/wp-content/uploads/2021/03/artesanias-yucatecas.jpg"]
+  },
+  {
+    "id": 2,
+    "name": "Image 2",
+    "product_id": 2,
+    "images_path":["https://s1.eestatic.com/2020/08/05/imprescindibles/branded_content-marcas_destacadas-amazon_510709568_157068665_1706x960.jpg", "https://thelogisticsworld.com/wp-content/uploads/2021/03/artesanias-yucatecas.jpg"]
+  },
+  {
+    "id": 3,
+    "name": "Image 3",
+    "product_id": 3,
+    "images_path":["https://s1.eestatic.com/2020/08/05/imprescindibles/branded_content-marcas_destacadas-amazon_510709568_157068665_1706x960.jpg", "https://thelogisticsworld.com/wp-content/uploads/2021/03/artesanias-yucatecas.jpg"]
+  },
+  {
+    "id": 4,
+    "name": "Image 4",
+    "product_id": 4,
+    "images_path":["https://s1.eestatic.com/2020/08/05/imprescindibles/branded_content-marcas_destacadas-amazon_510709568_157068665_1706x960.jpg", "https://thelogisticsworld.com/wp-content/uploads/2021/03/artesanias-yucatecas.jpg"]
+  },
+  {
+    "id": 5,
+    "name": "Image 5",
+    "product_id": 5,
+    "images_path":["https://s1.eestatic.com/2020/08/05/imprescindibles/branded_content-marcas_destacadas-amazon_510709568_157068665_1706x960.jpg", "https://thelogisticsworld.com/wp-content/uploads/2021/03/artesanias-yucatecas.jpg"]
+  },
+  {
+    "id": 6,
+    "name": "Image 6",
+    "product_id": 6,
+    "images_path":["https://s1.eestatic.com/2020/08/05/imprescindibles/branded_content-marcas_destacadas-amazon_510709568_157068665_1706x960.jpg", "https://thelogisticsworld.com/wp-content/uploads/2021/03/artesanias-yucatecas.jpg"]
+  },
+  {
+    "id": 7,
+    "name": "Image 7",
+    "product_id": 7,
+    "images_path":["https://s1.eestatic.com/2020/08/05/imprescindibles/branded_content-marcas_destacadas-amazon_510709568_157068665_1706x960.jpg", "https://thelogisticsworld.com/wp-content/uploads/2021/03/artesanias-yucatecas.jpg"]
+  },
+  {
+    "id": 8,
+    "name": "Image 8",
+    "product_id": 8,
+    "images_path":["https://s1.eestatic.com/2020/08/05/imprescindibles/branded_content-marcas_destacadas-amazon_510709568_157068665_1706x960.jpg", "https://thelogisticsworld.com/wp-content/uploads/2021/03/artesanias-yucatecas.jpg"]
+  },
+  {
+    "id": 9,
+    "name": "Image 9",
+    "product_id": 9,
+    "images_path":["https://s1.eestatic.com/2020/08/05/imprescindibles/branded_content-marcas_destacadas-amazon_510709568_157068665_1706x960.jpg", "https://thelogisticsworld.com/wp-content/uploads/2021/03/artesanias-yucatecas.jpg"]
+  },
+  {
+    "id": 10,
+    "name": "Image 10",
+    "product_id": 10,
+    "images_path":["https://s1.eestatic.com/2020/08/05/imprescindibles/branded_content-marcas_destacadas-amazon_510709568_157068665_1706x960.jpg", "https://thelogisticsworld.com/wp-content/uploads/2021/03/artesanias-yucatecas.jpg"]
+  }
+]

@@ -1,0 +1,9 @@
+<div class="menu-wrapper">
+  <div class="menu-container">
+    <button (click)="selectOption('profile')" class="menu-item-profile" [class.selected]="activeOption === 'profile'">My Profile</button>
+    <button (click)="selectOption('products')" class="menu-item" [class.selected]="activeOption === 'products'">My Products</button>
+    <button (click)="selectOption('subscriptions')" class="menu-item" [class.selected]="activeOption === 'subscriptions'">My Subscriptions</button>
+    <button (click)="selectOption('orders')" class="menu-item" [class.selected]="activeOption === 'orders'">My Orders</button>
+    <button (click)="selectOption('favourites')" class="menu-item-favourites" [class.selected]="activeOption === 'favourites'">Favourites</button>
+  </div>
+</div>

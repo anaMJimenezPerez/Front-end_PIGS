@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Product 1",
+    "description": "Description of Product 1",
+    "seller_id": 1,
+    "seller": "User A",
+    "price": 10.99,
+    "rating": 4.5,
+    "creation_time": "01/04/2024",
+    "tags": ["cat 1", "cat 2"],
+    "class": 1
+  },
+  {
+    "id": 2,
+    "name": "Product 2",
+    "description": "Description of Product 2",
+    "seller_id": 2,
+    "seller": "User B",
+    "price": 19.99,
+    "rating": 4.0,
+    "creation_time": "01/05/2024",
+    "tags": ["cat 1", "cat 3"],
+    "class": 2
+  },
+  {
+    "id": 3,
+    "name": "Product 3",
+    "description": "Description of Product 3",
+    "seller_id": 3,
+    "seller": "User A",
+    "price": 29.99,
+    "rating": 4.2,
+    "creation_time": "01/04/2024",
+    "tags": ["cat 1", "cat 4"],
+    "class": 3
+  },
+  {
+    "id": 4,
+    "name": "Product 4",
+    "description": "Description of Product 4",
+    "seller_id": 4,
+    "seller": "User B",
+    "price": 49.99,
+    "rating": 3.8,
+    "creation_time": "01/04/2024",
+    "tags": ["cat 2", "cat 3"],
+    "class": 4
+  },
+  {
+    "id": 5,
+    "name": "Product 5",
+    "description": "Description of Product 5",
+    "seller_id": 5,
+    "seller": "User A",
+    "price": 39.99,
+    "rating": 4.7,
+    "creation_time": "01/05/2024",
+    "tags": ["cat 2", "cat 4"],
+    "class": 1
+  },
+  {
+    "id": 6,
+    "name": "Product 6",
+    "description": "Description of Product 6",
+    "seller_id": 6,
+    "seller": "User B",
+    "price": 59.99,
+    "rating": 4.9,
+    "creation_time": "01/04/2024",
+    "tags": ["cat 3", "cat 4"],
+    "class": 2
+  },
+  {
+    "id": 7,
+    "name": "Product 7",
+    "description": "Description of Product 7",
+    "seller_id": 7,
+    "seller": "User A",
+    "price": 79.99,
+    "rating": 4.6,
+    "creation_time": "01/05/2024",
+    "tags": ["cat 1", "cat 2"],
+    "class": 3
+  },
+  {
+    "id": 8,
+    "name": "Product 8",
+    "description": "Description of Product 8",
+    "seller_id": 8,
+    "seller": "User B",
+    "price": 99.99,
+    "rating": 4.3,
+    "creation_time": "01/04/2024",
+    "tags": ["cat 2", "cat 3"],
+    "class": 4
+  },
+  {
+    "id": 9,
+    "name": "Product 9",
+    "description": "Description of Product 9",
+    "seller_id": 9,
+    "seller": "User A",
+    "price": 119.99,
+    "rating": 4.8,
+    "creation_time": "01/05/2024",
+    "tags": ["cat 2", "cat 4"],
+    "class": 1
+  },
+  {
+    "id": 10,
+    "name": "Product 10",
+    "description": "Description of Product 10",
+    "seller_id": 10,
+    "seller": "User B",
+    "price": 149.99,
+    "rating": 4.4,
+    "creation_time": "01/05/2024",
+    "tags": ["cat 1", "cat 3"],
+    "class": 2
+  }
+]
