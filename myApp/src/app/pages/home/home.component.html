@@ -1,54 +1,55 @@
 <body>
 
-  <div class="title">What can you find here</div>
-  <div class="line"></div>
+  <div *ngIf="!isAuthenticated">
+    <div class="title">What can you find here</div>
+    <div class="line"></div>
 
-  <div class="container">
-    <div class="row">
-      <div *ngFor="let product of products.slice(0, totalRowsToShow)" class="col-md-3">
-        <div class="card mb-4">
-          <img src="../../../assets/images/favorite.png" alt="Favorite" class="styleImage">
-          <img class="card-img-top" *ngIf="product.images_path && product.images_path.length > 0" [src]="product.images_path[0]" alt="Card image cap">
-          <div class="card-body" style="text-align:center;">
-            <h5 class="card-title">{{product.name}}</h5>
-            <p class="card-text">{{product.price}}</p>
-            <a href="#" class="buttonFormat addCart">Add to cart</a>
+    <div class="container">
+      <div class="row">
+        <div *ngFor="let product of products.slice(0, totalRowsToShow)" class="col-md-3">
+          <div class="card mb-4">
+            <img src="../../../assets/images/favorite.png" alt="Favorite" class="styleImage">
+            <img class="card-img-top" *ngIf="product.images_path && product.images_path.length > 0" [src]="product.images_path[0]" alt="Card image cap">
+            <div class="card-body" style="text-align:center;">
+              <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text">{{product.price}}</p>
+              <a href="#" class="buttonFormat addCart">Add to cart</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="container">
+      <button class="buttonFormat" (click)="showMore(1, products, totalRowsToShow, showAllRows)">
+        {{ showAllRows ? 'Show Less' : 'Show More' }}
+      </button>
+    </div>
   </div>
 
-  <div class="container">
-    <button class="buttonFormat" (click)="showMore(1, products, totalRowsToShow, showAllRows)">
-      {{ showAllRows ? 'Show Less' : 'Show More' }}
-    </button>
-  </div>
+  <div *ngIf="isAuthenticated">
+    <div class="title">From your favorities creator</div>
+    <div class="line"></div>
 
-  <!--div class="title">From our best creators</div>
-  <div class="line"></div>
-
-  <div class="container">
-    <div class="row">
-      <div *ngFor="let product of productsFavorite.slice(0, totalRowsToShowFavorite)" class="col-md-3">
-        <div class="card mb-4">
-          <img src="../../../assets/images/favorite.png" alt="Favorite" class="styleImage">
-          <img class="card-img-top" [src]="product.images_path" alt="Card image cap">
-          <div class="card-body" style="text-align:center;">
-            <h5 class="card-title">{{product.name}}</h5>
-            <p class="card-text">{{product.price}}</p>
-            <a href="#" class="buttonFormat addCart">Add to cart</a>
+    <div class="container">
+      <div class="row">
+        <div *ngFor="let user of followedUsers.slice(0, totalRowsToShowFollows)" class="col-md-3">
+          <div class="card mb-4">
+            <img class="card-img-top" [src]="user.image" alt="Card image cap">
+            <div class="card-body" style="text-align:center;">
+              <h5 class="card-title">{{user.name}}</h5>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="container">
-    <button class="buttonFormat" (click)="showMore(2, productsFavorite , totalRowsToShowFavorite, showAllRowsFavorite)">
-      {{ showAllRowsFavorite ? 'Show Less' : 'Show More' }}
-    </button>
-  </div -->
+    <div class="container">
+      <button class="buttonFormat" (click)="showMore(4, follows , totalRowsToShowFollows, showAllRowsFollows)">
+        {{ showAllRowsFavorite ? 'Show Less' : 'Show More' }}
+      </button>
+    </div>
+  </div>
 
   <div class="title">New articles</div>
   <div class="line"></div>

@@ -28,5 +28,95 @@
     "address": "Las Palmas",
     "last_viewed": 8,
     "favorites": [""]
+  },
+  {
+    "id": 4,
+    "name": "User D",
+    "email": "userD@gmail.com",
+    "password": "userD",
+    "creation_time": "04/03/2024",
+    "address": "Las Palmas",
+    "last_viewed": 2,
+    "favorites": ["1","4"]
+  },
+  {
+    "id": 5,
+    "name": "User E",
+    "email": "userE@gmail.com",
+    "password": "userE",
+    "creation_time": "04/04/2024",
+    "address": "Las Palmas",
+    "last_viewed": 1,
+    "favorites": ["3","9"]
+  },
+  {
+    "id": 6,
+    "name": "User F",
+    "email": "userF@gmail.com",
+    "password": "userF",
+    "creation_time": "04/02/2024",
+    "address": "Las Palmas",
+    "last_viewed": 3,
+    "favorites": [""]
+  },
+  {
+    "id": 7,
+    "name": "User G",
+    "email": "userG@gmail.com",
+    "password": "userG",
+    "creation_time": "06/03/2024",
+    "address": "Las Palmas",
+    "last_viewed": 6,
+    "favorites": ["1","4"]
+  },
+  {
+    "id": 8,
+    "name": "User H",
+    "email": "userH@gmail.com",
+    "password": "userH",
+    "creation_time": "06/04/2024",
+    "address": "Las Palmas",
+    "last_viewed": 7,
+    "favorites": ["3","9"]
+  },
+  {
+    "id": 9,
+    "name": "User I",
+    "email": "userI@gmail.com",
+    "password": "userI",
+    "creation_time": "06/02/2024",
+    "address": "Las Palmas",
+    "last_viewed": 9,
+    "favorites": [""]
+  },
+  {
+    "id": 10,
+    "name": "User J",
+    "email": "userJ@gmail.com",
+    "password": "userJ",
+    "creation_time": "06/03/2024",
+    "address": "Las Palmas",
+    "last_viewed": 5,
+    "favorites": ["1","4"]
+  },
+  {
+    "id": 11,
+    "name": "User K",
+    "email": "userK@gmail.com",
+    "password": "userK",
+    "creation_time": "04/04/2024",
+    "address": "Las Palmas",
+    "last_viewed": 4,
+    "favorites": ["3","9"]
+  },
+  {
+    "id": 12,
+    "name": "User L",
+    "email": "userL@gmail.com",
+    "password": "userL",
+    "creation_time": "04/02/2024",
+    "address": "Las Palmas",
+    "last_viewed": 8,
+    "favorites": [""]
   }
 ]
