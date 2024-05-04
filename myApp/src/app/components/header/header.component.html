@@ -7,15 +7,53 @@
       </div>
     </div>
     <div class="right-content">
-      <div class="searchTrending">
+      <div class="search-trending-wrapper">
 
-        <div class="search-trending-wrapper">
-          <img src="../../../assets/images/header/search.png" class="img-fluid mx-1 links-proper" alt="Search">
-          <p class="placeSearch pHeader mr-4"> Search </p>
-          <img src="../../../assets/images/header/trending.png" class="img-fluid mx-1 links-proper" alt="Trending">
-          <p class="placeTrending pHeader mr-4"> Trending </p>
-          <button *ngIf="!isAuthenticated" class="buttonHeader" (click)="navigateToLogInPage()"> Login </button>
-          <li *ngIf="isAuthenticated"><i class="bi bi-person-circle"></i></li>
+        <div class="search-trending-wrapper">          
+          <div class="headerOptions">          
+            <button class="button">
+              <img src="../../../assets/images/header/search.png" class="btnImg" alt="Search">
+              <span class=""> Search </span>
+            </button>
+            <button class="button">
+              <img src="../../../assets/images/header/trending.png" class="btnImg" alt="Trending">
+              <span class=""> Trending </span>
+            </button>      
+          
+            <!-- Botones que se muestran solo cuando el usuario está autenticado -->
+            <ng-container *ngIf="authService.currentUser$ | async as user">
+              <button class="button">
+                <img src="../../../assets/images/header/recommended.png" class="btnImg" alt="Recommended">
+                <span class=""> Recommended </span>
+              </button>
+              <button class="button">
+                <img src="../../../assets/images/header/hearth-favourites.png" class="btnImg" alt="Favorites">
+                <span class=""> Favorites </span>
+              </button>
+              <button class="button">
+                <img src="../../../assets/images/header/cart.png" class="btnImg" alt="Favorites">
+              </button> 
+            </ng-container>
+          </div>
+
+          <div class="circle_icon">
+            <img src="/assets/images/header/placeholder.png" />
+            <ng-template #noRegistrado> 
+                <div class="dropdown_content">
+                  <a href="loginPage">Log in</a>
+                  <a href="signupPage">Sign up</a>
+                </div>
+              </ng-template>
+            <!--Lo que se muestra en el menu cuando un usuario se registra-->
+            <ng-container *ngIf="authService.currentUser$ | async as user; else noRegistrado">
+              <div class="dropdown_content">
+                <a href="profile">Profile</a>
+                <a href="" (click)="logout()">Log out</a>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
         </div>
         <div class="menu-icon d-md-none" (click)="mostrarOpciones()">
           <img src="../../../assets/images/header/menu.png" class="img-fluid mx-1 links-proper" alt="Menu">
@@ -28,5 +66,4 @@
         </div>
       </div>
     </div>
-  </div>
 </header>
