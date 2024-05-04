@@ -2,7 +2,7 @@ body{
     overflow-y: auto;
 }
 
-.login_container {
+.direction_container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,14 +12,14 @@ body{
 
 .form_container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex: 1;
 }
 .image_container {
-    flex-basis: 60%;
+    flex-basis: 40%;
     background-position: left;
     height: auto;
-    width: 50%;
+    width: fit-content;
 }
 
 .image_container img{
@@ -27,6 +27,9 @@ body{
     width: 100%;
 }
 
+.buttons{
+    margin: auto;
+}
 .form_content {
     flex: 1;
     padding: 20px;
@@ -36,7 +39,7 @@ body{
     width: fit-content;
 }
 
-#formularioLogIn{
+#form{
     width: fit-content;
     margin: auto;
 }
@@ -59,13 +62,6 @@ label{
     margin-top: 0.5rem;
 }
 
-.options{
-    display: flex;
-    width: 19rem;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-}
 
 .check input{
     margin-right: 0.2rem;
@@ -86,24 +82,29 @@ input[type="checkbox"]:checked{
     border-radius: 0.5rem;
 }
 
+#buttonSkip{
+    border: 0.1rem solid black;
+    background-color: transparent;
+}
+
 .button:hover{
     transform: scale(1.02);
     cursor: pointer;
 }
 
-.restore_pass{
+.terms{
     border: none;
     font-size: 0.85rem;
     color: black;
     text-decoration: none;
 }
 
-.restore_pass:hover{
+.terms:hover{
     border-bottom: 0.1rem solid #00ADB5;
     background-color: white;
     font-size: 0.85rem;
     cursor: pointer;
-}s
+}
 
 .text:hover, .text:focus{
     outline: none;
@@ -111,35 +112,29 @@ input[type="checkbox"]:checked{
     box-shadow: 0 0 0.4rem #00ADB5;
 }
 
-form p {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin-bottom: 1rem;
-}
 
-#registerBtn {
-    border: 1px solid #000;
-    background-color: transparent;
-    color: black;
-}
-
-
-@media (max-width: 860px){
-    .field, .button, .options, .registerBtn{
+@media (max-width: 1050px){
+    .field, .button  {
         width: 15rem;
     }
     .image_container{
         height: auto;
         width: 15rem;
     }
-
+    h2{
+        margin-top: 2rem;
+    }
 }
 
-@media (max-width: 630px){
-    .image_container {
+
+@media (max-width: 800px){
+    .field, .button  {
+        width: 20rem;
+    }
+    .image_container{
         display: none;
     }
+
 }
 
 @media (max-width: 300px) {
@@ -147,11 +142,7 @@ form p {
         font-size: 15px;
     }
 
-    .field, .button, .options, .registerBtn{
+    .field, .button{
         width: 8rem;
-    }
-
-    .options{
-        flex-direction: column;
     }
 }
