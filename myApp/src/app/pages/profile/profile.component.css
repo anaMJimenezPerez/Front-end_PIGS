@@ -1,3 +1,7 @@
+body{
+  min-height: 73.9vh !important;
+}
+
 .profile-picture-container {
   width: 12rem;
   height: 12rem;
@@ -60,6 +64,96 @@
 .delete-account:active {
   background-color: #c42e2e;
 }
+
+/*CSS the Orders*/
+.menu_orders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000;
+  margin-right: 3rem;
+}
+
+.menu-item {
+  font-size: 2rem;
+  border: none;
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+.menu-item:hover, .selected {
+  background-color: #00ADB5;
+}
+
+.my_orders_content {
+  max-height: 500px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.paragraph{
+  margin-top: 0.5rem;
+}
+
+.my_costumers_content .sort-button {
+  font-weight: bold;
+  background-color: #D9D9D9;
+  border: 2px solid #000;
+  color: black;
+  padding: 5px 10px;
+  margin: 0 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.my_costumers_content {
+  max-height: 500px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.my_costumers_content .sort-button:hover {
+  background-color: #B0B0B0;
+}
+
+.product-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+.order-card {
+  width: 700px;
+  height: 187px;
+  background-color: #D9D9D9;
+  padding: 20px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  margin-left: 110px;
+}
+
+.order-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+
+.order-details {
+  flex-grow: 1;
+  padding-top: 15px;
+}
+
 
 @media (max-width: 768px) {
 
@@ -124,185 +218,3 @@
   }
 
 }
-
-
-
-/*
-@media (max-width: 768px) {
-  .profile-picture-container {
-      width: 180px;
-      height: 180px;
-  }
-
-  .form-group{
-    width: 240px;
-  }
-
-  .profile-form h1{
-    font-size: 36px;
-    text-align: center;
-  }
-
-  .profile-form h2 {
-      font-size: 28px;
-      margin-left: 0;
-      text-align: center;
-      margin-top: 10px;
-  }
-
-
-  .form-details {
-      margin-left: 0;
-  }
-
-  .profile-image-container {
-    margin-right: 45px;
-}
-
-  .delete-account{
-    margin-left: 200px;
-  }
-
-}
-
-
- orders
-.menu_orders {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  color: #000;
-  background: #EEEEEE;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-weight: bold;
-  width: 700px;
-  border: 1px solid #000;
-  margin-left: 600px;
-  margin-top: 50px;
-  margin-bottom: 24px
-}
-
-.menu-item {
-  font-size: 40px;
-  text-align: center;
-  background: #EEEEEE;
-  border: none;
-  flex-grow: 1;
-  width: 800px;
-  font-weight: bold;
-  color: #000;
-  transition: background-color 0.3s;
-}
-
-.menu-item:hover, .selected {
-  background-color: #00ADB5;
-}
-
-.selected {
-  background-color: #00ADB5;
-  box-shadow: none;
-}
-
-my orders
-
-.columns-container {
-  display: flex;
-  margin-left: 20px;
-  margin-bottom: 30px;
-}
-
-.menu_colum {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-}
-
-.menu_profile{
-  margin-top: 30px;
-  margin-right: 100px;
-}
-
-.my_orders_content {
-  max-height: 500px;  Ajusta esta altura según la necesidad de tu diseño
-  overflow-y: auto;  Habilita el scroll vertical cuando el contenido excede la altura máxima
-  scrollbar-width: none;  Para Firefox
-  -ms-overflow-style: none;  Para Internet Explorer y Edge
-
-   Estilo para ocultar la barra de desplazamiento en Webkit (Chrome, Safari)
-  ::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-
- my customers
-.paragraph{
-  margin-left: 110px;
-}
-
-.buttons {
-  display: flex;
-  width: 100%;
-  margin-bottom: 20px;
-  margin-left: 90px;
-}
-
-
-.my_costumers_content .sort-button {
-  font-weight: bold;
-  background-color: #D9D9D9;
-  border: 2px solid #000;
-  color: black;
-  padding: 5px 10px;
-  margin: 0 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.my_costumers_content {
-  max-height: 500px;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.my_costumers_content .sort-button:hover {
-  background-color: #B0B0B0;
-}
-
-.product-image {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  margin-right: 20px;
-  margin-left: 10px;
-}
-
-.order-card {
-  width: 700px;
-  height: 187px;
-  background-color: #D9D9D9;
-  padding: 20px;
-  margin-bottom: 10px;
-  font-size: 12px;
-  margin-left: 110px;
-}
-
-.order-card {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  padding: 10px;
-}
-
-
-.order-details {
-  flex-grow: 1;
-  padding-top: 15px;
-}
-
-
- favourites */
