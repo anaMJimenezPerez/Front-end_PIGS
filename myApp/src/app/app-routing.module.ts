@@ -5,6 +5,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { DirectionFormComponent } from './pages/direction-form/direction-form.component';
+import { ProductComponent } from './pages/product/product.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'loginPage', component: LoginPageComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'signupPage', component: SignUpComponent },
-  { path: 'directionFormPage', component: DirectionFormComponent }
+  { path: 'directionFormPage', component: DirectionFormComponent },
+  { path: 'product', component: ProductComponent}
 ];
 
 @NgModule({
