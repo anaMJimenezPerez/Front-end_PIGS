@@ -10,54 +10,49 @@
   </div>
 </ng-template>
 
- <!-- Profile -->
 <div *ngIf="selectedOption === 'profile'" class="container mt-3">
-   <div class="profile-form">
+  <div class="profile-form">
     <h1>My account</h1>
     <div class="row">
-      <!-- Formulario y imagen -->
-      <div class="col-lg-12 col-md-12 mb-3">
-        <h2>My profile</h2>
-        <!-- Contenedor para imagen y formulario -->
-        <div class="d-flex">
+      <div class="d-flex">
+        <!-- Columna de la imagen y el menú -->
+        <div class="col-md-4">
           <!-- Contenedor de imagen -->
-          <div class="profile-image-container mr-3">
+          <div class="profile-image-container mb-3">
             <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
             <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
           </div>
-          <!-- Formulario, a la derecha de la imagen -->
-          <div class="form-details">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="text" id="name" name="name" class="form-control" required placeholder="Name">
-                </div>
-                <div class="form-group">
-                  <label for="email">Email address</label>
-                  <input type="email" id="email" name="email" class="form-control" required placeholder="name@example.com">
-                </div>
+        </div>
+        <!-- Columna del título "My Profile" con el formulario y el botón "Delete" -->
+        <div class="col-md-8">
+          <h2>My profile</h2>
+          <div class="row formMovil">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Name">
               </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="lastName">Last Name</label>
-                  <input type="text" id="lastName" name="lastName" class="form-control" required placeholder="Last Name">
-                </div>
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" id="password" name="password" class="form-control" required placeholder="***********">
-                </div>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" required placeholder="name@example.com">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required placeholder="Last Name">
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="***********">
               </div>
             </div>
           </div>
+          <!-- Botón Delete -->
+          <div class="text-center">
+            <button class="delete-account" (click)="confirmDelete()">Delete my account</button>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-auto">
-        <button class="delete-account" (click)="confirmDelete()">Delete my account</button>
       </div>
     </div>
   </div>
@@ -67,15 +62,20 @@
 <div *ngIf="selectedOption === 'products'" class="container mt-3">
   <div class="profile-form">
     <h1>My account</h1>
-    <h2>My products</h2>
     <div class="row">
-      <div class="col-lg-12">
-        <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+      <div class="d-flex">
+        <div class="col-md-4">
+          <!-- Contenedor de imagen -->
+          <div class="profile-image-container mb-3">
+            <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+            <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <h2>My products</h2>
+
+          <!--Continuar con codigo aquí-->
+        </div>
       </div>
     </div>
   </div>
@@ -85,90 +85,105 @@
 <div *ngIf="selectedOption === 'subscriptions'" class="container mt-3">
   <div class="profile-form">
     <h1>My account</h1>
-    <h2>My subscriptions</h2>
     <div class="row">
-      <div class="col-lg-12">
-        <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+      <div class="d-flex">
+        <div class="col-md-4">
+          <!-- Contenedor de imagen -->
+          <div class="profile-image-container mb-3">
+            <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+            <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <h2>My subscriptions</h2>
+
+          <!--Continuar con codigo aquí-->
+        </div>
       </div>
     </div>
   </div>
 </div>
 
   <!-- Orders -->
-<div *ngIf="selectedOption === 'orders'" class="profile-form">
-  <h1>My account</h1>
-  <div class="menu-wrapper_2">
-    <div class="menu_orders">
-      <button (click)="selectMenuOption('my_orders')" class="menu-item" [class.selected]="selectedMenuOption === 'my_orders'">My orders</button>
-      <button (click)="selectMenuOption('customer_orders')" class="menu-item" [class.selected]="selectedMenuOption === 'customer_orders'">Customer orders</button>
-    </div>
-  </div>
-
-  <div class="columns-container">
-    <div class="menu_colum">
-      <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
-      <div class="menu_profile">
-        <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
-      </div>
-    </div>
-    
-    <!-- My Orders -->
-    <div class="my_orders_content" *ngIf="shouldShowMyOrders()">
-        <div *ngFor="let order of myOrders" class="order-card">
-          <img [src]="order.imageUrl" alt="Product Image" class="product-image">
-          <div class="order-details">
-            <p>Product name: {{ order.productName }}</p>
-            <p>Seller's account: {{ order.sellerAccount }}</p>
-            <p>Purchase date: {{ order.purchaseDate }}</p>
-            <p>Price: {{ order.price | currency }}</p>
+<div *ngIf="selectedOption === 'orders'" class="container mt-3">
+  <div class="profile-form">
+    <h1>My account</h1>
+    <div class="row">
+      <div class="d-flex">
+        <div class="col-md-4">
+          <!-- Contenedor de imagen -->
+          <div class="profile-image-container mb-3">
+            <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+            <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
           </div>
         </div>
-      </div>
-
-    <!-- My Customer Orders -->
-    <div class="my_costumers_content" *ngIf="shouldShowCustomerOrders()">
-      <div class="sort-options">
-        <p class="paragraph"> Sort by: </p>
-        <div class="buttons">
-          <button (click)="sortOrders('earliest')" class="sort-button">Earliest orders</button>
-          <button (click)="sortOrders('recent')" class="sort-button">Recent orders</button>
-          <button (click)="sortOrders('product')" class="sort-button">Product ordered</button>
-        </div>
-      </div>
-      <div *ngIf="shouldShowCustomerOrders()">
-        <div *ngFor="let order of orders" class="order-card">
-          <img [src]="order.imageUrl" alt="Product Image" class="product-image">
-          <div class="order-details">
-            <p>Product name: {{ order.productName }}</p>
-            <p>Customer Account: {{ order.customerAccount }}</p>
-            <p>Order Date: {{ order.orderDate }}</p>
-            <p>Payment Method: {{ order.paymentMethod }}</p>
-            <p>Delivery Address: {{ order.deliveryAddress }}</p>
+        <div class="col-md-8">
+          <div class="menu-wrapper_2">
+            <div class="menu_orders">
+              <button (click)="selectMenuOption('my_orders')" class="menu-item" [class.selected]="selectedMenuOption === 'my_orders'">My orders</button>
+              <button (click)="selectMenuOption('customer_orders')" class="menu-item" [class.selected]="selectedMenuOption === 'customer_orders'">Customer orders</button>
+            </div>
           </div>
+
+          <!-- My Orders -->
+          <div class="my_orders_content" *ngIf="shouldShow('my_orders')">
+            <!--div *ngFor="let order of details" class="order-card">
+              <img [src]="order.product.imageUrl" alt="Product Image" class="product-image">
+              <div class="order-details">
+                <p>Product name: {{ order.productName }}</p>
+                <p>Seller's account: {{ order.sellerName }}</p>
+                <p>Purchase date: {{ order.purchaseDate }}</p>
+                <p>Price: {{ order.price }}</p>
+              </div>
+            </div-->
+          </div>
+
+          <!-- My Customer Orders -->
+          <div class="my_costumers_content" *ngIf="shouldShow('customer_orders')">
+            <p class="paragraph"> Sort by: </p>
+
+            <button class="sort-button">Earliest orders</button>
+            <button class="sort-button">Recent orders</button>
+            <button class="sort-button">Product ordered</button>
+
+            <!--div *ngFor="let order of orders" class="order-card">
+              <img [src]="order.imageUrl" alt="Product Image" class="product-image">
+              <div class="order-details">
+                <p>Product name: {{ order.productName }}</p>
+                <p>Customer Account: {{ order.customerAccount }}</p>
+                <p>Order Date: {{ order.orderDate }}</p>
+                <p>Payment Method: {{ order.paymentMethod }}</p>
+                <p>Delivery Address: {{ order.deliveryAddress }}</p>
+              </div>
+            </div-->
+          </div>
+
+          <!--Continuar con codigo aquí-->
         </div>
       </div>
     </div>
   </div>
-  </div>
+</div>
 
   <!-- Favourites -->
+
 <div *ngIf="selectedOption === 'favourites'" class="container mt-3">
   <div class="profile-form">
     <h1>My account</h1>
-    <h2>My favourites</h2>
     <div class="row">
-      <div class="col-lg-12">
-        <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+      <div class="d-flex">
+        <div class="col-md-4">
+          <!-- Contenedor de imagen -->
+          <div class="profile-image-container mb-3">
+            <ng-container *ngTemplateOutlet="profilePictureTemplate"></ng-container>
+            <app-menu-profile [activeOption]="selectedOption" (optionSelected)="selectOption($event)"></app-menu-profile>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <h2>My favourites</h2>
+
+          <!--Continuar con codigo aquí-->
+        </div>
       </div>
     </div>
   </div>
