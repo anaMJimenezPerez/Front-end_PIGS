@@ -7,7 +7,7 @@
     <div class="container">
       <div class="row">
         <div *ngFor="let product of products.slice(0, totalRowsToShow)" class="col-md-3">
-          <div class="card mb-4">
+          <div class="card mb-4" (click)="productDetails(product)">
             <img src="../../../assets/images/favorite.png" alt="Favorite" class="styleImage">
             <img class="card-img-top imageCard" *ngIf="product.images_path && product.images_path.length > 0" [src]="product.images_path[0]" alt="Card image cap">
             <div class="card-body" style="text-align:center;">

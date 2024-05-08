@@ -13,7 +13,6 @@ export class UserService {
   getAllUser(): Observable<any> {
     return this.http.get<any>('../../../assets/data/user.json');
   }
-
   getAllUserImages(): Observable<any> {
     return this.http.get<any>('../.../../assets/data/user_images.json');
   }
