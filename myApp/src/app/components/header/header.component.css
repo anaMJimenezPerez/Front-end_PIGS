@@ -182,7 +182,32 @@
   align-items: center;
 }
 
+#barraBusqueda{
+  margin: auto 0;
+  padding: 0 2rem;
+}
+
+#barraBusqueda input{
+  border-radius: 10rem;
+  padding: 0.2rem 1rem;
+  border: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.menu-icon a{
+  color: white;
+  text-decoration: none;
+  padding: 0;
+}
+
 @media (max-width: 850px) {
+  #barraBusqueda input{
+    padding: 0.05rem 0.8rem;
+    font-size: 10px;
+  }
   #shop-logo{
     width: 1.5rem;
   }
@@ -233,5 +258,23 @@
     font-size: 0.7rem;
     min-width: 5.5rem;
   }
+}
+
+@media (max-width: 450px) {
+  #barraBusqueda{
+    padding-right: 0.2rem;
+    margin: auto 0;
+  }
+  #barraBusqueda input{
+    width: 8rem;
+    height: 1rem;
+    font-size: 8px; 
+  }
+
+  .menu-options a {
+    font-size: 9px; 
+  }
+
+
 }
 

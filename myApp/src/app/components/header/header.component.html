@@ -8,25 +8,29 @@
     </div>
     <div class="right-content">
         <div class="search-trending-wrapper">          
-          <div class="headerOptions">          
-            <button class="button">
+          <div class="headerOptions">       
+            <div *ngIf="mostrarBusqueda" id="barraBusqueda">
+              <input type="text" placeholder="Search...">
+            </div>  
+            <button class="button" (click)="toggleSearch()">
               <img src="/assets/images/header/search.png" class="btnImg" alt="Search">
               <span class=""> Search </span>
             </button>
-            <button class="button">
+            
+            <button class="button" [ngClass]="{'active': mostrarBusqueda}">
               <img src="/assets/images/header/trending.png" class="btnImg" alt="Trending">
-              <span class=""> Trending </span>
+              <span [ngClass]="{'hidden': mostrarBusqueda && isLessThan1070}"  class=""> Trending </span>
             </button>      
           
             <!-- Botones que se muestran solo cuando el usuario está autenticado -->
             <ng-container *ngIf="authService.currentUser$ | async as user">
-              <button class="button">
+              <button class="button" [ngClass]="{'active': mostrarBusqueda}">
                 <img src="/assets/images/header/recommended.png" class="btnImg" alt="Recommended">
-                <span class=""> Recommended </span>
+                <span [ngClass]="{'hidden': mostrarBusqueda && isLessThan1070}" class=""> Recommended </span>
               </button>
-              <button class="button">
+              <button class="button" [ngClass]="{'active': mostrarBusqueda}">
                 <img src="/assets/images/header/hearth-favourites.png" class="btnImg" alt="Favorites">
-                <span class=""> Favorites </span>
+                <span [ngClass]="{'hidden': mostrarBusqueda && isLessThan1070}" class=""> Favorites </span>
               </button>
               <button class="button">
                 <a  href="ShoppingCart">
@@ -34,17 +38,23 @@
                 </a>
               </button> 
             </ng-container>
+
+            
           </div>
         </div>
 
-        <div class="submenus">         
+        <div class="submenus">      
+          <div *ngIf="mostrarBusqueda && isLessThan850" id="barraBusqueda">
+            <input type="text" placeholder="Search...">
+          </div>   
           <div class="menu-icon ">
             <img src="../../../assets/images/header/menu.png" class="img-fluid mx-1 links-proper" alt="Menu">
             <div class="menu-options">
-              <div class="menu-icon-options">
+              <div class="menu-icon-options" (click)="toggleSearch()">
                 <img src="/assets/images/header/search.png" class="btnImg" alt="Search">
                 <a> Search </a>
               </div>
+              
               <div class="menu-icon-options">
                 <img src="/assets/images/header/trending.png" class="btnImg" alt="Trending">
                 <a> Trending </a>
