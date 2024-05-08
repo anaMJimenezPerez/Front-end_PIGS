@@ -1,9 +1,10 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { PurchaseService } from 'src/app/services/purchase.service';
+/*import { PurchaseService } from 'src/app/services/purchase.service';*/
 import { forkJoin } from 'rxjs';
 import { AuthUserService } from 'src/app/services/auth-user.service';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 interface Product {
   id: number;
@@ -67,17 +68,18 @@ export class ProfileComponent implements OnInit{
   productImages: any[] = [];
 
   constructor(
-    private purchaseService: PurchaseService,
+    /*private purchaseService: PurchaseService,*/
     private authService: AuthUserService,
     private productService: ProductService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router,
   ) {}
 
 
   /*Part the my_orders*/
   ngOnInit() {
 
-    forkJoin([
+    /*forkJoin([
       this.purchaseService.getAllPurchaseDetails(),
       this.purchaseService.getAllPurchaseHistory(),
       this.productService.getAllProducts(),
@@ -129,12 +131,12 @@ export class ProfileComponent implements OnInit{
               users = this.users.find(user => user.id === products.seller_id);
               console.log(`Información sobre el seller con ID ${products.seller_id}:`, users);
 
-            });*/
+            });
 
           });
         }
       });
-    });
+    });*/
   }
 
   /*Part the menu*/
@@ -211,6 +213,14 @@ export class ProfileComponent implements OnInit{
         }
       }
     }
+  }
+
+  /* Access to page newproduct */
+  navigateToNewProduct() {
+    // Establece una bandera de acceso en localStorage
+    localStorage.setItem('profileAccess', 'true');
+    // Navega a New Product
+    this.router.navigate(['/newproduct']);
   }
 
   /* delete button*/
