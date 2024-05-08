@@ -2,22 +2,25 @@
   {
     "id":1,
     "user_id":1,
-    "date":"01/05/2024",
-    "total_amount":40,
-    "seller_id": 3
+    "date":"11/05/2024",
+    "total_amount":40
   },
   {
     "id":2,
     "user_id":1,
-    "date":"01/05/2024",
-    "total_amount":40,
-    "seller_id": 2
+    "date":"13/05/2024",
+    "total_amount":40
   },
   {
     "id":3,
     "user_id":1,
     "date":"01/05/2024",
-    "total_amount":40,
-    "seller_id": 6
+    "total_amount":40
+  },
+  {
+    "id":4,
+    "user_id":2,
+    "date":"14/05/2024",
+    "total_amount":40
   }
 ]

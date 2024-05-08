@@ -1,5 +1,49 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { PurchaseService } from 'src/app/services/purchase.service';
+import { forkJoin } from 'rxjs';
+import { AuthUserService } from 'src/app/services/auth-user.service';
+import { ProductService } from 'src/app/services/product.service';
+import { UserService } from 'src/app/services/user.service';
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  seller_id: number;
+  seller: string;
+  price: number;
+  rating: number;
+  creation_time: string;
+  class: number;
+}
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  password: number;
+  creation_time: string;
+  address: number;
+  last_viewed: number;
+  favorites: string;
+}
+
+interface PurchaseHistory {
+  id: number;
+  user_id: number;
+  date: string;
+  total_amount: number;
+}
+
+interface PurchaseDetails {
+  id: number;
+  purchase_id: number;
+  product_id: number;
+  quantity: number;
+  purchase_date: string;
+  product: Product;
+  seller: User;
+}
 
 @Component({
   selector: 'app-profile',
@@ -7,75 +51,118 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./profile.component.css']
 })
 
-export class ProfileComponent {
-  selectedOption: string = 'profile';
-  selectedMenuOption: string = 'my_orders'; 
-  orders: any[] = [];
-  myOrders: any[] = [];
+export class ProfileComponent implements OnInit{
 
-  profilePictureUrl: string | ArrayBuffer | null = null;
+  //Purchase
+  purchaseDetails: PurchaseDetails[] = [];
+  purchaseHistory: PurchaseHistory[] = [];
 
-  @ViewChild('profileImage') profileImage: ElementRef | undefined;
+  //Users
+  isAuthenticated: boolean = false;
+  details: any[] = [];
+  users: User[] = [];
 
-  profilePictureWidth: number = 200;
-  profilePictureHeight: number = 200; 
+  //Products
+  products: Product[] = [];
+  productImages: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private purchaseService: PurchaseService,
+    private authService: AuthUserService,
+    private productService: ProductService,
+    private userService: UserService
+  ) {}
 
-  /* Orders */
 
+  /*Part the my_orders*/
   ngOnInit() {
-    this.loadOrders();
-    this.loadMyOrders();
+
+    forkJoin([
+      this.purchaseService.getAllPurchaseDetails(),
+      this.purchaseService.getAllPurchaseHistory(),
+      this.productService.getAllProducts(),
+      this.productService.getAllProductImages(),
+      this.userService.getAllUser(),
+      this.authService.getLoggedInUserId()
+    ]).subscribe(([purchaseDetails, purchaseHistory, products, productImages,users, loggedInUserId]) => {
+
+      this.purchaseDetails = purchaseDetails;
+      this.purchaseHistory = purchaseHistory;
+      this.products = products;
+      this.productImages = productImages;
+      this.users = users;
+
+      this.authService.currentUser$.subscribe((isAuthenticated: boolean) => {
+        this.isAuthenticated = isAuthenticated;
+        if (isAuthenticated) {
+          this.authService.getLoggedInUserId().subscribe(loggedInUserId => {
+            console.log(loggedInUserId);
+            this.details = this.purchaseDetails
+                .filter(detail => detail.purchase_id === loggedInUserId)
+                .map(detail => {
+                  const product = this.products.find(product => product.id === detail.product_id);
+                  const seller = this.users.find(user => user.id === product?.seller_id);
+                  const purchaseHistory = this.purchaseHistory.find(purchase => purchase.id === detail.purchase_id);
+
+                  console.log(detail);
+                  console.log(product);
+
+                  return {
+                    ...detail,
+                    productName: product?.name,
+                    sellerName: seller?.name,
+                    purchaseDate: purchaseHistory?.date,
+                    price: product?.price
+                  };
+                });
+
+            console.log(this.details);
+
+            /*
+            this.details = this.purchaseDetails.filter(detail => detail.purchase_id === loggedInUserId);
+            console.log(`Detalles de compra para la compra con ID ${loggedInUserId}:`, this.details);
+
+            this.details.forEach(detail => {
+              products = this.products.find(product => product.id === detail.product_id);
+              console.log(`Información del producto con ID ${detail.product_id}:`, products);
+
+              users = this.users.find(user => user.id === products.seller_id);
+              console.log(`Información sobre el seller con ID ${products.seller_id}:`, users);
+
+            });*/
+
+          });
+        }
+      });
+    });
   }
+
+  /*Part the menu*/
+  selectedOption: string = 'profile';
+  selectedMenuOption: string = 'my_orders';
 
   selectMenuOption(option: string) {
     this.selectedMenuOption = option;
   }
 
-  shouldShowMyOrders(): boolean {
-    return this.selectedMenuOption === 'my_orders';
-  }
-
-  shouldShowCustomerOrders(): boolean {
-    return this.selectedMenuOption === 'customer_orders';
-  }
-
-  /* My Orders */
-  loadMyOrders() {
-    this.http.get<any[]>('assets/data/myorders.json').subscribe(data => {
-      this.myOrders = data;
-    }, error => {
-      console.error('Failed to load my orders:', error);
-    });
-  }
-
-  /* Customers Orders */
-  sortOrders(criteria: string): void {
-    if (criteria === 'earliest') {
-      // Old date
-      this.orders.sort((a, b) => new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime());
-    } else if (criteria === 'recent') {
-      // Recent date
-      this.orders.sort((a, b) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime());
-    } else if (criteria === 'product') {
-      // Name of product
-      this.orders.sort((a, b) => a.productName.localeCompare(b.productName));
+  shouldShow(option: string){
+    if(option === "my_orders"){
+      return this.selectedMenuOption === 'my_orders';
+    }else{
+      return this.selectedMenuOption === 'customer_orders';
     }
   }
 
-  loadOrders() {
-    this.http.get<any[]>('assets/data/orders.json').subscribe(data => {
-      this.orders = data;
-    }, error => {
-      console.error('Failed to load orders:', error);
-    });
-  }
-
+  /* Choose the option*/
   selectOption(option: string) {
     this.selectedOption = option;
   }
 
+  /*Part the profile picture*/
+
+  profilePictureUrl: string | ArrayBuffer | null = null;
+
+  @ViewChild('profileImage') profileImage: ElementRef | undefined;
 
   /* icon */
   selectProfilePicture() {
@@ -125,8 +212,8 @@ export class ProfileComponent {
       }
     }
   }
-  
-  /* delete button*/ 
+
+  /* delete button*/
   confirmDelete() {
     if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
       console.log('Account deleted');
