@@ -4,7 +4,7 @@
 
       <div class="col-md-1">
         <div *ngFor="let productImage of product?.images_path; let i = index" class="mb-3">
-          <img [src]="productImage" class="image imageRow" (click)="showImage(i)">
+          <img [src]="productImage" class="image imageRow" (click)="showImage(i, $event)">
         </div>
       </div>
 
@@ -12,7 +12,7 @@
         <div class="row mb-3">
 
           <div class="col-md-8">
-            <img [src]="selectedImage" class="image img-fluid" (click)="showNextImage()">
+            <img [src]="selectedImage" class="image img-fluid">
           </div>
 
           <div class="col-md-4 size">

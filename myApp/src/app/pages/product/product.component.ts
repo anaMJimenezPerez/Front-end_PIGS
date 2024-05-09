@@ -26,19 +26,12 @@ export class ProductComponent implements OnInit{
 
   selectedImage: string | undefined;
 
-  showImage(index: number): void {
-    this.selectedImage = this.product?.images_path[index];
-  }
-
-  showNextImage(): void {
-    if (this.selectedImage && this.product?.images_path) {
-      const currentIndex = this.product.images_path.indexOf(this.selectedImage);
-      if (currentIndex !== -1) {
-        const nextIndex = (currentIndex + 1) % this.product.images_path.length;
-        this.selectedImage = this.product.images_path[nextIndex];
-      }
+  showImage(index: number, event: MouseEvent): void {
+    if (event.target === event.currentTarget) {
+      this.selectedImage = this.product?.images_path[index];
     }
   }
+
 
   ngOnInit(): void {
     this.selectedImage = this.product?.images_path[0];
