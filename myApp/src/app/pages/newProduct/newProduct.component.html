@@ -90,6 +90,17 @@
 
             <!-- Clothing Fields -->
             <fieldset id="clothingFields" class="form-group d-none">
+                <div class="form-group">
+                    <label for="jewelryType">Type:</label>
+                    <select class="form-control" id="clothingType" name="clothingType"
+                        [(ngModel)]="product.subcategories.type">
+                        <option value="shirt">Shirt</option>
+                        <option value="trousers">Trousers</option>
+                    </select>
+                </div>
+
+
+
                 <div id="clothingSizes" class="form-group">
                     <label>Size:</label>
                     <ng-container

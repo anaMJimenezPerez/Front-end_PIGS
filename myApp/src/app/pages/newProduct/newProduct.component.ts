@@ -114,11 +114,10 @@ export class NewProductComponent implements OnInit {
   setCurrentDate() {
     const today = new Date();
     const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Mes actual
-    const day = String(today.getDate()).padStart(2, '0'); // Día del mes
-  
-    // Establece el formato DD/MM/YYYY
-    const formattedDate = `${day}/${month}/${year}`;
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+     // date: YYYY-MM-DD
+    const formattedDate = `${year}-${month}-${day}`;
     this.product.date = formattedDate;
   }
 
