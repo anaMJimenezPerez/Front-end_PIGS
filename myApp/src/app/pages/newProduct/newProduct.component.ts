@@ -22,7 +22,8 @@ export class NewProductComponent implements OnInit {
     photos: [] as { src: string; file: File }[],
     subcategories: {
       sizes: [] as string[],
-      colors: [] as string[]
+      colors: [] as string[],
+      type: '' // type for jelwery and ceramic
     }
   };
 
@@ -113,10 +114,11 @@ export class NewProductComponent implements OnInit {
   setCurrentDate() {
     const today = new Date();
     const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-     // date: YYYY-MM-DD
-    const formattedDate = `${year}-${month}-${day}`;
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Mes actual
+    const day = String(today.getDate()).padStart(2, '0'); // Día del mes
+  
+    // Establece el formato DD/MM/YYYY
+    const formattedDate = `${day}/${month}/${year}`;
     this.product.date = formattedDate;
   }
 
@@ -210,14 +212,14 @@ export class NewProductComponent implements OnInit {
     this.validateSubcategories(category);
 
     if (form.valid && !this.showSizeError && !this.showColorError) {
-      // Recopila las subcategorías seleccionadas
+      // Categories
       this.product.subcategories.sizes = this.getSelectedOptions(`${category}Size`);
       this.product.subcategories.colors = this.getSelectedOptions(`${category}Color`);
 
-      // Asigna las fotos al producto
+      // photos 
       this.product.photos = this.photos;
 
-      // Imprime el formulario completo en la consola
+      // Formulary in console
       console.log('Form Submitted:', this.product);
 
       /*form.reset();
@@ -235,7 +237,7 @@ export class NewProductComponent implements OnInit {
     return checkboxes.length > 0;
   }
 
-  // Obtiene las opciones seleccionadas (checkboxes o selects)
+  // Options selected (checkboxes o selects)
   getSelectedOptions(groupName: string): string[] {
     const selected: string[] = [];
     const checkboxes = document.querySelectorAll(`input[name="${groupName}"]:checked`);
@@ -244,4 +246,5 @@ export class NewProductComponent implements OnInit {
     });
     return selected;
   }
+  
 }

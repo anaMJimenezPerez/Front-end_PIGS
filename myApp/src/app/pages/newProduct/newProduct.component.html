@@ -74,11 +74,10 @@
                     [(ngModel)]="product.date">
             </div>
 
-
             <!-- Category Field -->
             <div class="form-group">
                 <label for="category">Category:</label>
-                <select class="form-control" id="category" name="category" required
+                <select class="form-control" id="category" name="category" required [(ngModel)]="product.category"
                     (change)="handleCategoryChange($event)">
                     <option value="clothing">Clothing</option>
                     <option value="jewelry">Jewelry</option>
@@ -116,14 +115,15 @@
             <fieldset id="jewelryFields" class="form-group d-none">
                 <div class="form-group">
                     <label for="jewelryType">Type:</label>
-                    <select class="form-control" id="jewelryType" name="jewelryType">
+                    <select class="form-control" id="jewelryType" name="jewelryType"
+                        [(ngModel)]="product.subcategories.type">
                         <option value="necklace">Necklace</option>
                         <option value="bracelet">Bracelet</option>
                         <option value="ring">Ring</option>
                         <option value="earrings">Earrings</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label>Color:</label>
                     <ng-container
@@ -144,7 +144,7 @@
                     </div>
                 </div>
             </fieldset>
-            
+
             <!-- Keychain Fields -->
             <fieldset id="keychainFields" class="form-group d-none">
 
@@ -186,7 +186,8 @@
             <fieldset id="ceramicFields" class="form-group d-none">
                 <div class="form-group">
                     <label for="ceramicType">Type:</label>
-                    <select class="form-control" id="ceramicType" name="ceramicType">
+                    <select class="form-control" id="ceramicType" name="ceramicType"
+                        [(ngModel)]="product.subcategories.type">
                         <option value="glass">Glass</option>
                         <option value="plate">Plate</option>
                         <option value="vase">Vase</option>
@@ -194,7 +195,6 @@
                     </select>
                 </div>
             </fieldset>
-
 
             <!-- Plush Fields -->
             <fieldset id="plushFields" class="form-group d-none">
