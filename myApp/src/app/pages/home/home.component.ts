@@ -58,13 +58,12 @@ export class HomeComponent implements OnInit{
         const images = productImagesMap.get(product.id) || [];
         return { ...product, images_path: images };
       });
-
       //New products
       const fifteenDaysAgo = new Date();
       fifteenDaysAgo.setDate(fifteenDaysAgo.getDate() - 15);
 
       this.newProducts = this.products.filter(product => {
-        const [day, month, year] = product.creation_time.split('/');
+        const [year, month, day] = product.creation_time.split('T')[0].split('-');
         const creationTime = new Date(Number(year), Number(month) - 1, Number(day));
         return creationTime >= fifteenDaysAgo;
       });
