@@ -2,12 +2,13 @@
     <div class="container mt-5">
         <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)" class="productForm">
             <h1>Create a new product</h1>
-            <!-- Name product -->
+
+            <!-- Name Field -->
             <div class="form-group">
                 <label for="productName">Name:</label>
                 <input type="text" class="form-control" id="productName" name="productName" required
                     [(ngModel)]="product.name" #productName="ngModel">
-                <div *ngIf="productForm.submitted && !productName.valid" class="error-message">
+                <div *ngIf="validateOnLoad && productName.invalid" class="error-message">
                     <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
                     Product name is required
                 </div>
@@ -18,10 +19,13 @@
                 <label for="photos">Upload Photos:</label>
                 <input type="file" class="form-control" id="photos" name="photos" multiple accept="image/*"
                     (change)="previewPhotos($event)">
+                <div *ngIf="photos.length <= 0" class="error-message">
+                    <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
+                    At least one photo is required
+                </div>
             </div>
 
-
-            <!-- Container for image previews -->
+            <!-- Container review -->
             <div class="preview-container">
                 <div *ngFor="let photo of photos; let index = index" class="preview-item">
                     <img [src]="photo.src" [alt]="'Image ' + (index + 1)">
@@ -29,11 +33,15 @@
                 </div>
             </div>
 
-            <!-- Description -->
+            <!-- Description Field -->
             <div class="form-group">
                 <label for="description">Description:</label>
-                <textarea class="form-control" id="description" name="description"
-                [(ngModel)]="product.description" #description="ngModel"></textarea>
+                <textarea class="form-control" id="description" name="description" required
+                    [(ngModel)]="product.description" #description="ngModel"></textarea>
+                <div *ngIf="validateOnLoad && description.invalid" class="error-message">
+                    <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
+                    Description is required
+                </div>
             </div>
 
             <!-- Price -->
@@ -41,9 +49,9 @@
                 <label for="price">Price:</label>
                 <input type="number" class="form-control" id="price" name="price" min="0.01" step="0.1" required
                     [(ngModel)]="product.price" #price="ngModel">
-                <div *ngIf="productForm.submitted && (!price.valid || price.value <= 0)"  class="error-message">
+                <div *ngIf="price.invalid && (price.dirty || price.touched) || price.value <= 0" class="error-message">
                     <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
-                    Price must be greater than 0 
+                    Price must be greater than 0
                 </div>
             </div>
 
@@ -52,24 +60,26 @@
                 <label for="quantity">Stock:</label>
                 <input type="number" class="form-control" id="quantity" name="quantity" min="1" required
                     [(ngModel)]="product.quantity" #quantity="ngModel">
-                <div *ngIf="productForm.submitted && (!quantity.valid || quantity.value <= 0)" class="error-message">
+                <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched) || quantity.value <= 0"
+                    class="error-message">
                     <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
-                    Stock must be greater than 0 
+                    Stock must be greater than 0
                 </div>
             </div>
-
 
             <!-- Date -->
             <div class="form-group">
                 <label for="createdDate">Creation Date:</label>
-                <input type="date" class="form-control" id="createdDate" name="createdDate" readonly [(ngModel)]="product.date">
+                <input type="date" class="form-control" id="createdDate" name="createdDate" readonly
+                    [(ngModel)]="product.date">
             </div>
 
-            <!-- Category -->
+
+            <!-- Category Field -->
             <div class="form-group">
                 <label for="category">Category:</label>
                 <select class="form-control" id="category" name="category" required
-                    (change)="showCategoryFields($event)">
+                    (change)="handleCategoryChange($event)">
                     <option value="clothing">Clothing</option>
                     <option value="jewelry">Jewelry</option>
                     <option value="keychain">Keychain</option>
@@ -81,29 +91,23 @@
 
             <!-- Clothing Fields -->
             <fieldset id="clothingFields" class="form-group d-none">
-                <div class="form-group">
-                    <label for="clothingType">Type:</label>
-                    <select class="form-control" id="clothingType" name="clothingType">
-                        <option value="trousers">Trousers</option>
-                        <option value="shirt">Shirt</option>
-                    </select>
-                </div>
-
                 <div id="clothingSizes" class="form-group">
                     <label>Size:</label>
-                    <ng-container [ngTemplateOutlet]="sizeTemplate"></ng-container>
+                    <ng-container
+                        *ngTemplateOutlet="sizeTemplate; context: {sizes: clothingSizes, groupName: 'clothingSize'}"></ng-container>
                     <div *ngIf="showSizeError" class="error-message">
                         <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
-                        At least one size must be selected for clothing 
+                        At least one size must be selected for clothing
                     </div>
                 </div>
 
                 <div id="clothingColors" class="form-group">
                     <label>Color:</label>
-                    <ng-container [ngTemplateOutlet]="checkboxTemplate"></ng-container>
+                    <ng-container
+                        *ngTemplateOutlet="checkboxTemplate; context: {colors: clothingColors, groupName: 'clothingColor'}"></ng-container>
                     <div *ngIf="showColorError" class="error-message">
                         <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
-                        At least one color must be selected for clothing 
+                        At least one color must be selected for clothing
                     </div>
                 </div>
             </fieldset>
@@ -119,32 +123,48 @@
                         <option value="earrings">Earrings</option>
                     </select>
                 </div>
+                
                 <div class="form-group">
                     <label>Color:</label>
-                    <ng-container [ngTemplateOutlet]="checkboxTemplate"></ng-container>
+                    <ng-container
+                        *ngTemplateOutlet="checkboxTemplate; context: {colors: jewelryColors, groupName: 'jewelryColor'}"></ng-container>
                     <div *ngIf="showColorError" class="error-message">
                         <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
-                        At least one color must be selected for jewelry 
+                        At least one color must be selected for jewelry
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Size:</label>
+                    <ng-container
+                        *ngTemplateOutlet="sizeTemplate; context: {sizes: jewelrySizes, groupName: 'jewelrySize'}"></ng-container>
+                    <div *ngIf="showSizeError" class="error-message">
+                        <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
+                        At least one size must be selected for jewelry
                     </div>
                 </div>
             </fieldset>
-
+            
             <!-- Keychain Fields -->
             <fieldset id="keychainFields" class="form-group d-none">
+
                 <div class="form-group">
-                    <label for="keychainSize">Size:</label>
-                    <ng-container [ngTemplateOutlet]="sizeTemplate"></ng-container>
-                    <div *ngIf="showColorError" class="error-message">
+                    <label>Size:</label>
+                    <ng-container
+                        *ngTemplateOutlet="sizeTemplate; context: {sizes: keychainSizes, groupName: 'keychainSize'}"></ng-container>
+                    <div *ngIf="showSizeError" class="error-message">
                         <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
-                        At least one size must be selected for keychain 
+                        At least one size must be selected for keychain
                     </div>
                 </div>
+
                 <div class="form-group">
-                    <label for="keychainColor">Color:</label>
-                    <ng-container [ngTemplateOutlet]="checkboxTemplate"></ng-container>
+                    <label>Color:</label>
+                    <ng-container
+                        *ngTemplateOutlet="checkboxTemplate; context: {colors: keychainColors, groupName: 'keychainColor'}"></ng-container>
                     <div *ngIf="showColorError" class="error-message">
                         <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
-                        At least one color must be selected for keychain 
+                        At least one color must be selected for keychain
                     </div>
                 </div>
             </fieldset>
@@ -152,9 +172,10 @@
             <!-- Painting Fields -->
             <fieldset id="paintingFields" class="form-group d-none">
                 <div class="form-group">
-                    <label for="paintingSize">Size:</label>
-                    <ng-container [ngTemplateOutlet]="sizeTemplate"></ng-container>
-                    <div *ngIf="showColorError" class="error-message">
+                    <label>Size:</label>
+                    <ng-container
+                        *ngTemplateOutlet="sizeTemplate; context: {sizes: paintingSizes, groupName: 'paintingSize'}"></ng-container>
+                    <div *ngIf="showSizeError" class="error-message">
                         <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
                         At least one size must be selected for painting
                     </div>
@@ -174,14 +195,16 @@
                 </div>
             </fieldset>
 
+
             <!-- Plush Fields -->
             <fieldset id="plushFields" class="form-group d-none">
                 <div class="form-group">
-                    <label for="plushSize">Size:</label>
-                    <ng-container [ngTemplateOutlet]="sizeTemplate"></ng-container>
-                    <div *ngIf="showColorError" class="error-message">
+                    <label>Size:</label>
+                    <ng-container
+                        *ngTemplateOutlet="sizeTemplate; context: {sizes: plushSizes, groupName: 'plushSize'}"></ng-container>
+                    <div *ngIf="showSizeError" class="error-message">
                         <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
-                        At least one size must be selected for plush 
+                        At least one size must be selected for plush
                     </div>
                 </div>
             </fieldset>
@@ -194,67 +217,24 @@
 </body>
 
 
-<!-- Template checkbox colors -->
-<ng-template #checkboxTemplate>
+<!-- Generic template for colours -->
+<ng-template #checkboxTemplate let-colors="colors" let-groupName="groupName">
     <div class="checkbox-pairs">
-        <div>
-            <input type="checkbox" id="colorWhite" name="clothingColor" value="white">
-            <label for="colorWhite">White</label>
-        </div>
-        <div>
-            <input type="checkbox" id="colorRed" name="clothingColor" value="red">
-            <label for="colorRed">Red</label>
-        </div>
-        <div>
-            <input type="checkbox" id="colorOrange" name="clothingColor" value="orange">
-            <label for="colorOrange">Orange</label>
-        </div>
-        <div>
-            <input type="checkbox" id="colorYellow" name="clothingColor" value="yellow">
-            <label for="colorYellow">Yellow</label>
-        </div>
-        <div>
-            <input type="checkbox" id="colorGreen" name="clothingColor" value="green">
-            <label for="colorGreen">Green</label>
-        </div>
-        <div>
-            <input type="checkbox" id="colorBlue" name="clothingColor" value="blue">
-            <label for="colorBlue">Blue</label>
-        </div>
-        <div>
-            <input type="checkbox" id="colorViolet" name="clothingColor" value="violet">
-            <label for="colorViolet">Violet</label>
-        </div>
-        <div>
-            <input type="checkbox" id="colorBlack" name="clothingColor" value="black">
-            <label for="colorBlack">Black</label>
+        <div *ngFor="let color of colors; let i = index">
+            <input type="checkbox" [id]="groupName + i" [name]="groupName" [value]="color.value"
+                (change)="onCheckboxChange(groupName)">
+            <label [for]="groupName + i">{{ color.label }}</label>
         </div>
     </div>
 </ng-template>
 
-
-<!-- Template checkbox size -->
-<ng-template #sizeTemplate>
+<!-- Generic template for sizes -->
+<ng-template #sizeTemplate let-sizes="sizes" let-groupName="groupName">
     <div class="checkbox-pairs">
-        <div>
-            <input type="checkbox" id="sizeExtraSmall" name="clothingSize" value="extrasmall">
-            <label for="sizeExtraSmall">Extra small</label>
-        </div>
-        <div>
-            <input type="checkbox" id="sizeSmall" name="clothingSize" value="small">
-            <label for="sizeSmall">Small</label>
-        </div>
-        <div>
-            <input type="checkbox" id="sizeMedium" name="clothingSize" value="medium">
-            <label for="sizeMedium">Medium</label>
-        </div>
-        <div>
-            <input type="checkbox" id="sizeLarge" name="clothingSize" value="large">
-            <label for="sizeLarge">Large</label>
-        </div>
-        <div>
-            <input type="checkbox" id="sizeExtraLarge" name="clothingSize" value="extralarge">
-            <label for="sizeExtraLarge">Extra large</label>
+        <div *ngFor="let size of sizes; let i = index">
+            <input type="checkbox" [id]="groupName + i" [name]="groupName" [value]="size.value"
+                (change)="onCheckboxChange(groupName)">
+            <label [for]="groupName + i">{{ size.label }}</label>
         </div>
     </div>
 </ng-template>

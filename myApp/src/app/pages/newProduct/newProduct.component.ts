@@ -6,21 +6,86 @@ import { Router } from '@angular/router';
   templateUrl: './newProduct.component.html',
   styleUrls: ['./newProduct.component.css']
 })
-
 export class NewProductComponent implements OnInit {
   photos: { src: string, file: File }[] = [];
 
-  // Variable initialization
-  product = {
+  validateOnLoad = true;
+
+   // Variable initialization
+   product = {
     name: '',
     price: 0,
     quantity: 0,
     date: '',
     category: '',
-    subcategories: [],
     description: '',
-    photos: [] as { src: string; file: File }[]
+    photos: [] as { src: string; file: File }[],
+    subcategories: {
+      sizes: [] as string[],
+      colors: [] as string[]
+    }
   };
+
+  // Value of the checkboxes
+  clothingSizes = [
+    { value: 'extrasmall', label: 'Extra small' },
+    { value: 'small', label: 'Small' },
+    { value: 'medium', label: 'Medium' },
+    { value: 'large', label: 'Large' },
+    { value: 'extralarge', label: 'Extra large' }
+  ];
+
+  clothingColors = [
+    { value: 'white', label: 'White' },
+    { value: 'red', label: 'Red' },
+    { value: 'blue', label: 'Blue' },
+    { value: 'green', label: 'Green' },
+    { value: 'yellow', label: 'Yellow' },
+    { value: 'orange', label: 'Orange' },
+    { value: 'violet', label: 'Violet' },
+    { value: 'black', label: 'Black' }
+  ];
+
+  jewelryColors = [
+    { value: 'gold', label: 'Gold' },
+    { value: 'silver', label: 'Silver' },
+    { value: 'bronze', label: 'Bronze' }
+  ];
+
+  jewelrySizes = [
+    { value: 'small', label: 'Small' },
+    { value: 'medium', label: 'Medium' },
+    { value: 'large', label: 'Large' }
+  ];
+
+  keychainColors = [
+    { value: 'white', label: 'White' },
+    { value: 'red', label: 'Red' },
+    { value: 'blue', label: 'Blue' },
+    { value: 'green', label: 'Green' },
+    { value: 'yellow', label: 'Yellow' },
+    { value: 'orange', label: 'Orange' },
+    { value: 'violet', label: 'Violet' },
+    { value: 'black', label: 'Black' }
+  ];
+
+  keychainSizes = [
+    { value: 'small', label: 'Small' },
+    { value: 'medium', label: 'Medium' },
+    { value: 'large', label: 'Large' }
+  ];
+
+  paintingSizes = [
+    { value: 'small', label: 'Small' },
+    { value: 'medium', label: 'Medium' },
+    { value: 'large', label: 'Large' }
+  ];
+
+  plushSizes = [
+    { value: 'small', label: 'Small' },
+    { value: 'medium', label: 'Medium' },
+    { value: 'large', label: 'Large' }
+  ];
 
   // Variables for displaying error messages
   showSizeError = false;
@@ -29,9 +94,9 @@ export class NewProductComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    // Check if it was accessed from the profile
-    const hasAccess = localStorage.getItem('profileAccess') === 'true';
 
+     // Check if it was accessed from the profile
+    const hasAccess = localStorage.getItem('profileAccess') === 'true';
     if (!hasAccess) {
       this.router.navigate(['/profile']);
     } else {
@@ -40,73 +105,83 @@ export class NewProductComponent implements OnInit {
 
     // Method for displaying the date
     this.setCurrentDate();
+    // Method for initial category
+    this.setInitialCategory();
+  }
 
-    // Displays the fields of the initial category
+  // Date method
+  setCurrentDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+     // date: YYYY-MM-DD
+    const formattedDate = `${year}-${month}-${day}`;
+    this.product.date = formattedDate;
+  }
+
+
+  // Displays the fields of the initial category
+  setInitialCategory() {
     const initialCategorySelect = document.getElementById('category') as HTMLSelectElement;
     if (initialCategorySelect) {
-      // Select “Clothing” as the first option by default.
+       // Select “Clothing” as the first option by default.
       initialCategorySelect.value = 'clothing';
-
-      // Create a real 'change' event 
-      const changeEvent = new Event('change', { bubbles: true, cancelable: true });
-      initialCategorySelect.dispatchEvent(changeEvent);
+      this.showCategoryFields('clothing');
     }
   }
-
-  // Date
-  setCurrentDate() {
-    const createdDateInput = document.getElementById('createdDate') as HTMLInputElement;
-    if (createdDateInput) {
-      const today = new Date();
-      // date: YYYY-MM-DD
-      const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, '0');
-      const day = String(today.getDate()).padStart(2, '0');
-      const formattedDate = `${year}-${month}-${day}`;
-      createdDateInput.value = formattedDate;
-  
-      // Asigna la fecha formateada al objeto product
-      this.product.date = formattedDate;
-    }
-  }
-
-  // Date for Backend
-  formatDateForServer(dateString: string): string {
-    const [day, month, year] = dateString.split('-');
-    return `${day}-${month}-${year}`;
-  }
-
   // Toggles the visibility of the fieldsets according to the selected category.
-  showCategoryFields(event: Event): void {
-    const category = (event.target as HTMLSelectElement).value;
+  showCategoryFields(category: string) {
     const fieldsets = ['clothingFields', 'jewelryFields', 'keychainFields', 'paintingFields', 'ceramicFields', 'plushFields'];
-
-    fieldsets.forEach((id: string) => {
+    fieldsets.forEach(id => {
       const fieldset = document.getElementById(id);
-      if (fieldset) {
-        fieldset.classList.add('d-none'); // Hide the fieldset
-      }
+      if (fieldset) fieldset.classList.add('d-none');
     });
 
+    document.getElementById(`${category}Fields`)?.classList.remove('d-none');
+    this.validateSubcategories(category);
+  }
+
+  handleCategoryChange(event: Event): void {
+    const category = (event.target as HTMLSelectElement).value;
+    this.showCategoryFields(category);
+  }
+
+  validateSubcategories(category: string): void {
     switch (category) {
       case 'clothing':
-        document.getElementById('clothingFields')?.classList.remove('d-none');
+        this.showSizeError = !this.hasSelectedCheckboxes('clothingSize');
+        this.showColorError = !this.hasSelectedCheckboxes('clothingColor');
         break;
       case 'jewelry':
-        document.getElementById('jewelryFields')?.classList.remove('d-none');
+        this.showSizeError = !this.hasSelectedCheckboxes('jewelrySize'); 
+        this.showColorError = !this.hasSelectedCheckboxes('jewelryColor');
         break;
       case 'keychain':
-        document.getElementById('keychainFields')?.classList.remove('d-none');
+        this.showSizeError = !this.hasSelectedCheckboxes('keychainSize');
+        this.showColorError = !this.hasSelectedCheckboxes('keychainColor');
         break;
       case 'painting':
-        document.getElementById('paintingFields')?.classList.remove('d-none');
-        break;
-      case 'ceramic':
-        document.getElementById('ceramicFields')?.classList.remove('d-none');
+        this.showSizeError = !this.hasSelectedCheckboxes('paintingSize');
+        this.showColorError = false; 
         break;
       case 'plush':
-        document.getElementById('plushFields')?.classList.remove('d-none');
+        this.showSizeError = !this.hasSelectedCheckboxes('plushSize');
+        this.showColorError = false; 
         break;
+      default:
+        this.showSizeError = false;
+        this.showColorError = false;
+        break;
+    }
+  }
+
+  onCheckboxChange(groupName: string): void {
+    // Update error variables in real time
+    if (groupName.includes('Size')) {
+      this.showSizeError = !this.hasSelectedCheckboxes(groupName);
+    } else if (groupName.includes('Color')) {
+      this.showColorError = !this.hasSelectedCheckboxes(groupName);
     }
   }
 
@@ -131,34 +206,27 @@ export class NewProductComponent implements OnInit {
 
   // Function to be called when sending the form
   onSubmit(form: any) {
-    // Check if there is at least one subcategory selected
-    this.showSizeError = !this.hasSelectedCheckboxes('clothingSize');
-    this.showColorError = !this.hasSelectedCheckboxes('clothingColor');
+    const category = form.value.category;
+    this.validateSubcategories(category);
 
-    // Check if the form is valid and there are no subcategory errors.
     if (form.valid && !this.showSizeError && !this.showColorError) {
-      
-    this.product.name = form.value.productName;
-    this.product.price = form.value.productPrice;
-    this.product.quantity = form.value.productQuantity;
-    this.product.date = this.formatDateForServer(form.value.createdDate); // Formatear para enviar al servidor
-    this.product.category = form.value.category;
-    this.product.description = form.value.productDescription;
-    this.product.photos = this.photos;
-      
-      
+      // Recopila las subcategorías seleccionadas
+      this.product.subcategories.sizes = this.getSelectedOptions(`${category}Size`);
+      this.product.subcategories.colors = this.getSelectedOptions(`${category}Color`);
+
+      // Asigna las fotos al producto
+      this.product.photos = this.photos;
+
+      // Imprime el formulario completo en la consola
       console.log('Form Submitted:', this.product);
-      this.sendFormDataToServer(form.value);
-      form.reset();
+
+      /*form.reset();
       this.photos = [];
-      /*this.router.navigate(['/profile']);*/
+      this.router.navigate(['/profile']);*/
+      this.validateOnLoad = false;
     } else {
       console.log('Form has errors');
     }
-  }
-
-  sendFormDataToServer(formData: any) {
-    console.log('Sending form data to server:', formData);
   }
 
   // Function to check if checkboxes are selected
@@ -167,4 +235,13 @@ export class NewProductComponent implements OnInit {
     return checkboxes.length > 0;
   }
 
+  // Obtiene las opciones seleccionadas (checkboxes o selects)
+  getSelectedOptions(groupName: string): string[] {
+    const selected: string[] = [];
+    const checkboxes = document.querySelectorAll(`input[name="${groupName}"]:checked`);
+    checkboxes.forEach((checkbox) => {
+      selected.push((checkbox as HTMLInputElement).value);
+    });
+    return selected;
+  }
 }
