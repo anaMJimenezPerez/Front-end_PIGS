@@ -14,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { ProductComponent } from './pages/product/product.component';
-import { NewProductComponent } from './pages/newProduct/newProduct.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +26,7 @@ import { NewProductComponent } from './pages/newProduct/newProduct.component';
     SignUpComponent,
     DirectionFormComponent,
     ShoppingCartComponent,
-    ProductComponent,
-    NewProductComponent
+    ProductComponent
   ],
   imports: [
     BrowserModule,
