@@ -11,8 +11,8 @@ export class NewProductComponent implements OnInit {
 
   validateOnLoad = true;
 
-   // Variable initialization
-   product = {
+  // Variable initialization
+  product = {
     name: '',
     price: 0,
     quantity: 0,
@@ -20,20 +20,19 @@ export class NewProductComponent implements OnInit {
     category: '',
     description: '',
     photos: [] as { src: string; file: File }[],
-    subcategories: {
-      sizes: [] as string[],
-      colors: [] as string[],
-      type: '' // type for jelwery and ceramic
-    }
+    sizes: [] as string[],
+    colors: [] as string[],
+    type: '' // type for jelwery and ceramic
+  
   };
 
   // Value of the checkboxes
   clothingSizes = [
-    { value: 'extrasmall', label: 'Extra small' },
-    { value: 'small', label: 'Small' },
-    { value: 'medium', label: 'Medium' },
-    { value: 'large', label: 'Large' },
-    { value: 'extralarge', label: 'Extra large' }
+    { value: 'XS', label: 'XS' },
+    { value: 'S', label: 'S' },
+    { value: 'M', label: 'M' },
+    { value: 'L', label: 'L' },
+    { value: 'XL', label: 'XL' }
   ];
 
   clothingColors = [
@@ -44,6 +43,7 @@ export class NewProductComponent implements OnInit {
     { value: 'yellow', label: 'Yellow' },
     { value: 'orange', label: 'Orange' },
     { value: 'violet', label: 'Violet' },
+    { value: 'pink', label: 'Pink' },
     { value: 'black', label: 'Black' }
   ];
 
@@ -67,6 +67,7 @@ export class NewProductComponent implements OnInit {
     { value: 'yellow', label: 'Yellow' },
     { value: 'orange', label: 'Orange' },
     { value: 'violet', label: 'Violet' },
+    { value: 'pink', label: 'Pink' },
     { value: 'black', label: 'Black' }
   ];
 
@@ -91,12 +92,13 @@ export class NewProductComponent implements OnInit {
   // Variables for displaying error messages
   showSizeError = false;
   showColorError = false;
+  showTypeError = false; 
 
   constructor(private router: Router) { }
 
   ngOnInit() {
 
-     // Check if it was accessed from the profile
+    // Check if it was accessed from the profile
     const hasAccess = localStorage.getItem('profileAccess') === 'true';
     if (!hasAccess) {
       this.router.navigate(['/profile']);
@@ -116,7 +118,7 @@ export class NewProductComponent implements OnInit {
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0');
     const day = String(today.getDate()).padStart(2, '0');
-     // date: YYYY-MM-DD
+    // date: YYYY-MM-DD
     const formattedDate = `${year}-${month}-${day}`;
     this.product.date = formattedDate;
   }
@@ -126,21 +128,34 @@ export class NewProductComponent implements OnInit {
   setInitialCategory() {
     const initialCategorySelect = document.getElementById('category') as HTMLSelectElement;
     if (initialCategorySelect) {
-       // Select “Clothing” as the first option by default.
+      // Select “Clothing” as the first option by default.
       initialCategorySelect.value = 'clothing';
       this.showCategoryFields('clothing');
     }
   }
+
   // Toggles the visibility of the fieldsets according to the selected category.
   showCategoryFields(category: string) {
+    // List of all fieldsets (category-specific fields)
     const fieldsets = ['clothingFields', 'jewelryFields', 'keychainFields', 'paintingFields', 'ceramicFields', 'plushFields'];
     fieldsets.forEach(id => {
       const fieldset = document.getElementById(id);
       if (fieldset) fieldset.classList.add('d-none');
     });
 
+    // Reset the subcategories for the newly selected category
+    this.resetSubcategories();
+
+    // Display the correct fieldset based on the selected category
     document.getElementById(`${category}Fields`)?.classList.remove('d-none');
     this.validateSubcategories(category);
+  }
+
+  resetSubcategories() {
+    // Clear subcategory values
+    this.product.sizes = [];
+    this.product.colors = [];
+    this.product.type = ''; // Adjust based on your specific logic
   }
 
   handleCategoryChange(event: Event): void {
@@ -153,26 +168,32 @@ export class NewProductComponent implements OnInit {
       case 'clothing':
         this.showSizeError = !this.hasSelectedCheckboxes('clothingSize');
         this.showColorError = !this.hasSelectedCheckboxes('clothingColor');
+        this.showTypeError = this.product.type === '';
         break;
       case 'jewelry':
-        this.showSizeError = !this.hasSelectedCheckboxes('jewelrySize'); 
+        this.showSizeError = !this.hasSelectedCheckboxes('jewelrySize');
         this.showColorError = !this.hasSelectedCheckboxes('jewelryColor');
+        this.showTypeError = this.product.type === '';
         break;
       case 'keychain':
         this.showSizeError = !this.hasSelectedCheckboxes('keychainSize');
         this.showColorError = !this.hasSelectedCheckboxes('keychainColor');
+        this.showTypeError = false;
         break;
       case 'painting':
         this.showSizeError = !this.hasSelectedCheckboxes('paintingSize');
-        this.showColorError = false; 
+        this.showColorError = false;
+        this.showTypeError = false;
         break;
       case 'plush':
         this.showSizeError = !this.hasSelectedCheckboxes('plushSize');
-        this.showColorError = false; 
+        this.showColorError = false;
+        this.showTypeError = false;
         break;
       default:
         this.showSizeError = false;
         this.showColorError = false;
+        this.showTypeError = false;
         break;
     }
   }
@@ -212,8 +233,8 @@ export class NewProductComponent implements OnInit {
 
     if (form.valid && !this.showSizeError && !this.showColorError) {
       // Categories
-      this.product.subcategories.sizes = this.getSelectedOptions(`${category}Size`);
-      this.product.subcategories.colors = this.getSelectedOptions(`${category}Color`);
+      this.product.sizes = this.getSelectedOptions(`${category}Size`);
+      this.product.colors = this.getSelectedOptions(`${category}Color`);
 
       // photos 
       this.product.photos = this.photos;
@@ -245,5 +266,5 @@ export class NewProductComponent implements OnInit {
     });
     return selected;
   }
-  
+
 }

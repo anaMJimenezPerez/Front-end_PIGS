@@ -58,7 +58,7 @@
             <!-- Stock -->
             <div class="form-group">
                 <label for="quantity">Stock:</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" min="1" required
+                <input type="number" class="form-control" id="quantity" name="quantity" min="1" step="1" required
                     [(ngModel)]="product.quantity" #quantity="ngModel">
                 <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched) || quantity.value <= 0"
                     class="error-message">
@@ -79,6 +79,7 @@
                 <label for="category">Category:</label>
                 <select class="form-control" id="category" name="category" required [(ngModel)]="product.category"
                     (change)="handleCategoryChange($event)">
+                    <option value="" disabled selected>Select a category</option>
                     <option value="clothing">Clothing</option>
                     <option value="jewelry">Jewelry</option>
                     <option value="keychain">Keychain</option>
@@ -86,17 +87,27 @@
                     <option value="ceramic">Ceramic</option>
                     <option value="plush">Plush</option>
                 </select>
+                <div *ngIf="validateOnLoad && product.category === ''" class="error-message">
+                    <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
+                    Category is required
+                </div>
             </div>
+
 
             <!-- Clothing Fields -->
             <fieldset id="clothingFields" class="form-group d-none">
                 <div class="form-group">
-                    <label for="jewelryType">Type:</label>
-                    <select class="form-control" id="clothingType" name="clothingType"
-                        [(ngModel)]="product.subcategories.type">
+                    <label for="clothingType">Type:</label>
+                    <select class="form-control" id="clothingType" name="clothingType" required
+                        [(ngModel)]="product.type">
+                        <option value="" disabled selected>Select a type</option>
                         <option value="shirt">Shirt</option>
                         <option value="trousers">Trousers</option>
                     </select>
+                    <div *ngIf="validateOnLoad && product.type === ''" class="error-message">
+                        <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
+                        Type is required for clothing
+                    </div>
                 </div>
 
 
@@ -126,13 +137,18 @@
             <fieldset id="jewelryFields" class="form-group d-none">
                 <div class="form-group">
                     <label for="jewelryType">Type:</label>
-                    <select class="form-control" id="jewelryType" name="jewelryType"
-                        [(ngModel)]="product.subcategories.type">
+                    <select class="form-control" id="jewelryType" name="jewelryType" required
+                        [(ngModel)]="product.type">
+                        <option value="" disabled selected>Select a type</option>
                         <option value="necklace">Necklace</option>
                         <option value="bracelet">Bracelet</option>
                         <option value="ring">Ring</option>
                         <option value="earrings">Earrings</option>
                     </select>
+                    <div *ngIf="validateOnLoad && product.type === ''" class="error-message">
+                        <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
+                        Type is required for jewelry
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -197,13 +213,18 @@
             <fieldset id="ceramicFields" class="form-group d-none">
                 <div class="form-group">
                     <label for="ceramicType">Type:</label>
-                    <select class="form-control" id="ceramicType" name="ceramicType"
-                        [(ngModel)]="product.subcategories.type">
+                    <select class="form-control" id="ceramicType" name="ceramicType" required
+                        [(ngModel)]="product.type">
+                        <option value="" disabled selected>Select a type</option>
                         <option value="glass">Glass</option>
                         <option value="plate">Plate</option>
                         <option value="vase">Vase</option>
                         <option value="figure">Figure</option>
                     </select>
+                    <div *ngIf="validateOnLoad && product.type === ''" class="error-message">
+                        <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
+                        Type is required for ceramics
+                    </div>
                 </div>
             </fieldset>
 
