@@ -54,6 +54,8 @@ interface PurchaseDetails {
 
 export class ProfileComponent implements OnInit{
 
+  newproducts: any[] = [];
+
   //Purchase
   purchaseDetails: PurchaseDetails[] = [];
   purchaseHistory: PurchaseHistory[] = [];
@@ -73,11 +75,13 @@ export class ProfileComponent implements OnInit{
     private productService: ProductService,
     private userService: UserService,
     private router: Router,
+    
   ) {}
 
 
   /*Part the my_orders*/
   ngOnInit() {
+
 
     /*forkJoin([
       this.purchaseService.getAllPurchaseDetails(),
