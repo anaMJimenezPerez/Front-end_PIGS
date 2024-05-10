@@ -226,6 +226,32 @@ export class NewProductComponent implements OnInit {
     this.photos.splice(index, 1);
   }
 
+  // Function to validate that the quantity is a positive integer
+  sanitizeQuantity(event: Event): void {
+    let inputValue = (event.target as HTMLInputElement).value;
+    
+    // Eliminar cualquier valor decimal usando una expresión regular
+    inputValue = inputValue.split('.')[0]; // Solo tomar la parte entera
+  
+    // Convertir a número para asignar a `product.quantity`
+    const parsedValue = parseInt(inputValue, 10);
+  
+    // Asignar solo si es un valor válido
+    if (!isNaN(parsedValue) && parsedValue > 0) {
+      this.product.quantity = parsedValue;
+    } else {
+      this.product.quantity = 0;
+    }
+  
+    // Actualizar el valor en el campo de entrada
+    (event.target as HTMLInputElement).value = inputValue;
+  }
+
+  // Function to validate that the quantity is a positive integer
+  isValidQuantity(): boolean {
+    return Number.isInteger(this.product.quantity) && this.product.quantity > 0;
+  }
+
   // Function to be called when sending the form
   onSubmit(form: any) {
     const category = form.value.category;

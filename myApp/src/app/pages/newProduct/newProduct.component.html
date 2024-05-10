@@ -58,12 +58,12 @@
             <!-- Stock -->
             <div class="form-group">
                 <label for="quantity">Stock:</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" min="1" step="1" required
+                <input type="number" class="form-control" id="quantity" name="quantity" min="1" step="1" pattern="\d+" required
                     [(ngModel)]="product.quantity" #quantity="ngModel">
-                <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched) || quantity.value <= 0"
+                <div *ngIf="(quantity.invalid && (quantity.dirty || quantity.touched)) || product.quantity <= 0"
                     class="error-message">
                     <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
-                    Stock must be greater than 0
+                    Stock must be greater than 0 and integer
                 </div>
             </div>
 
