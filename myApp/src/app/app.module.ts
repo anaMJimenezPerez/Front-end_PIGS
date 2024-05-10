@@ -14,6 +14,7 @@ import { DirectionFormComponent } from './pages/direction-form/direction-form.co
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ProductComponent } from './pages/product/product.component';
+import { UserComponent } from './pages/user/user.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProductComponent } from './pages/product/product.component';
     LoginPageComponent,
     SignUpComponent,
     DirectionFormComponent,
-    ProductComponent
+    ProductComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
