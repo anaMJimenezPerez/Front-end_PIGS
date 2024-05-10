@@ -38,14 +38,13 @@ body{
 }
 
 .imageRow{
-  width: 6rem;
-  height: 6rem;
+  width: 5.3rem;
+  height: 5.3rem;
 }
 
 .img-fluid{
   width: 20rem;
   height: 20rem;
-  margin-left: 4rem;
 }
 
 .marginTop{
@@ -54,19 +53,29 @@ body{
 
 @media (max-width: 426px) {
 
+  #margLeft{
+    margin-left: 2rem;
+    width: 9rem;
+  }
+
+  #linePhone{
+    width: 25rem;
+    margin-left: 0.6rem;
+  }
+
   .image{
     margin-top: 0.4rem;
   }
 
   .imageRow{
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .img-fluid{
-    width: 6rem;
-    height: 6rem;
-    margin-left: 4rem;
+    width: 10rem;
+    height: 10rem;
+    margin-left: 2rem;
   }
 
   .titelSize{

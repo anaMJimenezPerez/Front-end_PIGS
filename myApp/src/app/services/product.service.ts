@@ -12,6 +12,7 @@ export class ProductService {
 
   getAllProducts(): Observable<any> {
     return this.http.get<any>('../../../assets/data/product.json');
+    //return this.http.get('http://localhost:8080/products');
   }
 
   getAllProductImages(): Observable<any> {
