@@ -1,0 +1,90 @@
+body{
+  overflow-y: auto;
+}
+
+#paragraph{
+  font-weight: lighter !important;
+  text-align: justify;
+}
+
+#title{
+  margin-top: 1rem;
+}
+
+#button{
+  border: none;
+  border-radius: 16px;
+  background: #00ADB5;
+  color: white;
+  margin-top: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+#marginLeft{
+  margin-left: 0.2rem;
+}
+
+.line {
+  height: 1px;
+  background-color: #000000;
+  margin-bottom: 0.4rem;
+}
+
+.image{
+  object-fit: cover;
+  border: solid 1.5px;
+  margin-top: 1rem;
+}
+
+.imageRow{
+  width: 5.3rem;
+  height: 5.3rem;
+}
+
+.img-fluid{
+  width: 20rem;
+  height: 20rem;
+}
+
+.marginTop{
+  margin-top: 0.6rem;
+}
+
+@media (max-width: 426px) {
+
+  #margLeft{
+    margin-left: 2rem;
+    width: 9rem;
+  }
+
+  #linePhone{
+    width: 25rem;
+    margin-left: 0.6rem;
+  }
+
+  .image{
+    margin-top: 0.4rem;
+  }
+
+  .imageRow{
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .img-fluid{
+    width: 10rem;
+    height: 10rem;
+    margin-left: 2rem;
+  }
+
+  .titelSize{
+    font-size: 1.4rem;
+  }
+
+  .size{
+    font-size: 0.8rem;
+  }
+
+}
+

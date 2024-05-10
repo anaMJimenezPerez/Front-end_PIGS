@@ -1,0 +1,22 @@
+<div class="cartProducts">
+    
+    <ng-template #empty> 
+        <div class="imgCart">
+            <img src="../../../assets/images/cart/empty_cart.png" alt="empty cart">
+        </div>
+        <div class="emptyCart">
+            <p>Your cart is empty!</p>
+            <span>Must add items on the cart before you proceed to check out</span>
+            <a href="">
+                <button>Go back to shop</button>
+            </a>
+        </div>
+    </ng-template>
+    <!--Lo que se muestra en el menu cuando un usuario se registra-->
+    <ng-container *ngIf="!userCartIsEmpty; else empty">
+        <div class="productsCart"></div>
+        <p>Mostrar productos</p>
+    </ng-container>
+</div>
+    
+

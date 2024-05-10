@@ -2,6 +2,18 @@ body{
     overflow-y: auto;
 }
 
+#error-message{
+    font-size: small;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    position: inherit;
+    color: red;
+}
+#error-message img{
+    margin: 0 3px;
+}
+
 .signup_container {
     display: flex;
     align-items: center;

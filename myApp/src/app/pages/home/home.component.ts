@@ -4,32 +4,9 @@ import { AuthUserService } from 'src/app/services/auth-user.service';
 import { FollowsService } from 'src/app/services/follows.service';
 import { forkJoin } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
-
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  seller_id: number;
-  seller: string;
-  price: number;
-  rating: number;
-  creation_time: string;
-  tags: string[];
-  class: number;
-  images_path: string;
-}
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  password: number;
-  creation_time: string;
-  address: number;
-  last_viewed: number;
-  favorites: string;
-  images_path: string;
-}
+import { Router } from '@angular/router';
+import { Product } from 'src/app/interfaces/product';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-home',
@@ -54,7 +31,8 @@ export class HomeComponent implements OnInit{
     private productService: ProductService,
     private followService: FollowsService,
     private authService: AuthUserService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -65,47 +43,43 @@ export class HomeComponent implements OnInit{
       this.productService.getAllProductImages()
     ]).subscribe(([products, productImages]) => {
 
-      //All products
-      this.productImages = productImages;
-
-      //We compare the ids and take the first image
-      this.products = products.map((product: Product) => {
-        const matchingImage = this.productImages.find(image => image.product_id === product.id);
-        if (matchingImage) {
-          return { ...product, images_path: matchingImage.images_path };
-        } else {
-          return { ...product, images_path: '' };
+      //Images the product
+      const productImagesMap = new Map<number, string[]>();
+      productImages.forEach((image: any) => {
+        const productId = image.product_id;
+        if (!productImagesMap.has(productId)) {
+          productImagesMap.set(productId, []);
         }
+        productImagesMap.get(productId)?.push(image.images_path);
       });
 
+      // Products with image
+      this.products = products.map((product: Product) => {
+        const images = productImagesMap.get(product.id) ?? [];
+        return { ...product, images_path: images };
+      });
       //New products
       const fifteenDaysAgo = new Date();
       fifteenDaysAgo.setDate(fifteenDaysAgo.getDate() - 15);
 
       this.newProducts = this.products.filter(product => {
         const [day, month, year] = product.creation_time.split('/');
+        //const [year, month, day] = product.creation_time.split('T')[0].split('-');
         const creationTime = new Date(Number(year), Number(month) - 1, Number(day));
         return creationTime >= fifteenDaysAgo;
       });
+
+      console.log(this.newProducts);
 
     });
 
     //Part the user
     forkJoin([
       this.userService.getAllUser(),
-      this.userService.getAllUserImages(),
       this.followService.getAllFollows()
-    ]).subscribe(([users, usersImages, follows]) => {
+    ]).subscribe(([users, follows]) => {
 
-      //Users with images
-      this.users = users.map((user: User) => {
-        const matchingImage = usersImages.find( (image: any) => image.user_id === user.id);
-        if (matchingImage) {
-          return { ...user, images_path: matchingImage.image_path };
-        } else {
-          return { ...user, images_path: '' };
-        }
-      });
+      this.users = users;
 
       //Authenticated
       this.authService.currentUser$.subscribe((isAuthenticated: boolean) => {
@@ -123,7 +97,7 @@ export class HomeComponent implements OnInit{
           return {
             id: followedUser.id,
             name: followedUser.name,
-            image: followedUser.images_path
+            image: followedUser.image
           };
         } else {
           return null;
@@ -131,6 +105,10 @@ export class HomeComponent implements OnInit{
       });
 
     });
+  }
+
+  productDetails(product: Product){
+    this.router.navigateByUrl('/product', { state: { product } });
   }
 
   //Button the Show More
