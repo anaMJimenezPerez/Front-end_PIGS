@@ -15,6 +15,9 @@ import { FormsModule } from '@angular/forms';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { ProductComponent } from './pages/product/product.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +35,9 @@ import { ProductComponent } from './pages/product/product.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
