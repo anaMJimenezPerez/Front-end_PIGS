@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit{
 
       // Products with image
       this.products = products.map((product: Product) => {
-        const images = productImagesMap.get(product.id) || [];
+        const images = productImagesMap.get(product.id) ?? [];
         return { ...product, images_path: images };
       });
 

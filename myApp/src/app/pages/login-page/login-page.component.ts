@@ -46,12 +46,12 @@ export class LoginPageComponent implements OnInit{
           }
           this.navigateToHomePage();
         } else {
-          window.alert('Nombre de usuario o contraseña incorrectos');
+          window.alert('Incorrect email or password');
         }
       },
       error: error => {
-        let errorMessage = 'Error al iniciar sesión';
-        if (error && error.message) {
+        let errorMessage = 'Failure logging in';
+        if (error?.message) {
           errorMessage += ': ' + error.message;
         }
         window.alert(errorMessage);

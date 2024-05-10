@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class AuthUserService {
   private authenticatedKey = 'isAuthenticated';
   private currentUserKey = 'currentUser';
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isAuthenticated());
-  private currentUserSubject = new BehaviorSubject<any | null>(this.getCurrentUser());
+  private currentUserSubject = new BehaviorSubject<any>(this.getCurrentUser());
 
   currentUser$ = this.currentUserSubject.asObservable();
   isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
@@ -42,12 +42,12 @@ export class AuthUserService {
     return localStorage.getItem(this.authenticatedKey) === 'true';
   }
 
-  getLoggedInUserId(): Observable<number | null> {
+  getLoggedInUserId(): Observable<number> {
     const currentUser = this.getCurrentUser();
     return currentUser ? of(currentUser.id) : of(null);
   }
 
-  private setCurrentUser(user: any | null): void {
+  private setCurrentUser(user: any): void {
     if (user) {
       localStorage.setItem(this.currentUserKey, JSON.stringify(user));
     } else {
@@ -61,7 +61,7 @@ export class AuthUserService {
     this.isAuthenticatedSubject.next(isAuthenticated);
   }
 
-  private getCurrentUser(): any | null {
+  private getCurrentUser(): any {
     const userJson = localStorage.getItem(this.currentUserKey);
     return userJson ? JSON.parse(userJson) : null;
   }

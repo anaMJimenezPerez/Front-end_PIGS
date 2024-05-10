@@ -11,11 +11,10 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { DirectionFormComponent } from './pages/direction-form/direction-form.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { ProductComponent } from './pages/product/product.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({

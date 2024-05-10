@@ -60,11 +60,9 @@ export class SignUpComponent {
 
     if (!this.signUpForm.valid || !name || !password || !email || !confirmPassword) {
       this.completeForm = false;
-      return;
     } else {
       this.completeForm = true;
       this.router.navigateByUrl('/directionFormPage');
-      return;
     }
   }
 }
