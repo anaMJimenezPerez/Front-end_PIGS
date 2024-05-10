@@ -151,3 +151,114 @@ input[type="checkbox"]+label {
     width: 1rem;
     margin-right: 0.2rem; 
 }
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem 1.5rem; 
+        width: 75%;
+    }
+
+    .productForm h1 {
+        font-size: 1.75rem; 
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 0.8rem; 
+        height: 2.5rem;
+    }
+
+    .checkbox-pairs>div {
+        width: 40%;
+        display: flex;
+        align-items: center; 
+        margin-bottom: 0.5rem;
+    }
+
+    input[type="checkbox"] {
+        margin-right: 0.3rem; 
+    }
+
+    input[type="checkbox"] + label {
+        margin-left: 0;
+        font-size: 0.8rem; 
+        vertical-align: middle;
+    }
+
+    .preview-item {
+        width: 9rem;
+        height: 9rem;
+        margin-left: 0.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .btn-primary {
+        font-size: 0.85rem; 
+        padding: 0.6rem 1.2rem; 
+    }
+
+    .error-message {
+        font-size: 0.7rem; 
+    }
+}
+
+
+@media (max-width: 426px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .form-group input{
+        font-size: 0.6rem;
+        height: 2rem;
+    }
+
+    .form-group select{
+        font-size: 0.6rem;
+    }
+
+    .checkbox-pairs {
+        font-size: 0.6rem;
+    }
+
+    .form-group{
+        font-size: 0.6rem;
+    }
+
+    .productForm {
+        max-width: 15rem;
+    }
+
+    .preview-item {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    .checkbox-pairs>div {
+        width: 100%;
+        display: flex;
+        align-items: center; 
+        
+    }
+    
+    input[type="checkbox"] {
+        margin-right: 0.2rem; 
+    }
+    
+    input[type="checkbox"] + label {
+        margin-left: 0;
+        font-size: 0.6rem;
+        margin-top: 0.3rem;
+    }
+    
+    .btn-primary {
+        font-size: 0.6rem;
+    }
+
+    .error-message {
+        font-size: 0.5rem;
+    }
+}
