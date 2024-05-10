@@ -165,9 +165,6 @@
   display: none;
   background-color: #393E46;
   color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; 
   max-width: 8rem;
   font-size: 0.7rem;
   padding: 0.8rem 0.8rem 0 0.8rem;
