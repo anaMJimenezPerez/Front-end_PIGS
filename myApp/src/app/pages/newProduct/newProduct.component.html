@@ -47,7 +47,7 @@
             <!-- Price -->
             <div class="form-group">
                 <label for="price">Price:</label>
-                <input type="number" class="form-control" id="price" name="price" min="0.01" step="0.1" required
+                <input type="float" class="form-control" id="price" name="price" min="0.01" step="0.1" required
                     [(ngModel)]="product.price" #price="ngModel">
                 <div *ngIf="price.invalid && (price.dirty || price.touched) || price.value <= 0" class="error-message">
                     <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
@@ -58,9 +58,9 @@
             <!-- Stock -->
             <div class="form-group">
                 <label for="quantity">Stock:</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" min="1" step="1" pattern="\d+" required
-                    [(ngModel)]="product.quantity" #quantity="ngModel">
-                <div *ngIf="(quantity.invalid && (quantity.dirty || quantity.touched)) || product.quantity <= 0"
+                <input type="number" class="form-control" id="stock" name="stock" min="1" step="1" pattern="\d+" required
+                    [(ngModel)]="product.stock" #stock="ngModel">
+                <div *ngIf="(stock.invalid && (stock.dirty || stock.touched)) || product.stock <= 0"
                     class="error-message">
                     <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
                     Stock must be greater than 0 and integer
@@ -70,14 +70,14 @@
             <!-- Date -->
             <div class="form-group">
                 <label for="createdDate">Creation Date:</label>
-                <input type="date" class="form-control" id="createdDate" name="createdDate" readonly
-                    [(ngModel)]="product.date">
+                <input type="datetime" class="form-control" id="createdDate" name="createdDate" readonly
+                    [(ngModel)]="product.creationTime">
             </div>
 
             <!-- Category Field -->
             <div class="form-group">
-                <label for="category">Category:</label>
-                <select class="form-control" id="category" name="category" required [(ngModel)]="product.category"
+                <label for="tag">Category:</label>
+                <select class="form-control" id="tag" name="tag" required [(ngModel)]="product.tag"
                     (change)="handleCategoryChange($event)">
                     <option value="" disabled selected>Select a category</option>
                     <option value="clothing">Clothing</option>
@@ -87,7 +87,7 @@
                     <option value="ceramic">Ceramic</option>
                     <option value="plush">Plush</option>
                 </select>
-                <div *ngIf="validateOnLoad && product.category === ''" class="error-message">
+                <div *ngIf="validateOnLoad && product.tag === ''" class="error-message">
                     <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
                     Category is required
                 </div>
@@ -125,7 +125,7 @@
                 <div id="clothingColors" class="form-group">
                     <label>Color:</label>
                     <ng-container
-                        *ngTemplateOutlet="checkboxTemplate; context: {colors: clothingColors, groupName: 'clothingColor'}"></ng-container>
+                        *ngTemplateOutlet="checkboxTemplate; context: {color: clothingColors, groupName: 'clothingColor'}"></ng-container>
                     <div *ngIf="showColorError" class="error-message">
                         <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
                         At least one color must be selected for clothing
@@ -154,7 +154,7 @@
                 <div class="form-group">
                     <label>Color:</label>
                     <ng-container
-                        *ngTemplateOutlet="checkboxTemplate; context: {colors: jewelryColors, groupName: 'jewelryColor'}"></ng-container>
+                        *ngTemplateOutlet="checkboxTemplate; context: {color: jewelryColors, groupName: 'jewelryColor'}"></ng-container>
                     <div *ngIf="showColorError" class="error-message">
                         <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
                         At least one color must be selected for jewelry
@@ -188,7 +188,7 @@
                 <div class="form-group">
                     <label>Color:</label>
                     <ng-container
-                        *ngTemplateOutlet="checkboxTemplate; context: {colors: keychainColors, groupName: 'keychainColor'}"></ng-container>
+                        *ngTemplateOutlet="checkboxTemplate; context: {color: keychainColors, groupName: 'keychainColor'}"></ng-container>
                     <div *ngIf="showColorError" class="error-message">
                         <img src="assets/images/newProduct/alert_icon.png" alt="Error" class="error-icon">
                         At least one color must be selected for keychain
@@ -217,7 +217,7 @@
                         [(ngModel)]="product.type">
                         <option value="" disabled selected>Select a type</option>
                         <option value="glass">Glass</option>
-                        <option value="plate">Plate</option>
+                        <option value="dish">Plate</option>
                         <option value="vase">Vase</option>
                         <option value="figure">Figure</option>
                     </select>
@@ -250,9 +250,9 @@
 
 
 <!-- Generic template for colours -->
-<ng-template #checkboxTemplate let-colors="colors" let-groupName="groupName">
+<ng-template #checkboxTemplate let-color="color" let-groupName="groupName">
     <div class="checkbox-pairs">
-        <div *ngFor="let color of colors; let i = index">
+        <div *ngFor="let color of color; let i = index">
             <input type="checkbox" [id]="groupName + i" [name]="groupName" [value]="color.value"
                 (change)="onCheckboxChange(groupName)">
             <label [for]="groupName + i">{{ color.label }}</label>

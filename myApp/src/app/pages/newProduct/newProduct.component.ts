@@ -15,13 +15,13 @@ export class NewProductComponent implements OnInit {
   product = {
     name: '',
     price: 0,
-    quantity: 0,
-    date: '',
-    category: '',
+    stock: 0,
+    creationTime: '',
+    tag: '',
     description: '',
     photos: [] as { src: string; file: File }[],
-    sizes: [] as string[],
-    colors: [] as string[],
+    size: [] as string[],
+    color: [] as string[],
     type: '' // type for jelwery and ceramic
   
   };
@@ -110,6 +110,7 @@ export class NewProductComponent implements OnInit {
     this.setCurrentDate();
     // Method for initial category
     this.setInitialCategory();
+    
   }
 
   // Date method
@@ -120,13 +121,13 @@ export class NewProductComponent implements OnInit {
     const day = String(today.getDate()).padStart(2, '0');
     // date: YYYY-MM-DD
     const formattedDate = `${year}-${month}-${day}`;
-    this.product.date = formattedDate;
+    this.product.creationTime = formattedDate;
   }
 
 
   // Displays the fields of the initial category
   setInitialCategory() {
-    const initialCategorySelect = document.getElementById('category') as HTMLSelectElement;
+    const initialCategorySelect = document.getElementById('tag') as HTMLSelectElement;
     if (initialCategorySelect) {
       // Select “Clothing” as the first option by default.
       initialCategorySelect.value = 'clothing';
@@ -135,7 +136,7 @@ export class NewProductComponent implements OnInit {
   }
 
   // Toggles the visibility of the fieldsets according to the selected category.
-  showCategoryFields(category: string) {
+  showCategoryFields(tag: string) {
     // List of all fieldsets (category-specific fields)
     const fieldsets = ['clothingFields', 'jewelryFields', 'keychainFields', 'paintingFields', 'ceramicFields', 'plushFields'];
     fieldsets.forEach(id => {
@@ -147,24 +148,24 @@ export class NewProductComponent implements OnInit {
     this.resetSubcategories();
 
     // Display the correct fieldset based on the selected category
-    document.getElementById(`${category}Fields`)?.classList.remove('d-none');
-    this.validateSubcategories(category);
+    document.getElementById(`${tag}Fields`)?.classList.remove('d-none');
+    this.validateSubcategories(tag);
   }
 
   resetSubcategories() {
     // Clear subcategory values
-    this.product.sizes = [];
-    this.product.colors = [];
+    this.product.size = [];
+    this.product.color = [];
     this.product.type = ''; // Adjust based on your specific logic
   }
 
   handleCategoryChange(event: Event): void {
-    const category = (event.target as HTMLSelectElement).value;
-    this.showCategoryFields(category);
+    const tag= (event.target as HTMLSelectElement).value;
+    this.showCategoryFields(tag);
   }
 
-  validateSubcategories(category: string): void {
-    switch (category) {
+  validateSubcategories(tag: string): void {
+    switch (tag) {
       case 'clothing':
         this.showSizeError = !this.hasSelectedCheckboxes('clothingSize');
         this.showColorError = !this.hasSelectedCheckboxes('clothingColor');
@@ -226,41 +227,15 @@ export class NewProductComponent implements OnInit {
     this.photos.splice(index, 1);
   }
 
-  // Function to validate that the quantity is a positive integer
-  sanitizeQuantity(event: Event): void {
-    let inputValue = (event.target as HTMLInputElement).value;
-    
-    // Eliminar cualquier valor decimal usando una expresión regular
-    inputValue = inputValue.split('.')[0]; // Solo tomar la parte entera
-  
-    // Convertir a número para asignar a `product.quantity`
-    const parsedValue = parseInt(inputValue, 10);
-  
-    // Asignar solo si es un valor válido
-    if (!isNaN(parsedValue) && parsedValue > 0) {
-      this.product.quantity = parsedValue;
-    } else {
-      this.product.quantity = 0;
-    }
-  
-    // Actualizar el valor en el campo de entrada
-    (event.target as HTMLInputElement).value = inputValue;
-  }
-
-  // Function to validate that the quantity is a positive integer
-  isValidQuantity(): boolean {
-    return Number.isInteger(this.product.quantity) && this.product.quantity > 0;
-  }
-
   // Function to be called when sending the form
   onSubmit(form: any) {
-    const category = form.value.category;
-    this.validateSubcategories(category);
+    const tag = form.value.tag;
+    this.validateSubcategories(tag);
 
     if (form.valid && !this.showSizeError && !this.showColorError) {
       // Categories
-      this.product.sizes = this.getSelectedOptions(`${category}Size`);
-      this.product.colors = this.getSelectedOptions(`${category}Color`);
+      this.product.size = this.getSelectedOptions(`${tag}Size`);
+      this.product.color = this.getSelectedOptions(`${tag}Color`);
 
       // photos 
       this.product.photos = this.photos;
