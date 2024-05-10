@@ -127,35 +127,14 @@
 
           <!-- My Orders -->
           <div class="my_orders_content" *ngIf="shouldShow('my_orders')">
-            <!--div *ngFor="let order of details" class="order-card">
-              <img [src]="order.product.imageUrl" alt="Product Image" class="product-image">
-              <div class="order-details">
-                <p>Product name: {{ order.productName }}</p>
-                <p>Seller's account: {{ order.sellerName }}</p>
-                <p>Purchase date: {{ order.purchaseDate }}</p>
-                <p>Price: {{ order.price }}</p>
-              </div>
-            </div-->
           </div>
 
           <!-- My Customer Orders -->
           <div class="my_costumers_content" *ngIf="shouldShow('customer_orders')">
             <p class="paragraph"> Sort by: </p>
-
             <button class="sort-button">Earliest orders</button>
             <button class="sort-button">Recent orders</button>
             <button class="sort-button">Product ordered</button>
-
-            <!--div *ngFor="let order of orders" class="order-card">
-              <img [src]="order.imageUrl" alt="Product Image" class="product-image">
-              <div class="order-details">
-                <p>Product name: {{ order.productName }}</p>
-                <p>Customer Account: {{ order.customerAccount }}</p>
-                <p>Order Date: {{ order.orderDate }}</p>
-                <p>Payment Method: {{ order.paymentMethod }}</p>
-                <p>Delivery Address: {{ order.deliveryAddress }}</p>
-              </div>
-            </div-->
           </div>
 
           <!--Continuar con codigo aquí-->

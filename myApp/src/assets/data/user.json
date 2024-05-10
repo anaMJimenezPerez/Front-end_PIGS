@@ -7,6 +7,8 @@
     "creation_time": "11/03/2024",
     "address": "Las Palmas",
     "last_viewed": 5,
+    "favorites": [1,4],
+    "cart": [],
     "image": "https://elcomercio.pe/resizer/6YotkuHIEUGzf-GUZAGbznSRoYQ=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/VFKAZST5J5BE5BEPH7TTUHWNRQ.jpg"
   },
   {
@@ -17,6 +19,8 @@
     "creation_time": "21/04/2024",
     "address": "Las Palmas",
     "last_viewed": 4,
+    "favorites": [3,9],
+    "cart": [],
     "image": "https://elcomercio.pe/resizer/6YotkuHIEUGzf-GUZAGbznSRoYQ=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/VFKAZST5J5BE5BEPH7TTUHWNRQ.jpg"
   },
   {
@@ -27,6 +31,8 @@
     "creation_time": "04/02/2024",
     "address": "Las Palmas",
     "last_viewed": 8,
+    "favorites": [""],
+    "cart": [2,3],
     "image": "https://elcomercio.pe/resizer/6YotkuHIEUGzf-GUZAGbznSRoYQ=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/VFKAZST5J5BE5BEPH7TTUHWNRQ.jpg"
   },
   {
@@ -37,6 +43,8 @@
     "creation_time": "24/03/2024",
     "address": "Las Palmas",
     "last_viewed": 2,
+    "favorites": [1,4],
+    "cart": [2,3],
     "image": "https://elcomercio.pe/resizer/6YotkuHIEUGzf-GUZAGbznSRoYQ=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/VFKAZST5J5BE5BEPH7TTUHWNRQ.jpg"
   },
   {
@@ -47,6 +55,8 @@
     "creation_time": "14/04/2024",
     "address": "Las Palmas",
     "last_viewed": 1,
+    "favorites": [3,9],
+    "cart": [],
     "image": "https://elcomercio.pe/resizer/6YotkuHIEUGzf-GUZAGbznSRoYQ=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/VFKAZST5J5BE5BEPH7TTUHWNRQ.jpg"
   },
   {
@@ -57,6 +67,8 @@
     "creation_time": "22/02/2024",
     "address": "Las Palmas",
     "last_viewed": 3,
+    "favorites": [""],
+    "cart": [],
     "image": "https://elcomercio.pe/resizer/6YotkuHIEUGzf-GUZAGbznSRoYQ=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/VFKAZST5J5BE5BEPH7TTUHWNRQ.jpg"
   },
   {
@@ -67,6 +79,8 @@
     "creation_time": "16/03/2024",
     "address": "Las Palmas",
     "last_viewed": 6,
+    "favorites": [1,4],
+    "cart": [1,4],
     "image": "https://elcomercio.pe/resizer/6YotkuHIEUGzf-GUZAGbznSRoYQ=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/VFKAZST5J5BE5BEPH7TTUHWNRQ.jpg"
   },
   {
@@ -77,6 +91,8 @@
     "creation_time": "09/04/2024",
     "address": "Las Palmas",
     "last_viewed": 7,
+    "favorites": [3,9],
+    "cart": [3,7],
     "image": "https://elcomercio.pe/resizer/6YotkuHIEUGzf-GUZAGbznSRoYQ=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/VFKAZST5J5BE5BEPH7TTUHWNRQ.jpg"
   },
   {
@@ -87,6 +103,8 @@
     "creation_time": "03/02/2024",
     "address": "Las Palmas",
     "last_viewed": 9,
+    "favorites": [""],
+    "cart": [],
     "image": "https://elcomercio.pe/resizer/6YotkuHIEUGzf-GUZAGbznSRoYQ=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/VFKAZST5J5BE5BEPH7TTUHWNRQ.jpg"
   },
   {
@@ -97,6 +115,7 @@
     "creation_time": "02/03/2024",
     "address": "Las Palmas",
     "last_viewed": 5,
+    "cart": [],
     "image": "https://elcomercio.pe/resizer/6YotkuHIEUGzf-GUZAGbznSRoYQ=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/VFKAZST5J5BE5BEPH7TTUHWNRQ.jpg"
   }
 ]

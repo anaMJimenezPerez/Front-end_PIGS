@@ -117,20 +117,7 @@ export class ProfileComponent implements OnInit{
                 });
 
             console.log(this.details);
-
-            /*
-            this.details = this.purchaseDetails.filter(detail => detail.purchase_id === loggedInUserId);
-            console.log(`Detalles de compra para la compra con ID ${loggedInUserId}:`, this.details);
-
-            this.details.forEach(detail => {
-              products = this.products.find(product => product.id === detail.product_id);
-              console.log(`Información del producto con ID ${detail.product_id}:`, products);
-
-              users = this.users.find(user => user.id === products.seller_id);
-              console.log(`Información sobre el seller con ID ${products.seller_id}:`, users);
-
-            });*/
-
+            
           });
         }
       });

@@ -5,7 +5,7 @@
       <div class="d-flex">
         <div class="col-md-2">
           <div *ngFor="let productImage of product?.images_path; let i = index" class="mb-3">
-            <img [src]="productImage" class="image imageRow" (click)="showImage(i, $event)">
+            <img [src]="productImage" class="image imageRow" (click)="showImage(i, $event)" alt="productImage">
           </div>
         </div>
 
@@ -14,7 +14,7 @@
 
             <div class="d-flex">
               <div class="col-md-7">
-                <img [src]="selectedImage" class="image img-fluid">
+                <img [src]="selectedImage" class="image img-fluid" alt="selectedImage">
               </div>
 
               <div class="col-md-4 size" id="margLeft">
