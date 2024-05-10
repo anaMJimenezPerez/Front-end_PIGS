@@ -10,6 +10,10 @@ body{
     height: 100%;
 }
 
+.form_content h2{
+    font-weight: bold;
+}
+
 .form_container {
     display: flex;
     flex-direction: row;
@@ -69,6 +73,11 @@ label{
 
 .check input{
     margin-right: 0.2rem;
+}
+
+
+input[type="checkbox"] {
+    accent-color: #00ADB5;
 }
 
 input[type="checkbox"]:checked{
