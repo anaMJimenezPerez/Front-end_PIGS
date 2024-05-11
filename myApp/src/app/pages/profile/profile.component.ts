@@ -4,8 +4,6 @@ import { forkJoin } from 'rxjs';
 import { AuthUserService } from 'src/app/services/auth-user.service';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
-import { Router } from '@angular/router';
-import { Router } from '@angular/router';
 
 interface Product {
   id: number;

@@ -17,11 +17,11 @@ import { UserComponent } from './pages/user/user.component';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ProductsComponent } from './pages/products/products.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { FavouritesComponent } from './pages/favourites/favourites.component';
 import { ProfilePictureComponent } from './components/profile-picture/profile-picture.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ProductsProfileComponent } from './pages/products-profile/products-profile.component';
 
 @NgModule({
   declarations: [
@@ -36,11 +36,11 @@ import { ProfileComponent } from './pages/profile/profile.component';
     ShoppingCartComponent,
     ProductComponent,
     UserComponent,
-    ProductsComponent,
     OrdersComponent,
     FavouritesComponent,
     ProfilePictureComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProductsProfileComponent
   ],
   imports: [
     BrowserModule,
