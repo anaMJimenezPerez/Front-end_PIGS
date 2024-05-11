@@ -5,29 +5,60 @@
                 <img src="../../../assets/images/signup/signup.jpg" alt="signupImage">
             </div>
             <div class="form_content">
-                <form id="form">
+                <form id="form" [formGroup]="signUpForm" (ngSubmit)="submit()">
                     <h2 id="title_log">Create new account</h2>
                     <div class="field">
                         <label>Name<br></label>
-                        <input matInput class="text" id="name" name="email" type="text" placeholder="name">
+                        <input matInput class="text" id="name" name="email" type="text" placeholder="name" formControlName="name">
+                        <mat-error id="error-message" *ngIf="name?.errors?.['required'] && name?.['touched']">
+                            <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                            Enter your name
+                        </mat-error>
                     </div>
                     <div class="field">
                         <label>Email address<br></label>
-                        <input matInput class="text" id="email" name="email" type="email" placeholder="name@example.com">
+                        <input matInput class="text" id="email" name="email" type="email" placeholder="name@example.com" formControlName="email">
+                        <mat-error id="error-message" *ngIf="email?.errors?.['required'] && email?.['touched']">
+                            <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                            Enter an email
+                        </mat-error>
+                        <mat-error id="error-message" *ngIf="email?.errors?.['email'] && email?.['touched']">
+                            <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                            Enter a valid email
+                        </mat-error>
                     </div>
                     <div class="field">
                         <label>Password<br></label>
-                        <input class="text" id="password" name="password" type="password" placeholder="••••••••••">
+                        <input class="text" id="password" name="password" type="password" placeholder="••••••••••" formControlName="password">
+                        <mat-error id="error-message" *ngIf="password?.errors?.['required'] && password?.['touched']">
+                            <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                            Enter a password
+                        </mat-error>
+                        <mat-error id="error-message" *ngIf="password?.errors?.['minlength'] && password?.['touched']">
+                            <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                            Must have at least 8 characters
+                        </mat-error> 
                     </div>
                     <div class="field">
                         <label>Confirm password<br></label>
-                        <input class="text" id="verifyPassword" name="password" type="password" placeholder="••••••••••">
+                        <input class="text" id="verifyPassword" name="password" type="password" placeholder="••••••••••" formControlName="confirmPassword">
+                        <mat-error id="error-message" *ngIf="confirmPassword?.errors?.['required'] && confirmPassword?.['touched']">
+                            <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                            Repeat the password
+                        </mat-error> 
                     </div>
+                    <mat-error id="error-message" *ngIf="signUpForm.errors?.['passwordsDontMatch']"> 
+                        <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                        Passwords do not match
+                    </mat-error>
                     <div class="field">
-                        <button class="button" (click)="navigateToDirectionFormPage()">Next</button>
+                        <button class="button" type="submit" >Next</button>
+                        <mat-error id="error-message" *ngIf="!completeForm"> 
+                            <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                            All fields must be filled out
+                        </mat-error>
                     </div>
-                </form>
-                
+                </form>          
             </div>
         </div>
     </div>

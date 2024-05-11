@@ -1,92 +1,44 @@
-.menu-wrapper {
-    display: flex; 
-    position: absolute;
-    margin-bottom: 20px; 
-    margin-left: 70px;
-    
-  }
-  
+.menu-container {
+  border: 1px solid #000;
+  border-radius: 7px;
+  overflow: hidden;
+  width: 12rem;
+}
+
+.menu-item {
+  padding: 0.5rem;
+  color: #000;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-weight: bold;
+}
+
+.menu-item:hover {
+  background-color: #00ADB5;
+}
+
+.selected {
+  background-color: #00ADB5;
+  box-shadow: 0px -3px 3px -3px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+
   .menu-container {
-    margin-top: 20px; 
-    border: 1px solid #000;
-    border-radius: 7px;
-    width: 150px;
-    background-color: #EEEEEE;
-    overflow: hidden;
-    
-    
+    width: 10rem;
   }
-  
+
+}
+
+@media (max-width: 426px) {
+
   .menu-container {
-    margin-top: 20px;
-    border: 1px solid #000;
-    border-radius: 10px;
-    width: 200px;
-    margin-left: 20px;
+    width: 6.5rem;
   }
-  
+
   .menu-item {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: #000;
-    border: none;
-    background: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%; 
-    text-align: left; 
-    font-weight: bold;
+    font-size: 0.6rem;
   }
-  
-  .menu-item-profile {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: #000;
-    border: none;
-    background: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%; 
-    text-align: left; 
-    font-weight: bold;
-  }
-  
-  .menu-item-favourites {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: #000;
-    border: none;
-    background: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%; 
-    text-align: left; 
-    font-weight: bold;
-  }
-  
-  
-  .menu-item:hover {
-    background-color: #00ADB5;
-  }
-  
-  .menu-item-profile:hover {
-    background-color: #00ADB5;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-  }
-  
-  .menu-item-favourites:hover {
-    background-color: #00ADB5;
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
-  
-  }
-  
-  .selected {
-    background-color: #00ADB5;
-    box-shadow: 0px -3px 3px -3px rgba(0, 0, 0, 0.5); 
-  }
-  
+
+}
