@@ -5,6 +5,7 @@ body{
 #paragraph{
   font-weight: lighter !important;
   text-align: justify;
+  font-size: 1.4rem;
 }
 
 #title{
@@ -21,7 +22,7 @@ body{
   width: 100%;
 }
 
-#marginLeft{
+.marginLeft{
   margin-left: 0.2rem;
 }
 
@@ -51,6 +52,11 @@ body{
   margin-top: 0.6rem;
 }
 
+.titelSize{
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
 @media (max-width: 426px) {
 
   #margLeft{
@@ -61,6 +67,10 @@ body{
   #linePhone{
     width: 25rem;
     margin-left: 0.6rem;
+  }
+
+  #paragraph{
+    font-size: 1rem;
   }
 
   .image{
@@ -79,7 +89,7 @@ body{
   }
 
   .titelSize{
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   .size{
