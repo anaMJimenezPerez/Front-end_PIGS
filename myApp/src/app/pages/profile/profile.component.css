@@ -2,22 +2,6 @@ body{
   min-height: 73.9vh !important;
 }
 
-.profile-picture-container {
-  width: 12rem;
-  height: 12rem;
-  border: 1px solid #000;
-  border-radius: 15px;
-  background-color: #00ADB5;
-  overflow: hidden;
-  margin-bottom: 1rem;
-}
-
-.profile-picture-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .profile-form h1 {
   border-bottom: 2px solid black;
   padding-bottom: 0.2rem;
@@ -63,86 +47,6 @@ body{
 
 .delete-account:active {
   background-color: #c42e2e;
-}
-
-/*CSS the Orders*/
-.menu_orders {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #000;
-  margin-right: 3rem;
-}
-
-.menu-item {
-  font-size: 2rem;
-  border: none;
-  flex-grow: 1;
-  font-weight: bold;
-}
-
-.menu-item:hover, .selected {
-  background-color: #00ADB5;
-}
-
-.my_orders_content {
-  max-height: 500px;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-.paragraph{
-  margin-top: 0.5rem;
-}
-
-.my_costumers_content .sort-button {
-  font-weight: bold;
-  background-color: #D9D9D9;
-  border: 2px solid #000;
-  color: black;
-  padding: 5px 10px;
-  margin: 0 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.my_costumers_content {
-  max-height: 500px;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.my_costumers_content .sort-button:hover {
-  background-color: #B0B0B0;
-}
-
-.product-image {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  margin-right: 20px;
-  margin-left: 10px;
-}
-
-.order-card {
-  width: 36rem;
-  height: 11.5rem;
-  background-color: #D9D9D9;
-  font-size: 1rem;
-  padding: 0.6rem;
-  margin-top: 0.4rem;
-}
-
-.order-details {
-  flex-grow: 1;
-  padding-top: 15px;
 }
 
 
