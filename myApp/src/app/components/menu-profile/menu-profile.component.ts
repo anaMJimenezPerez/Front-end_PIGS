@@ -1,18 +1,22 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-profile',
   templateUrl: './menu-profile.component.html',
   styleUrls: ['./menu-profile.component.css']
 })
-
 export class MenuProfileComponent {
-  @Input() activeOption: string = 'profile'; // Definimos activeOption como una propiedad de entrada
+ /* currentOption: string = '';
 
-  @Output() optionSelected = new EventEmitter<string>();
+  constructor(private router: Router) {}
 
   selectOption(option: string) {
-    this.activeOption = option; // Actualizamos la opción activa al hacer clic en un botón
-    this.optionSelected.emit(option); // Emitimos el evento para que lo maneje el componente padre
+    this.currentOption = option;
+    this.router.navigateByUrl(`/${option}`);
   }
+
+  isActive(option: string): boolean {
+    return this.currentOption === option;
+  }*/
 }

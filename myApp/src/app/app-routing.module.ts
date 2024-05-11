@@ -7,6 +7,10 @@ import { DirectionFormComponent } from './pages/direction-form/direction-form.co
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { ProductComponent } from './pages/product/product.component';
 import { UserComponent } from './pages/user/user.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { OrdersComponent } from './pages/orders/orders.component';
+import { FavouritesComponent } from './pages/favourites/favourites.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,7 +19,12 @@ const routes: Routes = [
   { path: 'directionFormPage', component: DirectionFormComponent },
   { path: 'ShoppingCart', component: ShoppingCartComponent},
   { path: 'product', component: ProductComponent},
-  { path: 'user', component: UserComponent}
+  { path: 'user', component: UserComponent},
+  { path: 'profile', component: ProfileComponent},
+  { path: 'products', component: ProductsComponent },
+  { path: 'orders', component: OrdersComponent },
+  { path: 'favourites', component: FavouritesComponent },
+
 ];
 
 @NgModule({

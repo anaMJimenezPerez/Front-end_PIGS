@@ -1,0 +1,16 @@
+body{
+    min-height: 73.9vh !important;
+}
+  
+  .profile-form h1 {
+    border-bottom: 2px solid black;
+    padding-bottom: 0.2rem;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+  
+  .profile-form h2 {
+    font-size: 2rem;
+    font-weight: bold;
+  }

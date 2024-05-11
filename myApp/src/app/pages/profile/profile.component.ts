@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { forkJoin } from 'rxjs';
 import { AuthUserService } from 'src/app/services/auth-user.service';
@@ -51,7 +51,7 @@ interface PurchaseDetails {
   styleUrls: ['./profile.component.css']
 })
 
-export class ProfileComponent implements OnInit{
+export class ProfileComponent implements OnInit {
 
   newproducts: any[] = [];
 
@@ -74,9 +74,7 @@ export class ProfileComponent implements OnInit{
     private productService: ProductService,
 
     private userService: UserService,
-    private router: Router,
-
-  ) {}
+  ) { }
 
 
   /*Part the my_orders*/
@@ -129,89 +127,15 @@ export class ProfileComponent implements OnInit{
         }
       });
     });
-  }
+  }*/
 
-  /*Part the menu*/
-  selectedOption: string = 'profile';
-  selectedMenuOption: string = 'my_orders';
+}
 
-  selectMenuOption(option: string) {
-    this.selectedMenuOption = option;
-  }
+    /* delete button*/
 
-  shouldShow(option: string){
-    if(option === "my_orders"){
-      return this.selectedMenuOption === 'my_orders';
-    }else{
-      return this.selectedMenuOption === 'customer_orders';
-    }
-  }
-
-  /* Choose the option*/
-  selectOption(option: string) {
-    this.selectedOption = option;
-  }
-
-  /*Part the profile picture*/
-
-  profilePictureUrl: string | ArrayBuffer | null = null;
-
-  @ViewChild('profileImage') profileImage: ElementRef | undefined;
-
-  /* icon */
-  selectProfilePicture() {
-    const inputElement = document.getElementById('profile-picture');
-    if (inputElement) {
-      inputElement.click();
-    }
-  }
-
-  onProfilePictureSelected(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.profilePictureUrl = e.target.result;
-        if (this.profileImage) {
-          this.profileImage.nativeElement.onload = () => {
-            this.adjustImageSize();
-          };
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
-  /* resize icon  */
-  adjustImageSize() {
-    if (this.profileImage) {
-      const img = this.profileImage.nativeElement;
-      const container = img.parentElement;
-      const containerWidth = container.offsetWidth;
-      const containerHeight = container.offsetHeight;
-      const imgWidth = img.width;
-      const imgHeight = img.height;
-
-      if (imgWidth && imgHeight) {
-        const containerRatio = containerWidth / containerHeight;
-        const imgRatio = imgWidth / imgHeight;
-
-        if (containerRatio > imgRatio) {
-          img.style.width = '100%';
-          img.style.height = 'auto';
-        } else {
-          img.style.width = 'auto';
-          img.style.height = '100%';
-        }
+    confirmDelete() {
+      if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        console.log('Account deleted');
       }
     }
   }
-
-  /* delete button*/
-  confirmDelete() {
-    if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
-      console.log('Account deleted');
-    }
-  }
-
-}

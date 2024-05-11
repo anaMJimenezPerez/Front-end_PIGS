@@ -1,0 +1,7 @@
+<div class="profile-picture" (click)="selectProfilePicture()">
+    <input type="file" id="profile-picture" accept="image/*" style="display: none"
+        (change)="onProfilePictureSelected($event)">
+    <div class="profile-picture-container d-flex justify-content-center align-items-center">
+        <img *ngIf="profilePictureUrl" [src]="profilePictureUrl" alt="Profile Picture" class="img-fluid">
+    </div>
+</div>
