@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { User } from '../interfaces/user';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +35,15 @@ export class AuthUserService {
     );
   }
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
+
+  signup(user: User ): Observable<User>{
+    return this.http.post<User>('http://localhost:8080/users/signup', user, this.httpOptions);
+  }
   logout(): void {
     this.setCurrentUser(null);
     this.setIsAuthenticated(false);
