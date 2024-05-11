@@ -1,6 +1,6 @@
 <div class="menu-container">
-  <button class="menu-item">My Profile</button>
-  <button class="menu-item">My Products</button>
-  <button class="menu-item">My Orders</button>
-  <button class="menu-item">Favourites</button>
+  <button class="menu-item" [class.selected]="currentPath === 'profile'" (click)="navigate('/profile')">My Profile</button>
+  <button class="menu-item" [class.selected]="currentPath === 'products-profile'" (click)="navigate('/products-profile')">My Products</button>
+  <button class="menu-item" [class.selected]="currentPath === 'orders-profile'" (click)="navigate('/orders-profile')">My Orders</button>
+  <button class="menu-item" [class.selected]="currentPath === 'favourites-profile'" (click)="navigate('/favourites-profile')">Favourites</button>
 </div>

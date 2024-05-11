@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-menu-profile',
@@ -7,16 +8,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu-profile.component.css']
 })
 export class MenuProfileComponent {
- /* currentOption: string = '';
 
-  constructor(private router: Router) {}
+  currentPath: string = '';
 
-  selectOption(option: string) {
-    this.currentOption = option;
-    this.router.navigateByUrl(`/${option}`);
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    // Listen to navigation termination events
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      // This method uses the 'url' property of the ActivatedRoute to get the current route. 
+      this.currentPath = this.activatedRoute.snapshot.url.map(segment => segment.path).join('/');
+    });
   }
 
-  isActive(option: string): boolean {
-    return this.currentOption === option;
-  }*/
-}
+  navigate(path: string): void {
+    this.router.navigate([path]);
+  }
+} 

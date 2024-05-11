@@ -22,6 +22,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ProductsProfileComponent } from './pages/products-profile/products-profile.component';
 import { OrdersProfileComponent } from './pages/orders-profile/orders-profile.component';
 import { FavouritesProfileComponent } from './pages/favourites-profile/favourites-profile.component';
+import { NewProductComponent } from './pages/new-product/new-product.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { FavouritesProfileComponent } from './pages/favourites-profile/favourite
     ProfileComponent,
     ProductsProfileComponent,
     OrdersProfileComponent,
-    FavouritesProfileComponent
+    FavouritesProfileComponent,
+    NewProductComponent
   ],
   imports: [
     BrowserModule,
