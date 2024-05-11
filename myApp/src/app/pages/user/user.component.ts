@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 import { User } from 'src/app/interfaces/user';
-import { UserService } from 'src/app/services/user.service';
-import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-user',
@@ -12,24 +11,27 @@ import { forkJoin } from 'rxjs';
 })
 export class UserComponent implements OnInit{
 
-  product: Product | undefined;
   user: User | undefined;
+  products: Product [] = [];
 
   constructor(
-    private route: ActivatedRoute,
-    private userService: UserService
+    private productService: ProductService
   ) {
-    const { user } = history.state;
+    this.user = history.state.user;
   }
 
   ngOnInit(): void {
 
     forkJoin([
-      this.userService.getAllUser()
-    ]).subscribe(([user]) =>{
+      this.productService.getAllProducts(),
+      this.productService.getAllProductImages()
+    ]).subscribe(( [products, images ]) => {
 
-
-
+      this.products = products.filter( (product:any) => product.seller_id === this.user?.id)
+        .map((product: Product) => {
+          const productImages = images.filter((image: any) => image.product_id === product.id);
+          return { ...product, images_path: productImages.map((image: any) => image.images_path) };
+        });
     });
   }
 }
