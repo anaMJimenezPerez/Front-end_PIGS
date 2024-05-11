@@ -40,9 +40,9 @@ body {
     scrollbar-width: none;
     -ms-overflow-style: none;
   
-    ::-webkit-scrollbar {
+    /*::-webkit-scrollbar {
       display: none;
-    }
+    }*/
   }
   
   .paragraph{
@@ -93,69 +93,3 @@ body {
     flex-grow: 1;
     padding-top: 15px;
   }
-  
-  
-  @media (max-width: 768px) {
-  
-    .profile-picture-container{
-      width: 10rem;
-      height: 10rem;
-    }
-  
-    .profile-form h1{
-      font-size: 2rem;
-    }
-  
-    .profile-form h2{
-      font-size: 1.5rem;
-    }
-  
-    .form-group input {
-      height: 2rem;
-    }
-  
-  }
-  
-  @media (max-width: 426px) {
-  
-    .profile-picture-container{
-      width: 6.4rem;
-      height: 6.4rem;
-    }
-  
-    .profile-form h1{
-      font-size: 1rem;
-      border-bottom: 1px solid black;
-    }
-  
-    .profile-form h2{
-      font-size: 0.8rem;
-      text-align: center;
-    }
-  
-    .form-group{
-      margin-top: 0.2rem;
-    }
-  
-    .form-group input {
-      height: 1.4rem;
-      font-size: 0.6rem;
-    }
-  
-    .form-group label {
-      font-size: 0.8rem;
-    }
-  
-    .formMovil{
-      margin-left: 1rem;
-    }
-  
-    .delete-account {
-      width: 6rem;
-      height: 2rem;
-      font-size: 0.5rem;
-      margin-top: 1rem;
-    }
-  
-  }
-  

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css']
+  selector: 'app-orders-profile',
+  templateUrl: './orders-profile.component.html',
+  styleUrls: ['./orders-profile.component.css']
 })
-export class OrdersComponent {
+export class OrdersProfileComponent {
 
   selectedMenuOption: string = 'my_orders';
 
@@ -13,12 +13,11 @@ export class OrdersComponent {
     this.selectedMenuOption = option;
   }
 
-  shouldShow(option: string){
-    if(option === "my_orders"){
+  shouldShow(option: string) {
+    if (option === "my_orders") {
       return this.selectedMenuOption === 'my_orders';
-    }else{
+    } else {
       return this.selectedMenuOption === 'customer_orders';
     }
   }
-
 }

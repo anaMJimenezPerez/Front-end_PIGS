@@ -8,9 +8,9 @@ import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.compo
 import { ProductComponent } from './pages/product/product.component';
 import { UserComponent } from './pages/user/user.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { ProductsComponent } from './pages/products/products.component';
-import { OrdersComponent } from './pages/orders/orders.component';
-import { FavouritesComponent } from './pages/favourites/favourites.component';
+import { OrdersProfileComponent } from './pages/orders-profile/orders-profile.component';
+import { FavouritesProfileComponent } from './pages/favourites-profile/favourites-profile.component';
+import { ProductsProfileComponent } from './pages/products-profile/products-profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,9 +21,9 @@ const routes: Routes = [
   { path: 'product', component: ProductComponent},
   { path: 'user', component: UserComponent},
   { path: 'profile', component: ProfileComponent},
-  { path: 'products', component: ProductsComponent },
-  { path: 'orders', component: OrdersComponent },
-  { path: 'favourites', component: FavouritesComponent },
+  { path: 'products-profile', component: ProductsProfileComponent },
+  { path: 'orders-profile', component: OrdersProfileComponent },
+  { path: 'favourites-profile', component: FavouritesProfileComponent },
 
 ];
 
