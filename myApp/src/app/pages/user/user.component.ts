@@ -33,8 +33,8 @@ export class UserComponent implements OnInit{
     if (this.user && this.user.id !== undefined) {
       forkJoin([
         this.productService.getAllProductImages(),
-        this.userService.getProductsUser(this.user.id.toString()),
-        this.userService.getCountProductsUser(this.user.id.toString())
+        this.userService.getProductsUser(this.user.id),
+        this.userService.getCountProductsUser(this.user.id)
       ]).subscribe(( [ images, userProducts,  userCountProducts]) => {
 
         this.userProducts = userProducts.filter( (product: Product) => product.sellerId === this.user?.id)
@@ -55,17 +55,15 @@ export class UserComponent implements OnInit{
     if (this.user && this.user.id !== undefined) {
       if (this.authService.isAuthenticated()) {
         const productId = product.id.toString();
-        if (this.productCounters[productId]) {
-          this.productCounters[productId]++;
-        } else {
-          this.productCounters[productId] = 1;
-        }
+
+
+        console.log(product);
 
         const cartItem: Cart = {
           id: 0,
           user: this.user,
           product: product,
-          amount: this.productCounters[productId]
+          amount: 1
         };
 
         this.cartService.postAddProduct(cartItem).subscribe((createdCart) => {
@@ -73,6 +71,8 @@ export class UserComponent implements OnInit{
 
           cartItem.id = createdCart.id;
         });
+
+        console.log("Se me a añadido al carrito");
 
       } else {
         console.error('User is not authenticated');

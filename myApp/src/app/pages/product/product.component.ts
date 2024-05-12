@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 import { User } from 'src/app/interfaces/user';
-import { forkJoin } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -23,8 +22,6 @@ export class ProductComponent implements OnInit{
   ngOnInit(): void {
     const { product } = history.state;
     this.product = product;
-
-    console.log(this.product);
 
     if (this.product && this.product.images_path && this.product.images_path.length > 0) {
       this.selectedImage = this.product.images_path[0];
