@@ -16,7 +16,7 @@ export class ProductService {
   }
 
   updateProduct(userId: number, product: Product): Observable<any>{
-    return this.http.put('http://localhost:8080/products?id=?${product}', {userId, product});
+    return this.http.put('http://localhost:8080/products?id=', {userId, product});
   }
 
   deleteProduct(userId: number): Observable<any>{
