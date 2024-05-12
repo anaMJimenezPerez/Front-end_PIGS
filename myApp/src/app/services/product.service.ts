@@ -12,7 +12,7 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getAllProducts(): Observable<any> {
-    return this.http.get('http://localhost:8080/products');
+    return this.http.get('http://localhost:8080/products/getProducts');
   }
 
   updateProduct(userId: number, product: Product): Observable<any>{
