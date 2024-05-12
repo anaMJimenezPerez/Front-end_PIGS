@@ -43,7 +43,6 @@ export class DirectionFormComponent implements OnInit{
       if (userString) {
         const user = JSON.parse(decodeURIComponent(userString));
         this.user = user;
-        console.log('Usuario recibido:', this.user);
       }
     });
   }
@@ -59,11 +58,10 @@ export class DirectionFormComponent implements OnInit{
       "favorites": "",
       "image": ""
     };
-    window.alert(this.user.email);
     const { street, postalCode, province, number, city, country } = this.directionForm.value;
     
     if (!this.directionForm.valid || !street || !postalCode || !province || !number || !city || !country) {
-      window.alert(this.user.email);
+      
     } else {
       const address = 'Street ' + street + " " + number + ", City " + city + ", CP " + postalCode + ", province " + province + ", country " + country;
       
@@ -83,7 +81,6 @@ export class DirectionFormComponent implements OnInit{
             "favorites": userParams.favorites,
             "image": userParams.image
           };
-          console.log("user: " + this.user.id);
           this.userService.userDirectionInfo(userParams.id, this.user).subscribe(
             (response) => {
               console.log("Usuario registrado exitosamente:", response);

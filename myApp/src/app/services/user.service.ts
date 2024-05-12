@@ -24,7 +24,6 @@ export class UserService {
 
   userDirectionInfo(id: any, user: any): Observable<any>{
     let idLong = Number(id);
-    console.log("user service: " + user.id + " " + user.address);
     return this.http.put<User>(`http://localhost:8080/users/updateUser?id=${idLong}`, user);
   }
 
