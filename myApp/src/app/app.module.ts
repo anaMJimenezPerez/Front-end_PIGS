@@ -23,6 +23,7 @@ import { ProductsProfileComponent } from './pages/products-profile/products-prof
 import { OrdersProfileComponent } from './pages/orders-profile/orders-profile.component';
 import { FavouritesProfileComponent } from './pages/favourites-profile/favourites-profile.component';
 import { NewProductComponent } from './pages/new-product/new-product.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { NewProductComponent } from './pages/new-product/new-product.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
