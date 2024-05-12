@@ -11,51 +11,49 @@
         <div class="form_container col-md-8">
             <h2 id="title_log" class="text-center">Account details</h2>
             <div class="row">
-                <div class="form_content_left col-md-6">
-                    <form id="form">
+                <form id="form" [formGroup]="directionForm">
+                    <div class="form_content_left col-md-6">
                         <div class="field">
                             <label>Street<br></label>
-                            <input matInput class="text" id="street" type="text">
+                            <input matInput class="text" id="street" type="text" formControlName="street">
                         </div>
                         <div class="field">
                             <label>Postal code<br></label>
-                            <input matInput class="text" id="postalCode" type="text">
+                            <input matInput class="text" id="postalCode" type="text" formControlName="postalCode">
                         </div>
                         <div class="field">
                             <label>Province<br></label>
-                            <input class="text" id="province" name="password" type="text">
+                            <input class="text" id="province" name="password" type="text" formControlName="province">
                         </div>
-                    </form>
-                </div>
-                <div class="form_content_right col-md-6">
-                    <form id="form">
+                    </div>
+                    <div class="form_content_right col-md-6">
                         <div class="field">
                             <label>Number<br></label>
-                            <input matInput class="text" id="number" type="text">
+                            <input matInput class="text" id="number" type="text" formControlName="number">
                         </div>
                         <div class="field">
                             <label>City<br></label>
-                            <input matInput class="text" id="city" type="text">
+                            <input matInput class="text" id="city" type="text" formControlName="city">
                         </div>
                         <div class="field">
                             <label>Country<br></label>
-                            <input class="text" id="province" name="password" type="text">
+                            <input class="text" id="province" name="password" type="text" formControlName="country">
                         </div>
                         <div class="check">
                             <input type="checkbox" id="miCheckbox" name="miCheckbox" >
                             <label for="miCheckbox">I agree to the </label>
                             <a class="terms" href="terms&Conditions"> Terms & Conditions</a>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
             <div class="buttons col">
                 <div class="field">
-                    <input class="button" type="submit" value="Save & finish" (click)="navigateToDirectionFormPage()">
+                    <input class="button" type="submit" value="Save & finish" (click)="save()">
                 </div>
-                <div class="field">
-                    <input class="button" id="buttonSkip" type="submit" value="SKIP">
-                </div>
+                <!--<div class="field">
+                    <input class="button" id="buttonSkip" type="submit" value="SKIP" (click)="navigateToDirectionFormPage()">
+                </div>-->
             </div>
         </div>
     </div>
