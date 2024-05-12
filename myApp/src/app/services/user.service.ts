@@ -14,11 +14,11 @@ export class UserService {
     return this.http.get('http://localhost:8080/users/getUsers');
   }
 
-  getProductsUser(userId: string): Observable<any> {
+  getProductsUser(userId: number): Observable<any> {
     return this.http.get('http://localhost:8080/users/getProducts?id=' + userId);
   }
 
-  getCountProductsUser(userId: string): Observable<any> {
+  getCountProductsUser(userId: number): Observable<any> {
     return this.http.get('http://localhost:8080/users/countProducts?id=' + userId);
   }
 
