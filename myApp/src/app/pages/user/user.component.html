@@ -1,1 +1,31 @@
-<p>user works!</p>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="d-flex">
+        <img [src]="user?.image" class="image" alt="Image User">
+        <h1 id="marginName">{{user?.name}}</h1>
+      </div>
+    </div>
+
+    <div class="row">
+        <h1>Products ({{userCountProductos}})</h1>
+        <div class="line"></div>
+    </div>
+
+    <div *ngFor="let product of userProducts; let i = index">
+      <div class="row" *ngIf="i % 4 === 0">
+        <div class="col-md-3" *ngFor="let innerProduct of userProducts.slice(i, i + 4)">
+          <div class="card" id="placeCard">
+            <img [src]="innerProduct.images_path[0]" class="card-img-top" id="imageCard" alt="Product Image">
+            <div class="card-body">
+              <h5 class="card-title" id="title">{{ innerProduct.name }}</h5>
+              <p class="card-text">Price: {{ innerProduct.price }}€</p>
+              <a href="#" id="buttonFormat" (click)="addToCart($event, innerProduct)">Add to cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>

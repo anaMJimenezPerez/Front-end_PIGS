@@ -11,10 +11,15 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getAllUser(): Observable<any> {
-    return this.http.get<any>('../../../assets/data/user.json');
+    return this.http.get('http://localhost:8080/users/getUsers');
   }
-  getAllUserImages(): Observable<any> {
-    return this.http.get<any>('../.../../assets/data/user_images.json');
+
+  getProductsUser(userId: number): Observable<any> {
+    return this.http.get('http://localhost:8080/users/getProducts?id=' + userId);
+  }
+
+  getCountProductsUser(userId: number): Observable<any> {
+    return this.http.get('http://localhost:8080/users/countProducts?id=' + userId);
   }
 
   userCartIsEmpty(userEmail: string): Observable<boolean> {

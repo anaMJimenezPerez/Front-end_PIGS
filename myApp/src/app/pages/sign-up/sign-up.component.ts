@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators, ValidatorFn } from '@angular/forms';
+import { AuthUserService } from 'src/app/services/auth-user.service';
+import { User } from 'src/app/interfaces/user';
+import { SHA256 } from 'crypto-js';
 
 export function passwordsMatch(): ValidatorFn{
   return (control: AbstractControl): ValidationErrors | null => {
@@ -24,7 +27,6 @@ export function passwordsMatch(): ValidatorFn{
 
 
 export class SignUpComponent {
-
   completeForm = true;
 
   signUpForm = new FormGroup({
@@ -36,7 +38,7 @@ export class SignUpComponent {
     {validators: passwordsMatch() }
   )
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthUserService) {}
 
   get name(){
     return this.signUpForm.get('name');
@@ -57,10 +59,26 @@ export class SignUpComponent {
 
   submit(){
     const { name, email, password, confirmPassword } = this.signUpForm.value;
-
+    
     if (!this.signUpForm.valid || !name || !password || !email || !confirmPassword) {
       this.completeForm = false;
     } else {
+    const user: User = {
+        "name": name,
+        "email": email,
+        "password": SHA256(password).toString(),
+        "creationTime": "2024-05-11T22:03:30.656Z",
+        "address": "calle",
+        "lastViewed": 0,
+        "favorites": "",
+        "image": ""
+    };
+      this.authService.signup(user)
+      .subscribe(
+        (response) => {
+          console.log("Usuario registrado exitosamente:", response);
+        }
+      );
       this.completeForm = true;
       this.router.navigateByUrl('/directionFormPage');
     }

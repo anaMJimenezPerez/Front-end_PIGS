@@ -1,11 +1,11 @@
 export interface User {
-  id: number;
+  id?: number;
   name: string;
   email: string;
-  password: number;
-  creation_time: string;
-  address: number;
-  last_viewed: number;
+  password: string;
+  creationTime: string;
+  address: string;
+  lastViewed: number;
   favorites: string;
   image: string;
 }

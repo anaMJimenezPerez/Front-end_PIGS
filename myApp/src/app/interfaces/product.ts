@@ -2,16 +2,13 @@ export interface Product {
   id: number;
   name: string;
   description: string;
-  seller_id: number;
+  sellerId: number;
   price: number;
-  creation_time: string;
-  quantity: number;
-  tag: number;
-  clothingSize: string[];
-  typeClothing: string;
-  colour: string[];
-  typeJewellery: string,
-  size: string[],
-  typeCeramic: string,
+  creationTime: string;
+  stock: number;
+  tag: string;
+  type: string;
+  color: string[];
+  size: string[];
   images_path: string[];
 }
