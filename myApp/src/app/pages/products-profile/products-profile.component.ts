@@ -54,9 +54,12 @@ export class ProductsProfileComponent implements OnInit {
   }
 
   addStock(product: any) {
+    // Increment stock
     product.stock += 1;
+    // Update the product in the service
     this.newProductService.updateProduct(product);
-    console.log(`Stock after adding: ${product.stock}`);
+    // Log the action
+    console.log(`Stock after adding for product ${product.id}: ${product.stock}`);
   }
 
   deleteProduct(product: any): void {
