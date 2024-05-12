@@ -17,7 +17,7 @@
             <!-- Photo -->
             <div class="form-group">
                 <label for="photos">Upload Photos:</label>
-                <input type="file" class="form-control" id="photos" name="photos" multiple accept="image/*"
+                <input type="file" class="form-control" id="photos" name="photos" multiple accept="image/*" required 
                     (change)="previewPhotos($event)">
                 <div *ngIf="photos.length <= 0" class="error-message">
                     <img src="assets/images/exclamation-circle-fill.svg" alt="Error" class="error-icon">
@@ -97,8 +97,8 @@
             <!-- Clothing Fields -->
             <fieldset id="clothingFields" class="form-group d-none">
                 <div class="form-group">
-                    <label for="clothingType">Type:</label>
-                    <select class="form-control" id="clothingType" name="clothingType" required
+                    <label for="type">Type:</label>
+                    <select class="form-control" id="type" name="type" 
                         [(ngModel)]="product.type">
                         <option value="" disabled selected>Select a type</option>
                         <option value="shirt">Shirt</option>
@@ -110,9 +110,7 @@
                     </div>
                 </div>
 
-
-
-                <div id="clothingSizes" class="form-group">
+                <div id="size" class="form-group">
                     <label>Size:</label>
                     <ng-container
                         *ngTemplateOutlet="sizeTemplate; context: {sizes: clothingSizes, groupName: 'clothingSize'}"></ng-container>
@@ -122,7 +120,7 @@
                     </div>
                 </div>
 
-                <div id="clothingColors" class="form-group">
+                <div id="color" class="form-group">
                     <label>Color:</label>
                     <ng-container
                         *ngTemplateOutlet="checkboxTemplate; context: {color: clothingColors, groupName: 'clothingColor'}"></ng-container>
@@ -136,8 +134,8 @@
             <!-- Jewelry Fields -->
             <fieldset id="jewelryFields" class="form-group d-none">
                 <div class="form-group">
-                    <label for="jewelryType">Type:</label>
-                    <select class="form-control" id="jewelryType" name="jewelryType" required
+                    <label for="type">Type:</label>
+                    <select class="form-control" id="type" name="type" 
                         [(ngModel)]="product.type">
                         <option value="" disabled selected>Select a type</option>
                         <option value="necklace">Necklace</option>
@@ -212,12 +210,12 @@
             <!-- Ceramic Fields -->
             <fieldset id="ceramicFields" class="form-group d-none">
                 <div class="form-group">
-                    <label for="ceramicType">Type:</label>
-                    <select class="form-control" id="ceramicType" name="ceramicType" required
+                    <label for="type">Type:</label>
+                    <select class="form-control" id="type" name="type" 
                         [(ngModel)]="product.type">
                         <option value="" disabled selected>Select a type</option>
                         <option value="glass">Glass</option>
-                        <option value="dish">Plate</option>
+                        <option value="dish">Dish</option>
                         <option value="vase">Vase</option>
                         <option value="figure">Figure</option>
                     </select>
