@@ -28,8 +28,9 @@
                 <div class="marginTop">Options</div>
                 <div class="line"></div>
                 <div style="display: flex;">
-                  <div> {{product?.clothingSize}}</div>
-                  <div id="marginLeft"> {{product?.colour}}</div>
+                  <div *ngIf="product?.size?.toString() !== 'null'"> {{product?.size}}</div>
+                  <div class="marginLeft" *ngIf="product?.color?.toString() !== 'null'"> {{product?.color}}</div>
+                  <div class="marginLeft" *ngIf="product?.type?.toString() !== 'null'"> {{product?.type}}</div>
                 </div>
 
                 <button id="button">Add to cart</button>

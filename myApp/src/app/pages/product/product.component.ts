@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 import { User } from 'src/app/interfaces/user';
-import { ActivatedRoute } from '@angular/router';
-import { forkJoin } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,34 +13,31 @@ export class ProductComponent implements OnInit{
   product: Product | undefined;
   user: User | undefined;
   seller: string | undefined;
-
-  constructor(
-    private route: ActivatedRoute,
-    private userService: UserService
-  ) {
-    const { product } = history.state;
-    this.product = product;
-  }
-
   selectedImage: string | undefined;
 
-  showImage(index: number, event: MouseEvent): void {
-    if (event.target === event.currentTarget) {
-      this.selectedImage = this.product?.images_path[index];
+  constructor(
+    private userService: UserService
+  ) {}
+
+  ngOnInit(): void {
+    const { product } = history.state;
+    this.product = product;
+
+    if (this.product && this.product.images_path && this.product.images_path.length > 0) {
+      this.selectedImage = this.product.images_path[0];
+    }
+
+    if (this.product) {
+      this.userService.getAllUser().subscribe(users => {
+        this.user = users.find( (user:any) => user.id === this.product!.sellerId);
+        this.seller = this.user?.name;
+      });
     }
   }
 
-
-  ngOnInit(): void {
-    this.selectedImage = this.product?.images_path[0];
-
-    forkJoin([
-      this.userService.getAllUser()
-    ]).subscribe(([user]) =>{
-
-      this.seller = user.find( (user:any) => user.id === this.product?.seller_id).name;
-
-    });
+  showImage(index: number, event: MouseEvent): void {
+    if (event.target === event.currentTarget && this.product && this.product.images_path) {
+      this.selectedImage = this.product.images_path[index];
+    }
   }
-
 }

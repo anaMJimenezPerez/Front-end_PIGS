@@ -8,10 +8,10 @@
       <div class="row">
         <div *ngFor="let product of products.slice(0, totalRowsToShow)" class="col-md-3">
           <div class="card mb-4" (click)="productDetails(product)">
-            <img src="../../../assets/images/favorite.png" alt="Favorite" class="styleImage">
             <img class="card-img-top imageCard" *ngIf="product.images_path && product.images_path.length > 0" [src]="product.images_path[0]" alt="Card image cap">
+            <i class="material-icons styleImage">favorite_border</i>
             <div class="card-body" style="text-align:center;">
-              <h5 class="card-title">{{product.name}}</h5>
+              <h5 class="card-title titelCard">{{product.name}}</h5>
               <p class="card-text">{{product.price}}</p>
               <a href="#" class="buttonFormat addCard">Add to cart</a>
             </div>
@@ -34,10 +34,11 @@
     <div class="container">
       <div class="row">
         <div *ngFor="let user of followedUsers.slice(0, totalRowsToShowFollows)" class="col-md-3">
-          <div class="card mb-4">
+          <div class="card mb-4" (click)="userDetails(user)">
             <img class="card-img-top imageCard" [src]="user.image" alt="Card image cap">
+            <i class="material-icons styleImage">person_remove</i>
             <div class="card-body" style="text-align:center;">
-              <h5 class="card-title">{{user.name}}</h5>
+              <h5 class="card-title titelCard">{{user.name}}</h5>
             </div>
           </div>
         </div>
@@ -58,10 +59,10 @@
     <div class="row">
       <div *ngFor="let product of newProducts.slice(0, totalRowsToShowNewProducts)" class="col-md-3">
         <div class="card mb-4" (click)="productDetails(product)">
-          <img src="../../../assets/images/favorite.png" alt="Favorite" class="styleImage">
           <img class="card-img-top imageCard" *ngIf="product.images_path && product.images_path.length > 0" [src]="product.images_path[0]" alt="Card image cap">
+          <i class="material-icons styleImage">favorite_border</i>
           <div class="card-body" style="text-align:center;">
-            <h5 class="card-title">{{product.name}}</h5>
+            <h5 class="card-title titelCard">{{product.name}}</h5>
             <p class="card-text">{{product.price}}</p>
             <a href="#" class="buttonFormat addCard">Add to cart</a>
           </div>
