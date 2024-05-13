@@ -58,6 +58,11 @@ export class AuthUserService {
     return currentUser ? of(currentUser.id) : of(null);
   }
 
+  getLoggedInUser(): Observable<User | null> {
+    const currentUser = this.getCurrentUser();
+    return currentUser ? of(currentUser) : of(null);
+  }
+
   private setCurrentUser(user: any): void {
     if (user) {
       localStorage.setItem(this.currentUserKey, JSON.stringify(user));

@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { User } from 'src/app/interfaces/user';
+import { Follow } from 'src/app/interfaces/follow';
 
 @Component({
   selector: 'app-home',
@@ -21,11 +22,10 @@ export class HomeComponent implements OnInit{
   newProducts: Product[] = [];
 
   // Users
-  follows: any[] = [];
+  follows: Follow[] = [];
   isAuthenticated: boolean = false;
-  followedUsers: any[] = [];
   users: User[] = [];
-  usersImages: any[] = [];
+  addedUsers: Set<any> = new Set();
 
   constructor(
     private productService: ProductService,
@@ -34,6 +34,8 @@ export class HomeComponent implements OnInit{
     private userService: UserService,
     private router: Router
   ) {}
+
+
 
   ngOnInit() {
 
@@ -75,36 +77,44 @@ export class HomeComponent implements OnInit{
 
     //Part the user
     forkJoin([
-      this.userService.getAllUser(),
-      this.followService.getAllFollows()
-    ]).subscribe(([users, follows]) => {
+      this.userService.getAllUser()
+    ]).subscribe(([users]) => {
 
       this.users = users;
 
       //Authenticated
       this.authService.currentUser$.subscribe((isAuthenticated: boolean) => {
         this.isAuthenticated = isAuthenticated;
-        if (isAuthenticated) {
-          this.authService.getLoggedInUserId().subscribe(loggedInUserId => {
-            this.follows = follows.filter((follow: any) => follow.follower_id === loggedInUserId);
-          });
-        }
-      });
 
-      this.followedUsers = this.follows.map((follow) => {
-        const followedUser = this.users.find((user) => user.id === follow.followed_id);
-        if (followedUser) {
-          return {
-            id: followedUser.id,
-            name: followedUser.name,
-            image: followedUser.image
-          };
-        } else {
-          return null;
-        }
       });
 
     });
+  }
+
+  toggleUserIcon(event: Event, user: any) {
+    event.stopPropagation();
+    if (this.isAuthenticated) {
+      if (this.addedUsers.has(user)) {
+        this.followService.deleteFollow(user.id);
+        this.addedUsers.delete(user);
+        console.log("Eliminar");
+      } else {
+        this.authService.getLoggedInUser().subscribe((loggedInUser: User | null) => {
+          if (loggedInUser !== null) {
+            console.log(loggedInUser);
+            console.log(user);
+            const follow: Follow = { followerId: loggedInUser, followedId: user };
+            this.followService.createFollow(follow);
+            this.addedUsers.add(user);
+          } else {
+            console.log("Usuario no logueado");
+          }
+        });
+        console.log("Crear");
+      }
+    } else {
+      console.log("No estas logueado");
+    }
   }
 
   productDetails(product: Product){
@@ -117,10 +127,12 @@ export class HomeComponent implements OnInit{
 
   //Button the Show More
   totalRowsToShow: number = 4;
+  totalRowsToShowUser: number = 4;
   totalRowsToShowFavorite: number = 4;
   totalRowsToShowNewProducts: number = 4;
   totalRowsToShowFollows: number = 4;
   showAllRows: boolean = false;
+  showAllRowsUser: boolean = false;
   showAllRowsFavorite: boolean = false;
   showAllRowsNewProducts: boolean = false;
   showAllRowsFollows: boolean = false;
@@ -142,8 +154,8 @@ export class HomeComponent implements OnInit{
       this.totalRowsToShow = this.adjustTotalRows(id, this.totalRowsToShow, list, showAllRows);
       this.showAllRows = !showAllRows && this.totalRowsToShow === list.length;
     } else if (id === 2) {
-      this.totalRowsToShowFavorite = this.adjustTotalRows(id, this.totalRowsToShowFavorite, list, showAllRows);
-      this.showAllRowsFavorite = !showAllRows && this.totalRowsToShowFavorite === list.length;
+      this.totalRowsToShowUser = this.adjustTotalRows(id, this.totalRowsToShowUser, list, showAllRows);
+      this.showAllRowsUser = !showAllRows && this.totalRowsToShowUser === list.length;
     } else if (id === 3) {
       this.totalRowsToShowNewProducts = this.adjustTotalRows(id, this.totalRowsToShowNewProducts, list, showAllRows);
       this.showAllRowsNewProducts = !showAllRows && this.totalRowsToShowNewProducts === list.length;
