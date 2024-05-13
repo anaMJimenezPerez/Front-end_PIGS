@@ -14,24 +14,12 @@
                 </div>
             </div>
 
-              <!--   
+         
          <div class="form-group">
                 <label for="photos">Upload Photos:</label>
-                <input type="file" class="form-control" id="photos" name="photos" multiple accept="image/*" required 
+                <input type="file" class="form-control" id="photos" name="photos" required 
                     (change)="previewPhotos($event)">
-                <div *ngIf="productImages.length <= 0" class="error-message">
-                    <img src="assets/images/exclamation-circle-fill.svg" alt="Error" class="error-icon">
-                    At least one photo is required
-                </div>
             </div> 
-
-      Container review 
-            <div class="preview-container">
-                <div *ngFor="let photo of productImages; let index = index" class="preview-item">
-                    <img [src]="photo" [alt]="'Image ' + (index + 1)">
-                     <button class="delete-photo" (click)="deleteImage(index)">Delete</button> 
-                </div>
-            </div> -->
 
           
             <div class="form-group">
