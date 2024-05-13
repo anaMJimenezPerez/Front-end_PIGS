@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable, BehaviorSubject, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { User } from '../interfaces/user';
-import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthUserService {
-  private usersUrl = '../assets/data/user.json';
 
   private authenticatedKey = 'isAuthenticated';
   private currentUserKey = 'currentUser';
@@ -21,17 +19,19 @@ export class AuthUserService {
 
   constructor(private http: HttpClient) {}
 
-  login(userEmail: string, password: string): Observable<boolean> {
-    return this.http.get<any[]>(this.usersUrl).pipe(
-      map((users) => {
-        const user = users.find((u) => u.email === userEmail && u.password === password);
+
+  login(userEmail: string, password: string): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/users/login?password=${password}&email=${userEmail}`).pipe(
+      tap((user: User) => {
         if (user) {
           this.setCurrentUser(user);
           this.setIsAuthenticated(true);
-          return true;
         }
-        return false;
-      })
+      }),
+      map((user: User) => ({
+        isAuthenticated: !!user,
+        user: user
+      }))
     );
   }
 
@@ -56,6 +56,10 @@ export class AuthUserService {
   getLoggedInUserId(): Observable<number> {
     const currentUser = this.getCurrentUser();
     return currentUser ? of(currentUser.id) : of(null);
+  }
+
+  getLoggedUser(): User{
+    return this.getCurrentUser();
   }
 
   private setCurrentUser(user: any): void {

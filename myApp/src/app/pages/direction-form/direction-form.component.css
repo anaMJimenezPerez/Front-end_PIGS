@@ -35,6 +35,7 @@ body{
 
 .buttons{
     margin: auto;
+    margin-bottom: 3rem;
 }
 .form_content {
     flex: 1;
@@ -46,8 +47,19 @@ body{
 }
 
 #form{
+    display: flex;
+    justify-content: space-between;
     width: fit-content;
     margin: auto;
+}
+
+.form_content_left{
+    margin: 3rem 0;
+    margin-right: 1rem;
+}
+.form_content_right{
+    margin: 3rem 0;
+    margin-left: 1rem;
 }
 .field{
     width: 19rem;
@@ -125,13 +137,19 @@ input[type="checkbox"]:checked{
 }
 
 
-@media (max-width: 1050px){
+@media (max-width: 1080px){
     .field, .button  {
         width: 15rem;
     }
     .image_container{
         height: auto;
-        width: 15rem;
+        width: 13rem;
+    }
+    .form_content_left{
+        margin-right: 0.5rem;
+    }
+    .form_content_right{
+        margin-left: 0.5rem;
     }
     h2{
         margin-top: 2rem;
@@ -139,7 +157,7 @@ input[type="checkbox"]:checked{
 }
 
 
-@media (max-width: 800px){
+@media (max-width: 845px){
     .field, .button  {
         width: 20rem;
     }
@@ -149,12 +167,16 @@ input[type="checkbox"]:checked{
 
 }
 
-@media (max-width: 300px) {
-    #title_log{
-        font-size: 15px;
+@media (max-width: 700px)  {
+    #form{
+        display: block;
     }
-
-    .field, .button{
-        width: 8rem;
+    .form_content_right{
+        margin-left: 0;
+        margin-top: 0;
+    }
+    .form_content_left{
+        margin-bottom: 0;
+        margin-right: 0;
     }
 }

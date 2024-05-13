@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators, ValidatorFn } from '@angular/forms';
 import { AuthUserService } from 'src/app/services/auth-user.service';
@@ -53,8 +53,9 @@ export class SignUpComponent {
     return this.signUpForm.get('confirmPassword');
   }
 
-  navigateToDirectionFormPage() {
-    this.router.navigateByUrl('/directionFormPage');
+  navigateToDirectionFormPage(user: User) {
+    const userString = JSON.stringify(user);
+    this.router.navigateByUrl(`/directionFormPage?user=${encodeURIComponent(userString)}`);
   }
 
   submit(){
@@ -64,11 +65,12 @@ export class SignUpComponent {
       this.completeForm = false;
     } else {
     const user: User = {
+        "id": 0,
         "name": name,
         "email": email,
         "password": SHA256(password).toString(),
-        "creationTime": "2024-05-11T22:03:30.656Z",
-        "address": "calle",
+        "creationTime": new Date().toISOString(),
+        "address": "",
         "lastViewed": 0,
         "favorites": "",
         "image": ""
@@ -80,7 +82,21 @@ export class SignUpComponent {
         }
       );
       this.completeForm = true;
-      this.router.navigateByUrl('/directionFormPage');
+      this.navigateToDirectionFormPage(user);
     }
+    this.logear();
+  }
+
+  logear(){
+    const { name, email, password, confirmPassword } = this.signUpForm.value;
+
+    if (!this.signUpForm.valid || !name || !password || !email || !confirmPassword) {
+      this.completeForm = false;
+    } else {
+      this.authService.login(email, password)
+      .subscribe(response => {
+        console.log(response);
+      });
+    } 
   }
 }

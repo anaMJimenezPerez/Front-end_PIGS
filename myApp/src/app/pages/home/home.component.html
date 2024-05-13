@@ -36,6 +36,7 @@
         <div *ngFor="let user of followedUsers.slice(0, totalRowsToShowFollows)" class="col-md-3">
           <div class="card mb-4" (click)="userDetails(user)">
             <img class="card-img-top imageCard" [src]="user.image" alt="Card image cap">
+            <i class="material-icons styleImage">person_remove</i>
             <div class="card-body" style="text-align:center;">
               <h5 class="card-title titelCard">{{user.name}}</h5>
             </div>
