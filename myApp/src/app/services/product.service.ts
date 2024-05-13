@@ -9,17 +9,21 @@ import { Product } from '../interfaces/product';
 })
 export class ProductService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAllProducts(): Observable<any> {
     return this.http.get('http://localhost:8080/products/getProducts');
   }
 
-  updateProduct(userId: number, product: Product): Observable<any>{
-    return this.http.put('http://localhost:8080/products?id=', {userId, product});
+  getAllProductsByUserId(userId: number): Observable<any> {
+    return this.http.get(`http://localhost:8080/products/getProducts?id=${userId}`);
   }
 
-  deleteProduct(userId: number): Observable<any>{
+  updateProduct(userId: number, product: Product): Observable<any> {
+    return this.http.put('http://localhost:8080/products?id=', { userId, product });
+  }
+
+  deleteProduct(userId: number): Observable<any> {
     return this.http.delete('http://localhost:8080/products?id=' + userId);
   }
 

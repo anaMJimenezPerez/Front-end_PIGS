@@ -23,7 +23,7 @@ export class ProductComponent implements OnInit{
     const { product } = history.state;
     this.product = product;
 
-    if (this.product && this.product.images_path && this.product.images_path.length > 0) {
+    /*if (this.product && this.product.images_path && this.product.images_path.length > 0) {
       this.selectedImage = this.product.images_path[0];
     }
 
@@ -38,6 +38,6 @@ export class ProductComponent implements OnInit{
   showImage(index: number, event: MouseEvent): void {
     if (event.target === event.currentTarget && this.product && this.product.images_path) {
       this.selectedImage = this.product.images_path[index];
-    }
+    }*/
   }
 }

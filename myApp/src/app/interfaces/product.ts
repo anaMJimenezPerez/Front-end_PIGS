@@ -8,7 +8,6 @@ export interface Product {
   stock: number;
   tag: string;
   type: string;
-  color: string[];
-  size: string[];
-  images_path: string[];
+  color: string;
+  size: string;
 }
