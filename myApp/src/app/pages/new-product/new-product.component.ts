@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NewproductService } from '../../services/newproduct.service';
 
 @Component({
   selector: 'app-new-product',
@@ -94,7 +95,7 @@ export class NewProductComponent {
   showColorError = false;
   showTypeError = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private NewproductService: NewproductService) { }
 
   ngOnInit() {
 
@@ -161,6 +162,14 @@ export class NewProductComponent {
 
   handleCategoryChange(event: Event): void {
     const tag = (event.target as HTMLSelectElement).value;
+    this.product.tag = tag;
+
+    // Clear type if the new category does not require it
+    if (!['clothing', 'jewelry', 'ceramic'].includes(tag)) {
+      this.product.type = '';
+    }
+
+    this.resetSubcategories();
     this.showCategoryFields(tag);
   }
 
@@ -180,12 +189,22 @@ export class NewProductComponent {
       case 'keychain':
         this.showSizeError = !this.hasSelectedCheckboxes('keychainSize');
         this.showColorError = !this.hasSelectedCheckboxes('keychainColor');
+        this.showTypeError = false;
         break;
       case 'painting':
         this.showSizeError = !this.hasSelectedCheckboxes('paintingSize');
+        this.showColorError = false;
+        this.showTypeError = false;
+        break;
+      case 'ceramic':
+        this.showTypeError = this.product.type === '';
+        this.showColorError = false;
+        this.showSizeError = false;
         break;
       case 'plush':
         this.showSizeError = !this.hasSelectedCheckboxes('plushSize');
+        this.showColorError = false;
+        this.showTypeError = false;
         break;
     }
   }
@@ -215,7 +234,7 @@ export class NewProductComponent {
 
   // Method to delete a photo by index
   removePhoto(index: number): void {
-    this.photos.splice(index, 1);
+    this.photos = this.photos.filter((_, i) => i !== index);
   }
 
   // Function to be called when sending the form
@@ -223,20 +242,39 @@ export class NewProductComponent {
     const tag = form.value.tag;
     this.validateSubcategories(tag);
 
+    console.log("Submitting form:", form.value);
+    console.log("Errors before validation:", {
+      sizeError: this.showSizeError,
+      colorError: this.showColorError,
+      typeError: this.showTypeError
+    });
+
+    if (this.photos.length === 0) {
+      return;  
+    }
+
+    this.validateSubcategories(this.product.tag);
+
+    console.log("Errors after validation:", {
+      sizeError: this.showSizeError,
+      colorError: this.showColorError,
+      typeError: this.showTypeError
+    });
+
+
     if (form.valid && !this.showSizeError && !this.showColorError) {
       // Categories
       this.product.size = this.getSelectedOptions(`${tag}Size`);
       this.product.color = this.getSelectedOptions(`${tag}Color`);
-
-      // photos 
       this.product.photos = this.photos;
+      this.NewproductService.addProduct(this.product);
 
       // Formulary in console
       console.log('Form Submitted:', this.product);
 
       /*form.reset();
-      this.photos = [];
-      this.router.navigate(['/products-profile']);*/
+      this.photos = [];*/
+      this.router.navigate(['/products-profile']);
       this.validateOnLoad = false;
     } else {
       console.log('Form has errors');

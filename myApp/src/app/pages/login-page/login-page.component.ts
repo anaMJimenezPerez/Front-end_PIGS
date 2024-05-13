@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthUserService } from 'src/app/services/auth-user.service';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-login-page',
@@ -34,30 +35,21 @@ export class LoginPageComponent implements OnInit{
 
 
   onSubmit(): void {
-    this.authService.login(this.email, this.password).subscribe({
-      next: isAuthenticated => {
-        if (isAuthenticated) {
-          if (this.rememberMe) {
-            localStorage.setItem('rememberedEmail', this.email);
-            localStorage.setItem('rememberedPassword', this.password);
-          } else {
-            localStorage.removeItem('rememberedEmail');
-            localStorage.removeItem('rememberedPassword');
-          }
-          this.navigateToHomePage();
+    this.authService.login(this.email, this.password)
+    .subscribe(({ isAuthenticated, user }: { isAuthenticated: boolean, user: User }) => {
+      if (isAuthenticated) {
+        if (this.rememberMe) {
+          localStorage.setItem('rememberedEmail', this.email);
+          localStorage.setItem('rememberedPassword', this.password);
         } else {
-          window.alert('Incorrect email or password');
+          localStorage.removeItem('rememberedEmail');
+          localStorage.removeItem('rememberedPassword');
         }
-      },
-      error: error => {
-        let errorMessage = 'Failure logging in';
-        if (error?.message) {
-          errorMessage += ': ' + error.message;
-        }
-        window.alert(errorMessage);
-        console.error(errorMessage, error);
+        this.navigateToHomePage(); // Asumiendo que tienes un método para navegar a la página de inicio
+      } else {
+        console.log("Email or password is incorrect");
       }
     });
+    this.navigateToHomePage();
   }
-
 }

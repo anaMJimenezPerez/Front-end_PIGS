@@ -52,11 +52,6 @@ body{
 
 @media (max-width: 768px) {
 
-  .profile-picture-container{
-    width: 10rem;
-    height: 10rem;
-  }
-
   .profile-form h1{
     font-size: 2rem;
   }
@@ -72,11 +67,6 @@ body{
 }
 
 @media (max-width: 426px) {
-
-  .profile-picture-container{
-    width: 6.4rem;
-    height: 6.4rem;
-  }
 
   .profile-form h1{
     font-size: 1rem;
