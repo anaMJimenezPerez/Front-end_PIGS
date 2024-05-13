@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators, ValidatorFn } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/user';
 
@@ -89,6 +89,7 @@ export class DirectionFormComponent implements OnInit{
           );
         }
       );
+      
       this.navigateToDirectionFormPage();     
     }
   }

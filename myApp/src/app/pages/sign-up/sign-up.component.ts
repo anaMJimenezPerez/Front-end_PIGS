@@ -83,5 +83,19 @@ export class SignUpComponent {
       this.completeForm = true;
       this.navigateToDirectionFormPage(user);
     }
+    this.logear();
+  }
+
+  logear(){
+    const { name, email, password, confirmPassword } = this.signUpForm.value;
+
+    if (!this.signUpForm.valid || !name || !password || !email || !confirmPassword) {
+      this.completeForm = false;
+    } else {
+      this.authService.login(email, password)
+      .subscribe(response => {
+        console.log(response);
+      });
+    } 
   }
 }
