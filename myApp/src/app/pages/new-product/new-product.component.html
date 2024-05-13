@@ -14,26 +14,26 @@
                 </div>
             </div>
 
-            <!-- Photo -->
-            <!-- <div class="form-group">
+              <!--   
+         <div class="form-group">
                 <label for="photos">Upload Photos:</label>
                 <input type="file" class="form-control" id="photos" name="photos" multiple accept="image/*" required 
                     (change)="previewPhotos($event)">
-                <div *ngIf="images_path.length <= 0" class="error-message">
+                <div *ngIf="productImages.length <= 0" class="error-message">
                     <img src="assets/images/exclamation-circle-fill.svg" alt="Error" class="error-icon">
                     At least one photo is required
                 </div>
-            </div>
+            </div> 
 
-           Container review
+      Container review 
             <div class="preview-container">
-                <div *ngFor="let photo of images_path; let index = index" class="preview-item">
-                    <img [src]="photo.src" [alt]="'Image ' + (index + 1)">
-                    <button class="delete-photo" (click)="removePhoto(index)">Delete</button>
+                <div *ngFor="let photo of productImages; let index = index" class="preview-item">
+                    <img [src]="photo" [alt]="'Image ' + (index + 1)">
+                     <button class="delete-photo" (click)="deleteImage(index)">Delete</button> 
                 </div>
             </div> -->
 
-            <!-- Description Field -->
+          
             <div class="form-group">
                 <label for="description">Description:</label>
                 <textarea class="form-control" id="description" name="description" required
@@ -42,7 +42,7 @@
                     <img src="assets/images/exclamation-circle-fill.svg" alt="Error" class="error-icon">
                     Description is required
                 </div>
-            </div>
+            </div> 
 
             <!-- Price -->
             <div class="form-group">

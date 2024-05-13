@@ -22,9 +22,9 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{ product.name }}</h5>
                                         <p class="card-text">{{ product.price}} €</p>
+                                        <p class="card-description">{{ product.description}}</p>
                                         <div class="container-buttons d-flex align-items-center">
                                             <div class="form-group">
-                                               <!-- <button class="btn btn-secondary" (click)="updateStock(product)">Add Stock</button> -->
                                             </div>
                                             <button class="btn btn-danger mt-2" (click)="deleteProduct(product)">
                                                 <img src="../../../assets/images/garbage_icon.png" alt="Delete">

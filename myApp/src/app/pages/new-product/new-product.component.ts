@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from 'src/app/interfaces/product';
 import { AuthUserService } from 'src/app/services/auth-user.service';
-import { User } from 'src/app/interfaces/user';
+import { ProductImage } from '../../interfaces/productimage';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-new-product',
@@ -13,6 +14,8 @@ import { User } from 'src/app/interfaces/user';
 export class NewProductComponent {
   validateOnLoad = true;
   loggedUser = this.authService.getLoggedUser();
+
+  productImages: ProductImage[] = [];
 
   // Variable initialization
   product: Product = {
@@ -223,9 +226,14 @@ export class NewProductComponent {
   previewPhotos(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files) {
+      this.productImages = []; // Limpiar la matriz de imágenes seleccionadas
       Array.from(input.files).forEach(file => {
         const reader = new FileReader();
         reader.onload = (e: ProgressEvent<FileReader>) => {
+          // Agregar la imagen a la matriz de imágenes seleccionadas si e.target no es nulo
+          if (e.target?.result) {
+            this.productImages.push({ id: 0, productId: 0, imageUrl: e.target.result as string });
+          }
         };
         reader.readAsDataURL(file);
       });
@@ -265,7 +273,7 @@ export class NewProductComponent {
         id: this.product.id,
         name: this.product.name,
         description: this.product.description,
-        sellerId: 1,
+        sellerId: this.loggedUser.id,
         price: this.product.price,
         creationTime: this.product.creationTime,
         stock: this.product.stock,
@@ -276,9 +284,11 @@ export class NewProductComponent {
       };
   
       // Envía los datos al backend
-      this.ProductService.createProduct(productData).subscribe((productData) => {
-        console.log("Product added successfully." , productData.id);
+      this.ProductService.createProduct(productData).subscribe((product) => {
+        console.log("Product added successfully." , product);
       });
+
+      
 
       // Formulario en consola
       console.log('Form Submitted:', productData);

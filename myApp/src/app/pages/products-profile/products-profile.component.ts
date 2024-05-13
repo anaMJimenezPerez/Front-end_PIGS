@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from 'src/app/interfaces/product';
 import { Router } from '@angular/router';
+import { ProductImage } from 'src/app/interfaces/productimage';
 
 @Component({
   selector: 'app-products-profile',
@@ -27,6 +28,8 @@ export class ProductsProfileComponent implements OnInit {
     this.router.navigate(['/newproduct']);
   }
 
+  
+
   loadProducts(): void {
     this.productService.getAllProductsByUserId(this.userId).subscribe(products => {
       this.products = products;
@@ -46,33 +49,15 @@ export class ProductsProfileComponent implements OnInit {
     );
   }
 
-    /*updateStock(product: Product): void {
-    if (isNaN(product.stock) || product.stock < 0) {
-      console.error("Invalid stock value:", product.stock);
-      return;
-    }
-  
-    // Crea una copia del producto con solo el campo de stock actualizado
-    const updatedProduct: Product = {
-      ...product,
-      stock: product.stock
-    };
-  
-    // Actualiza el producto en el backend
-    this.productService.updateProduct(updatedProduct).subscribe(
-      () => {
-        console.log("Stock updated successfully.");
-        // Actualiza el producto en la lista local solo si la solicitud al backend tiene éxito
-        const index = this.products.findIndex(p => p.id === product.id);
-        if (index !== -1) {
-          this.products[index].stock = product.stock;
-        } else {
-          console.error("Product not found in the list.");
-        }
+ /* getProductImages(productId: number) {
+    this.ProductService.getProductImages(productId).subscribe(
+      (images: ProductImage[]) => {
+        this.productImages = images;
       },
-      (error) => {
-        console.error("Error updating stock:", error);
+      error => {
+        console.log('Error fetching product images:', error);
       }
     );
-  }*/
+  }
+}*/
 }
