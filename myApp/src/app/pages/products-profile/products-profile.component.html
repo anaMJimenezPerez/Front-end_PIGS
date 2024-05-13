@@ -13,7 +13,24 @@
                     <div class="col-md-8">
                         <div class="d-flex align-items-center mb-3">
                             <h2>My products</h2>
-                            <button class="add_button" (click)="navigateToNewProduct()">Add Product</button> 
+                            <button class="add_button" (click)="navigateToNewProduct()">Add Product</button>
+                        </div>
+                        <div class="row">
+                            <div *ngFor="let product of products" class="col-md-4 mb-3">
+                                <div class="card">
+                                    <img class="card-img-top" [src]="product.photos[0]?.src" alt="Product image">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ product.name }}</h5>
+                                        <p class="card-text">{{ product.price}} €</p>
+                                        <div class="container-buttons d-flex align-items-center">
+                                            <button class="btn btn-secondary" (click)="addStock(product)">Add Stock</button>
+                                            <button class="btn btn-danger mt-2" (click)="deleteProduct(product)">
+                                                <img src="../../../assets/images/garbage_icon.png" alt="Delete">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

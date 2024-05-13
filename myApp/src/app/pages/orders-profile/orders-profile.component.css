@@ -93,3 +93,28 @@ body {
     flex-grow: 1;
     padding-top: 15px;
   }
+
+  @media (max-width: 768px) {
+
+    .profile-form h1{
+      font-size: 2rem;
+    }
+  
+    .profile-form h2{
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 426px) {
+
+    .profile-form h1{
+      font-size: 1rem;
+      border-bottom: 1px solid black;
+    }
+  
+    .profile-form h2{
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+  }
