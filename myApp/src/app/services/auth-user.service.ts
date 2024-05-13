@@ -58,6 +58,10 @@ export class AuthUserService {
     return currentUser ? of(currentUser.id) : of(null);
   }
 
+  getLoggedUser(): User{
+    return this.getCurrentUser();
+  }
+
   private setCurrentUser(user: any): void {
     if (user) {
       localStorage.setItem(this.currentUserKey, JSON.stringify(user));

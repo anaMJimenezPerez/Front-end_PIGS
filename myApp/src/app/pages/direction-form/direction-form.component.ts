@@ -11,6 +11,7 @@ import { User } from 'src/app/interfaces/user';
 })
 export class DirectionFormComponent implements OnInit{
   user: User = {
+    "id": 0,
     "name": "",
     "email": "",
     "password": "",
@@ -49,6 +50,7 @@ export class DirectionFormComponent implements OnInit{
 
   save(){
     let userParams: User = {
+      "id": 0,
       "name": "",
       "email": "",
       "password": "",

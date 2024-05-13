@@ -65,6 +65,7 @@ export class SignUpComponent {
       this.completeForm = false;
     } else {
     const user: User = {
+        "id": 0,
         "name": name,
         "email": email,
         "password": SHA256(password).toString(),

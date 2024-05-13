@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from 'src/app/interfaces/product';
+import { AuthUserService } from 'src/app/services/auth-user.service';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-new-product',
@@ -10,13 +12,14 @@ import { Product } from 'src/app/interfaces/product';
 })
 export class NewProductComponent {
   validateOnLoad = true;
+  loggedUser = this.authService.getLoggedUser();
 
   // Variable initialization
   product: Product = {
     id: 0,
     name: '',
     price: 0,
-    sellerId: 0,
+    sellerId: this.loggedUser.id,
     stock: 0,
     creationTime: '',
     tag: '',
@@ -25,6 +28,7 @@ export class NewProductComponent {
     color: '',
     type: '' // type for jewelry and ceramic
   };
+  
 
   // Value of the checkboxes
   clothingSizes = [
@@ -94,7 +98,7 @@ export class NewProductComponent {
   showColorError = false;
   showTypeError = false;
 
-  constructor(private router: Router, private ProductService: ProductService) { }
+  constructor(private router: Router, private ProductService: ProductService, private authService: AuthUserService) { }
 
   ngOnInit() {
 
