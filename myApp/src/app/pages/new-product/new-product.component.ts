@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NewproductService } from '../../services/newproduct.service';
+import { ProductService } from '../../services/product.service';
+import { Product } from 'src/app/interfaces/product';
 
 @Component({
   selector: 'app-new-product',
@@ -8,23 +9,21 @@ import { NewproductService } from '../../services/newproduct.service';
   styleUrls: ['./new-product.component.css']
 })
 export class NewProductComponent {
-  photos: { src: string, file: File }[] = [];
-
   validateOnLoad = true;
 
   // Variable initialization
-  product = {
+  product: Product = {
+    id: 0,
     name: '',
     price: 0,
+    sellerId: 0,
     stock: 0,
     creationTime: '',
     tag: '',
     description: '',
-    photos: [] as { src: string; file: File }[],
-    size: [] as string[],
-    color: [] as string[],
-    type: '' // type for jelwery and ceramic
-
+    size: '',
+    color: '',
+    type: '' // type for jewelry and ceramic
   };
 
   // Value of the checkboxes
@@ -95,7 +94,7 @@ export class NewProductComponent {
   showColorError = false;
   showTypeError = false;
 
-  constructor(private router: Router, private NewproductService: NewproductService) { }
+  constructor(private router: Router, private ProductService: ProductService) { }
 
   ngOnInit() {
 
@@ -121,7 +120,7 @@ export class NewProductComponent {
     const month = String(today.getMonth() + 1).padStart(2, '0');
     const day = String(today.getDate()).padStart(2, '0');
     // date: YYYY-MM-DD
-    const formattedDate = `${year}-${month}-${day}`;
+    const formattedDate = `${year}-${month}-${day}T${('0' + today.getHours()).slice(-2)}:${('0' + today.getMinutes()).slice(-2)}:${('0' + today.getSeconds()).slice(-2)}Z`;
     this.product.creationTime = formattedDate;
   }
 
@@ -155,8 +154,6 @@ export class NewProductComponent {
 
   resetSubcategories() {
     // Clear subcategory values
-    this.product.size = [];
-    this.product.color = [];
     this.product.type = ''; // Adjust based on your specific logic
   }
 
@@ -225,62 +222,71 @@ export class NewProductComponent {
       Array.from(input.files).forEach(file => {
         const reader = new FileReader();
         reader.onload = (e: ProgressEvent<FileReader>) => {
-          this.photos.push({ src: e.target!.result as string, file });
         };
         reader.readAsDataURL(file);
       });
     }
   }
 
-  // Method to delete a photo by index
-  removePhoto(index: number): void {
-    this.photos = this.photos.filter((_, i) => i !== index);
-  }
-
   // Function to be called when sending the form
-  onSubmit(form: any) {
-    const tag = form.value.tag;
+  onSubmit(productForm: any) {
+    const tag = this.product.tag;
     this.validateSubcategories(tag);
-
-    console.log("Submitting form:", form.value);
+  
+    // Accede a los valores del formulario usando productForm.value
+    const formValues = productForm.value;
+    console.log("Submitting form:", formValues);
+  
     console.log("Errors before validation:", {
       sizeError: this.showSizeError,
       colorError: this.showColorError,
       typeError: this.showTypeError
     });
-
-    if (this.photos.length === 0) {
-      return;  
-    }
-
+  
     this.validateSubcategories(this.product.tag);
-
+  
     console.log("Errors after validation:", {
       sizeError: this.showSizeError,
       colorError: this.showColorError,
       typeError: this.showTypeError
     });
-
-
-    if (form.valid && !this.showSizeError && !this.showColorError) {
+  
+    if (productForm.valid && !this.showSizeError && !this.showColorError) {
       // Categories
-      this.product.size = this.getSelectedOptions(`${tag}Size`);
-      this.product.color = this.getSelectedOptions(`${tag}Color`);
-      this.product.photos = this.photos;
-      this.NewproductService.addProduct(this.product);
+      this.product.size = this.getSelectedOptions(`${tag}Size`).join(', '); // Convert to comma-separated string
+      this.product.color = this.getSelectedOptions(`${tag}Color`).join(', '); 
+  
+      // Construye el objeto con los campos requeridos
+      const productData = {
+        id: this.product.id,
+        name: this.product.name,
+        description: this.product.description,
+        sellerId: 1,
+        price: this.product.price,
+        creationTime: this.product.creationTime,
+        stock: this.product.stock,
+        size: this.product.size, 
+        type: this.product.type,
+        color: this.product.color, 
+        tag: this.product.tag
+      };
+  
+      // Envía los datos al backend
+      this.ProductService.createProduct(productData).subscribe((productData) => {
+        console.log("Product added successfully." , productData.id);
+      });
 
-      // Formulary in console
-      console.log('Form Submitted:', this.product);
+      // Formulario en consola
+      console.log('Form Submitted:', productData);
+      console.log(productData);
 
-      /*form.reset();
-      this.photos = [];*/
       this.router.navigate(['/products-profile']);
       this.validateOnLoad = false;
     } else {
       console.log('Form has errors');
     }
   }
-
+  
   // Function to check if checkboxes are selected
   hasSelectedCheckboxes(groupName: string): boolean {
     const checkboxes = document.querySelectorAll(`input[name="${groupName}"]:checked`);

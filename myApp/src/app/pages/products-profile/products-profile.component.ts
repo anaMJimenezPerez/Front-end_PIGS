@@ -1,6 +1,7 @@
-import { Component, OnInit, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../../services/product.service';
+import { Product } from 'src/app/interfaces/product';
 import { Router } from '@angular/router';
-import { NewproductService } from 'src/app/services/newproduct.service';
 
 @Component({
   selector: 'app-products-profile',
@@ -8,44 +9,17 @@ import { NewproductService } from 'src/app/services/newproduct.service';
   styleUrls: ['./products-profile.component.css']
 })
 export class ProductsProfileComponent implements OnInit {
-  products: any[] = [];
 
-  @ViewChild('imgContainer', { static: true }) imgContainer!: ElementRef;
+  products: Product[] = [];
+  userId: number = 1;
 
   constructor(
+    private productService: ProductService,
     private router: Router,
-    private newProductService: NewproductService,
-    private renderer: Renderer2
   ) { }
 
-  ngOnInit() {
-    this.newProductService.currentProducts.subscribe(products => {
-      this.products = products;
-    });
-  }
-
-  loadImage(event: any, product: any) {
-    const imgElement: HTMLImageElement = event.target;
-    this.adjustImageSize(imgElement, product);
-  }
-
-  adjustImageSize(img: HTMLImageElement, product: any) {
-    const container = this.imgContainer.nativeElement;
-    const containerWidth = container.offsetWidth;
-    const containerHeight = container.offsetHeight;
-    const imgWidth = img.naturalWidth;
-    const imgHeight = img.naturalHeight;
-
-    const containerRatio = containerWidth / containerHeight;
-    const imgRatio = imgWidth / imgHeight;
-
-    if (containerRatio > imgRatio) {
-      this.renderer.setStyle(img, 'width', '100%');
-      this.renderer.setStyle(img, 'height', 'auto');
-    } else {
-      this.renderer.setStyle(img, 'width', 'auto');
-      this.renderer.setStyle(img, 'height', '100%');
-    }
+  ngOnInit(): void {
+    this.loadProducts();
   }
 
   navigateToNewProduct() {
@@ -53,16 +27,52 @@ export class ProductsProfileComponent implements OnInit {
     this.router.navigate(['/newproduct']);
   }
 
-  addStock(product: any) {
-    // Increment stock
-    product.stock += 1;
-    // Update the product in the service
-    this.newProductService.updateProduct(product);
-    // Log the action
-    console.log(`Stock after adding for product ${product.id}: ${product.stock}`);
+  loadProducts(): void {
+    this.productService.getAllProductsByUserId(this.userId).subscribe(products => {
+      this.products = products;
+    });
   }
 
-  deleteProduct(product: any): void {
-    this.products = this.products.filter(p => p !== product);
+  deleteProduct(product: Product): void {
+    this.products = this.products.filter(p => p.id !== product.id);
+    this.productService.deleteProduct(product.id).subscribe(
+      () => {
+        console.log("Product deleted successfully.");
+      },
+      (error) => {
+        console.error("Error deleting product:", error);
+        this.loadProducts();
+      }
+    );
   }
+
+    /*updateStock(product: Product): void {
+    if (isNaN(product.stock) || product.stock < 0) {
+      console.error("Invalid stock value:", product.stock);
+      return;
+    }
+  
+    // Crea una copia del producto con solo el campo de stock actualizado
+    const updatedProduct: Product = {
+      ...product,
+      stock: product.stock
+    };
+  
+    // Actualiza el producto en el backend
+    this.productService.updateProduct(updatedProduct).subscribe(
+      () => {
+        console.log("Stock updated successfully.");
+        // Actualiza el producto en la lista local solo si la solicitud al backend tiene éxito
+        const index = this.products.findIndex(p => p.id === product.id);
+        if (index !== -1) {
+          this.products[index].stock = product.stock;
+        } else {
+          console.error("Product not found in the list.");
+        }
+      },
+      (error) => {
+        console.error("Error updating stock:", error);
+      }
+    );
+  }*/
 }
