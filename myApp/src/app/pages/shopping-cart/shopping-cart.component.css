@@ -12,6 +12,27 @@
     padding: 1rem;
 }
 
+.btn {
+    border-radius: 10px 0px 10px 0px;
+    font-weight: bold;
+    color: black;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn img{
+    width: 2rem;
+    height: 2rem;
+    margin-right: 5px;
+}
+
+.btn-danger {
+border: none;
+background-color: transparent;
+padding: 0.5rem;
+display: inline-flex;
+}
+
 .imgCart img{
     height: 15rem;
 }

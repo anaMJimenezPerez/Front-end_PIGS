@@ -31,6 +31,7 @@ export class SignUpComponent {
   imageUrl: string | ArrayBuffer = "";
 
   signUpForm = new FormGroup({
+    image: new FormControl(''),
     name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', [Validators.minLength(8), Validators.required ]),
@@ -62,6 +63,10 @@ export class SignUpComponent {
     }
   }
 
+  get image(){
+    return this.signUpForm.get('image');
+  }
+
   get name(){
     return this.signUpForm.get('name');
   }
@@ -81,9 +86,9 @@ export class SignUpComponent {
   }
 
   submit(){
-    const { name, email, password, confirmPassword } = this.signUpForm.value;
+    const { image, name, email, password, confirmPassword } = this.signUpForm.value;
 
-    if (!this.signUpForm.valid || !name || !password || !email || !confirmPassword) {
+    if (!this.signUpForm.valid || !image || !name || !password || !email || !confirmPassword) {
       this.completeForm = false;
     } else {
     const user: User = {
@@ -95,7 +100,7 @@ export class SignUpComponent {
         "address": "",
         "lastViewed": 0,
         "favorites": "",
-        "image": this.imageUrl.toString()
+        "image": image
     };
       this.authService.signup(user)
       .subscribe(

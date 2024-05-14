@@ -14,8 +14,26 @@
     </ng-template>
     <!--Lo que se muestra en el menu cuando un usuario se registra-->
     <ng-container *ngIf="!userCartIsEmpty; else empty">
-        <div class="productsCart"></div>
-        <p>Mostrar productos</p>
+        <div class="productsCart">
+            <div *ngFor="let product of products" class="col-md-4 mb-3">
+                <div class="card">
+                  <img class="card-img-top" [src]="product.image" alt="Product image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.price}} €</p>
+                        <p class="card-description">{{ product.description}}</p>
+                        <div class="container-buttons d-flex align-items-center">
+                            <div class="form-group">
+                            </div>
+                            <button class="btn btn-danger mt-2" (click)="deleteProduct(product)">
+                                <img src="../../../assets/images/garbage_icon.png" alt="Delete">
+                                Delete product
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ng-container>
 </div>
     
