@@ -2,11 +2,14 @@ import { Component, OnInit  } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { AuthUserService } from 'src/app/services/auth-user.service';
 import { FollowsService } from 'src/app/services/follows.service';
+import { CartService } from 'src/app/services/cart.service';
 import { forkJoin } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { User } from 'src/app/interfaces/user';
+import { Follow } from 'src/app/interfaces/follow';
+import { Cart } from 'src/app/interfaces/cart';
 
 @Component({
   selector: 'app-home',
@@ -21,43 +24,40 @@ export class HomeComponent implements OnInit{
   newProducts: Product[] = [];
 
   // Users
-  follows: any[] = [];
+  follows: Follow[] = [];
   isAuthenticated: boolean = false;
-  followedUsers: any[] = [];
   users: User[] = [];
-  usersImages: any[] = [];
+  orderFollowers: User[] = [];
+  addedUsers: Set<any> = new Set();
+  loggedInUser: User | null = null;
+
+  user: User | undefined;
+  loggedUser = this.authService.getLoggedUser();
 
   constructor(
     private productService: ProductService,
     private followService: FollowsService,
     private authService: AuthUserService,
     private userService: UserService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private cartService: CartService
+  ) {
+    const savedUsers = localStorage.getItem('addedUsers');
+    if (savedUsers) {
+      this.addedUsers = new Set(JSON.parse(savedUsers));
+    }
+  }
+
+
 
   ngOnInit() {
 
     //Part the products
     forkJoin([
-      this.productService.getAllProducts(),
-      this.productService.getAllProductImages()
-    ]).subscribe(([products, productImages]) => {
+      this.productService.getAllProducts()
+    ]).subscribe(([products]) => {
 
-      //Images the product
-      const productImagesMap = new Map<number, string[]>();
-      productImages.forEach((image: any) => {
-        const productId = image.product_id;
-        if (!productImagesMap.has(productId)) {
-          productImagesMap.set(productId, []);
-        }
-        productImagesMap.get(productId)?.push(image.images_path);
-      });
-
-      // Products with image
-      this.products = products.map((product: Product) => {
-        const images = productImagesMap.get(product.id) ?? [];
-        return { ...product, images_path: images };
-      });
+      this.products = products;
 
       //New products
       const fifteenDaysAgo = new Date();
@@ -76,35 +76,95 @@ export class HomeComponent implements OnInit{
     //Part the user
     forkJoin([
       this.userService.getAllUser(),
-      this.followService.getAllFollows()
-    ]).subscribe(([users, follows]) => {
+      this.userService.getByFollowers()
+    ]).subscribe(([users, orderFollowers]) => {
 
       this.users = users;
+      this.orderFollowers = orderFollowers;
 
       //Authenticated
       this.authService.currentUser$.subscribe((isAuthenticated: boolean) => {
-        this.isAuthenticated = isAuthenticated;
         if (isAuthenticated) {
-          this.authService.getLoggedInUserId().subscribe(loggedInUserId => {
-            this.follows = follows.filter((follow: any) => follow.follower_id === loggedInUserId);
+          this.authService.getLoggedInUser().subscribe((user: User | null) => {
+            this.loggedInUser = user;
           });
         }
       });
 
-      this.followedUsers = this.follows.map((follow) => {
-        const followedUser = this.users.find((user) => user.id === follow.followed_id);
-        if (followedUser) {
-          return {
-            id: followedUser.id,
-            name: followedUser.name,
-            image: followedUser.image
-          };
+    });
+  }
+
+  addToCart(event: Event, product: Product): void {
+    event.stopPropagation(); // Avoid page reloads
+    
+
+    if (this.loggedInUser && this.loggedInUser?.id) {
+      console.log("llega");
+      if (this.authService.isAuthenticated()) {
+        const productId = product.id.toString();
+
+
+        console.log(product);
+
+        const cartItem: Cart = {
+          id: 0,
+          user: this.loggedInUser,
+          product: product,
+          amount: 1
+        };
+
+        this.cartService.postAddProduct(cartItem).subscribe();
+
+        console.log("Se me a añadido al carrito");
+
+      } else {
+        console.error('User is not authenticated');
+      }
+    }
+  }
+
+  toggleUserIcon(event: Event, user: any) {
+    event.stopPropagation();
+
+    if (this.loggedInUser && this.loggedInUser.id !== user.id) {
+
+      this.authService.getLoggedInUser().subscribe((loggedInUser: User | null) => {
+
+        if (loggedInUser !== null) {
+          if (this.addedUsers.has(user)) {
+
+            const follow: Follow = { follower: loggedInUser, followed: user };
+            this.followService.deleteFollow(follow).subscribe();
+            this.addedUsers.delete(user);
+            try {
+              localStorage.setItem('addedUsers', JSON.stringify([...this.addedUsers]));
+              console.log("Estado del icono guardado correctamente");
+            } catch (error) {
+              console.error("Error al guardar el estado del icono en el almacenamiento local:", error);
+            }
+            console.log("Eliminar");
+          } else {
+            console.log(loggedInUser);
+            console.log(user);
+            const follow: Follow = { follower: loggedInUser, followed: user };
+            console.log(follow);
+            this.followService.createFollow(follow).subscribe();
+            this.addedUsers.add(user);
+            try {
+              localStorage.setItem('addedUsers', JSON.stringify([...this.addedUsers]));
+              console.log("Estado del icono guardado correctamente");
+            } catch (error) {
+              console.error("Error al guardar el estado del icono en el almacenamiento local:", error);
+            }
+            console.log("Crear");
+          }
         } else {
-          return null;
+          console.log("Usuario no logueado");
         }
       });
-
-    });
+    } else {
+      console.log("No estas logueado");
+    }
   }
 
   productDetails(product: Product){
@@ -112,15 +172,17 @@ export class HomeComponent implements OnInit{
   }
 
   userDetails(user: User){
-    this.router.navigateByUrl('/user', { state: { user } });
+    this.router.navigateByUrl('/user', { state: { user, loggedInUser: this.loggedInUser } });
   }
 
   //Button the Show More
   totalRowsToShow: number = 4;
+  totalRowsToShowUser: number = 4;
   totalRowsToShowFavorite: number = 4;
   totalRowsToShowNewProducts: number = 4;
   totalRowsToShowFollows: number = 4;
   showAllRows: boolean = false;
+  showAllRowsUser: boolean = false;
   showAllRowsFavorite: boolean = false;
   showAllRowsNewProducts: boolean = false;
   showAllRowsFollows: boolean = false;
@@ -142,8 +204,8 @@ export class HomeComponent implements OnInit{
       this.totalRowsToShow = this.adjustTotalRows(id, this.totalRowsToShow, list, showAllRows);
       this.showAllRows = !showAllRows && this.totalRowsToShow === list.length;
     } else if (id === 2) {
-      this.totalRowsToShowFavorite = this.adjustTotalRows(id, this.totalRowsToShowFavorite, list, showAllRows);
-      this.showAllRowsFavorite = !showAllRows && this.totalRowsToShowFavorite === list.length;
+      this.totalRowsToShowUser = this.adjustTotalRows(id, this.totalRowsToShowUser, list, showAllRows);
+      this.showAllRowsUser = !showAllRows && this.totalRowsToShowUser === list.length;
     } else if (id === 3) {
       this.totalRowsToShowNewProducts = this.adjustTotalRows(id, this.totalRowsToShowNewProducts, list, showAllRows);
       this.showAllRowsNewProducts = !showAllRows && this.totalRowsToShowNewProducts === list.length;

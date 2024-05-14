@@ -11,6 +11,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { OrdersProfileComponent } from './pages/orders-profile/orders-profile.component';
 import { FavouritesProfileComponent } from './pages/favourites-profile/favourites-profile.component';
 import { ProductsProfileComponent } from './pages/products-profile/products-profile.component';
+import { NewProductComponent } from './pages/new-product/new-product.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'products-profile', component: ProductsProfileComponent },
   { path: 'orders-profile', component: OrdersProfileComponent },
   { path: 'favourites-profile', component: FavouritesProfileComponent },
+  { path: 'newproduct', component: NewProductComponent}
 
 ];
 
