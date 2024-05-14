@@ -82,7 +82,7 @@ export class SignUpComponent {
 
   submit(){
     const { name, email, password, confirmPassword } = this.signUpForm.value;
-    
+
     if (!this.signUpForm.valid || !name || !password || !email || !confirmPassword) {
       this.completeForm = false;
     } else {
@@ -119,6 +119,6 @@ export class SignUpComponent {
       .subscribe(response => {
         console.log(response);
       });
-    } 
+    }
   }
 }

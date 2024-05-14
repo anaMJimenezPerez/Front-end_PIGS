@@ -43,4 +43,13 @@ export class UserService {
       })
     );
   }
+
+  getFollowing(userId: number): Observable<any>{
+    return this.http.get('http://localhost:8080/users/following?id=' + userId);
+  }
+
+  getByFollowers(): Observable<any>{
+    return this.http.get('http://localhost:8080/users/getByFollowers');
+  }
+
 }

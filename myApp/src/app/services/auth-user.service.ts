@@ -80,4 +80,9 @@ export class AuthUserService {
     const userJson = localStorage.getItem(this.currentUserKey);
     return userJson ? JSON.parse(userJson) : null;
   }
+
+  getLoggedInUser(): Observable<User | null> {
+    const currentUser = this.getCurrentUser();
+    return currentUser ? of(currentUser) : of(null);
+  }
 }
