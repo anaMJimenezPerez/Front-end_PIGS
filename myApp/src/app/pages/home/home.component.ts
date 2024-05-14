@@ -94,10 +94,12 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  addToCart(event: Event,product: Product): void {
-    event.preventDefault(); // Avoid page reloads
+  addToCart(event: Event, product: Product): void {
+    event.stopPropagation(); // Avoid page reloads
+    
 
-    if (this.user && this.user.id !== undefined) {
+    if (this.loggedInUser && this.loggedInUser?.id) {
+      console.log("llega");
       if (this.authService.isAuthenticated()) {
         const productId = product.id.toString();
 
@@ -106,7 +108,7 @@ export class HomeComponent implements OnInit{
 
         const cartItem: Cart = {
           id: 0,
-          user: this.loggedUser,
+          user: this.loggedInUser,
           product: product,
           amount: 1
         };

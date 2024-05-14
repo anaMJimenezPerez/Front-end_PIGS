@@ -13,4 +13,12 @@ export class CartService {
   postAddProduct(cart: Cart): Observable<Cart> {
     return this.http.post<Cart>('http://localhost:8080/cart', cart);
   }
+
+  getUserProducts(user_id: number): Observable<any>{
+    return this.http.get<Cart>(`http://localhost:8080/cart?user_id=${user_id}`);
+  } 
+
+  deleteCart(cart: Cart): Observable<Cart> {
+    return this.http.post<Cart>('http://localhost:8080/cart', cart);
+  }
 }
