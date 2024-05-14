@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from 'src/app/interfaces/product';
 import { AuthUserService } from 'src/app/services/auth-user.service';
-import { ProductImage } from '../../interfaces/productimage';
-import { delay } from 'rxjs';
+import * as CryptoJS from 'crypto-js';
+
 
 @Component({
   selector: 'app-new-product',
@@ -14,8 +14,6 @@ import { delay } from 'rxjs';
 export class NewProductComponent {
   validateOnLoad = true;
   loggedUser = this.authService.getLoggedUser();
-
-  productImages: ProductImage[] = [];
 
   // Variable initialization
   product: Product = {
@@ -32,7 +30,6 @@ export class NewProductComponent {
     type: '',
     image: ''
   };
-  
 
   // Value of the checkboxes
   clothingSizes = [
@@ -227,19 +224,15 @@ export class NewProductComponent {
   previewPhotos(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files) {
-      this.productImages = []; // Limpiar la matriz de imágenes seleccionadas
       Array.from(input.files).forEach(file => {
         const reader = new FileReader();
         reader.onload = (e: ProgressEvent<FileReader>) => {
-          // Agregar la imagen a la matriz de imágenes seleccionadas si e.target no es nulo
-          if (e.target?.result) {
-            this.productImages.push({ id: 0, productId: 0, imageUrl: e.target.result as string });
-          }
         };
         reader.readAsDataURL(file);
       });
     }
   }
+
 
   // Function to be called when sending the form
   onSubmit(productForm: any) {
@@ -284,13 +277,10 @@ export class NewProductComponent {
         tag: this.product.tag,
         image: this.product.image
       };
-  
-      // Envía los datos al backend
+
       this.ProductService.createProduct(productData).subscribe((product) => {
         console.log("Product added successfully." , product);
       });
-
-      
 
       // Formulario en consola
       console.log('Form Submitted:', productData);
