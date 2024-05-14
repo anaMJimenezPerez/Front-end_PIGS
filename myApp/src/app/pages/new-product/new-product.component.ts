@@ -29,7 +29,8 @@ export class NewProductComponent {
     description: '',
     size: '',
     color: '',
-    type: '' // type for jewelry and ceramic
+    type: '',
+    image: ''
   };
   
 
@@ -280,7 +281,8 @@ export class NewProductComponent {
         size: this.product.size, 
         type: this.product.type,
         color: this.product.color, 
-        tag: this.product.tag
+        tag: this.product.tag,
+        image: this.product.image
       };
   
       // Envía los datos al backend
