@@ -48,7 +48,19 @@ export class SignUpComponent {
         // Actualiza el atributo src de la imagen con la URL de la imagen seleccionada
         document.getElementById('userImage')?.setAttribute('src', this.imageUrl);
     }
-}
+  }
+
+  updateImage() {
+    const imageUrlInput = document.getElementById('image') as HTMLInputElement;
+    const imageUrl = imageUrlInput.value.trim();
+    
+    if (imageUrl) {
+      // Actualiza la URL de la imagen en la propiedad imageUrl
+      this.imageUrl = imageUrl;
+    } else {
+      console.error('Please enter a valid image URL');
+    }
+  }
 
   get name(){
     return this.signUpForm.get('name');
