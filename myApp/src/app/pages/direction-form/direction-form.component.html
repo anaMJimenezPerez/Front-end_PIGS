@@ -16,28 +16,52 @@
                         <div class="field">
                             <label>Street<br></label>
                             <input matInput class="text" id="street" type="text" formControlName="street">
+                            <mat-error id="error-message" *ngIf="street?.errors?.['required'] && street?.['touched']">
+                                <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                                Enter the street
+                            </mat-error>
                         </div>
                         <div class="field">
                             <label>Postal code<br></label>
                             <input matInput class="text" id="postalCode" type="text" formControlName="postalCode">
+                            <mat-error id="error-message" *ngIf="postalCode?.errors?.['required'] && postalCode?.['touched']">
+                                <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                                Enter the postal code
+                            </mat-error>
                         </div>
                         <div class="field">
                             <label>Province<br></label>
                             <input class="text" id="province" name="password" type="text" formControlName="province">
+                            <mat-error id="error-message" *ngIf="province?.errors?.['required'] && province?.['touched']">
+                                <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                                Enter the province
+                            </mat-error>
                         </div>
                     </div>
                     <div class="form_content_right col-md-6">
                         <div class="field">
                             <label>Number<br></label>
                             <input matInput class="text" id="number" type="text" formControlName="number">
+                            <mat-error id="error-message" *ngIf="number?.errors?.['required'] && number?.['touched']">
+                                <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                                Enter the number
+                            </mat-error>
                         </div>
                         <div class="field">
                             <label>City<br></label>
                             <input matInput class="text" id="city" type="text" formControlName="city">
+                            <mat-error id="error-message" *ngIf="city?.errors?.['required'] && city?.['touched']">
+                                <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                                Enter the city
+                            </mat-error>
                         </div>
                         <div class="field">
                             <label>Country<br></label>
                             <input class="text" id="province" name="password" type="text" formControlName="country">
+                            <mat-error id="error-message" *ngIf="country?.errors?.['required'] && country?.['touched']">
+                                <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                                Enter the country
+                            </mat-error>
                         </div>
                         <div class="check">
                             <input type="checkbox" id="miCheckbox" name="miCheckbox" >
@@ -50,6 +74,10 @@
             <div class="buttons col">
                 <div class="field">
                     <input class="button" type="submit" value="Save & finish" (click)="save()">
+                    <mat-error id="error-message" *ngIf="!completeForm"> 
+                        <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                        All fields must be filled out
+                    </mat-error>
                 </div>
                 <!--<div class="field">
                     <input class="button" id="buttonSkip" type="submit" value="SKIP" (click)="navigateToDirectionFormPage()">

@@ -10,6 +10,7 @@ import { User } from 'src/app/interfaces/user';
   styleUrls: ['./direction-form.component.css']
 })
 export class DirectionFormComponent implements OnInit{
+  completeForm = true;
   user: User = {
     "id": 0,
     "name": "",
@@ -21,7 +22,7 @@ export class DirectionFormComponent implements OnInit{
     "favorites": "",
     "image": ""
 };
-   
+
 
   directionForm = new FormGroup({
     street: new FormControl('', Validators.required),
@@ -30,8 +31,29 @@ export class DirectionFormComponent implements OnInit{
     number: new FormControl('', Validators.required),
     city: new FormControl('', Validators.required),
     country: new FormControl('', Validators.required)
+  })
+
+  get street(){
+    return this.directionForm.get('street');
   }
-  )
+  get postalCode(){
+    return this.directionForm.get('postalCode');
+  }
+
+  get province(){
+    return this.directionForm.get('province');
+  }
+  get number(){
+    return this.directionForm.get('number');
+  }
+
+  get city(){
+    return this.directionForm.get('city');
+  }
+  get country(){
+    return this.directionForm.get('country');
+  }
+
   constructor(private router: Router, private activateRoute: ActivatedRoute, private userService: UserService) {}
 
   navigateToDirectionFormPage() {
@@ -61,12 +83,12 @@ export class DirectionFormComponent implements OnInit{
       "image": ""
     };
     const { street, postalCode, province, number, city, country } = this.directionForm.value;
-    
+
     if (!this.directionForm.valid || !street || !postalCode || !province || !number || !city || !country) {
-      
+      this.completeForm = false;
     } else {
       const address = 'Street ' + street + " " + number + ", City " + city + ", CP " + postalCode + ", province " + province + ", country " + country;
-      
+
       this.userService.getUserInfo(this.user.email)
       .subscribe(
         (response) => {
@@ -86,13 +108,13 @@ export class DirectionFormComponent implements OnInit{
           this.userService.userDirectionInfo(userParams.id, this.user).subscribe(
             (response) => {
               console.log("Usuario registrado exitosamente:", response);
-              
+
             }
           );
         }
       );
-      
-      this.navigateToDirectionFormPage();     
+
+      this.navigateToDirectionFormPage();
     }
   }
 }

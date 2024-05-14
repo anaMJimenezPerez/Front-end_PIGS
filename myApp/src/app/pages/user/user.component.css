@@ -10,6 +10,21 @@
   object-position: center;
 }
 
+#styleImage{
+  width: 1rem;
+  position: absolute;
+  left: 16.2rem;
+  top: 6.7rem;
+  margin: 0.5rem;
+}
+
+#styleImageFavorite{
+  width: 1rem;
+  position: absolute;
+  right: 0.4rem;
+  margin: 0.5rem;
+}
+
 #title{
   font-weight: bold;
   font-size: 1.1rem;
