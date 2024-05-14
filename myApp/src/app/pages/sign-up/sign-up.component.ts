@@ -60,11 +60,12 @@ export class SignUpComponent {
 
   submit(){
     const { name, email, password, confirmPassword } = this.signUpForm.value;
-    
+
     if (!this.signUpForm.valid || !name || !password || !email || !confirmPassword) {
       this.completeForm = false;
     } else {
     const user: User = {
+        "id": 0,
         "name": name,
         "email": email,
         "password": SHA256(password).toString(),
@@ -96,6 +97,6 @@ export class SignUpComponent {
       .subscribe(response => {
         console.log(response);
       });
-    } 
+    }
   }
 }

@@ -20,6 +20,8 @@ export class UserComponent implements OnInit{
   userCountProductos: any;
   productCounters: { [productId: string]: number } = {};
 
+  loggedUser = this.authService.getLoggedUser();
+
   constructor(
     private productService: ProductService,
     private userService: UserService,
@@ -61,16 +63,12 @@ export class UserComponent implements OnInit{
 
         const cartItem: Cart = {
           id: 0,
-          user: this.user,
+          user: this.loggedUser,
           product: product,
           amount: 1
         };
 
-        this.cartService.postAddProduct(cartItem).subscribe((createdCart) => {
-          console.log('Product added to cart successfully. Cart ID:', createdCart.id);
-
-          cartItem.id = createdCart.id;
-        });
+        this.cartService.postAddProduct(cartItem).subscribe();
 
         console.log("Se me a añadido al carrito");
 
