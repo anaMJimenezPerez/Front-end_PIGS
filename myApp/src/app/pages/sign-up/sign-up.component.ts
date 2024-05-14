@@ -28,6 +28,7 @@ export function passwordsMatch(): ValidatorFn{
 
 export class SignUpComponent {
   completeForm = true;
+  imageUrl: string | ArrayBuffer = "";
 
   signUpForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -39,6 +40,15 @@ export class SignUpComponent {
   )
 
   constructor(private router: Router, private authService: AuthUserService) {}
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+        this.imageUrl = URL.createObjectURL(file);
+        // Actualiza el atributo src de la imagen con la URL de la imagen seleccionada
+        document.getElementById('userImage')?.setAttribute('src', this.imageUrl);
+    }
+}
 
   get name(){
     return this.signUpForm.get('name');
@@ -73,7 +83,7 @@ export class SignUpComponent {
         "address": "",
         "lastViewed": 0,
         "favorites": "",
-        "image": ""
+        "image": this.imageUrl.toString()
     };
       this.authService.signup(user)
       .subscribe(

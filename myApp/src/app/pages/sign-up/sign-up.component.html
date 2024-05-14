@@ -7,6 +7,12 @@
             <div class="form_content">
                 <form id="form" [formGroup]="signUpForm" (ngSubmit)="submit()">
                     <h2 id="title_log">Create new account</h2>
+                    <div class="image_container">
+                        <img id="userImage" src="../../../assets/images/signup/placeholder.jpg" alt="signupImage">
+                        <label class="buttonAddImage" for="fileInput">Add image</label>
+                        <input id="fileInput" class="buttonAddImage" type="file" (change)="onFileSelected($event)" >
+                        
+                    </div>
                     <div class="field">
                         <label>Name<br></label>
                         <input matInput class="text" id="name" name="email" type="text" placeholder="name" formControlName="name">
