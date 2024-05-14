@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from 'src/app/interfaces/product';
 import { Router } from '@angular/router';
-import { ProductImage } from 'src/app/interfaces/productimage';
 
 @Component({
   selector: 'app-products-profile',
@@ -28,7 +27,6 @@ export class ProductsProfileComponent implements OnInit {
     this.router.navigate(['/newproduct']);
   }
 
-  
 
   loadProducts(): void {
     this.productService.getAllProductsByUserId(this.userId).subscribe(products => {

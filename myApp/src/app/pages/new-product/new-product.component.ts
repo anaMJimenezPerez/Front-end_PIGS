@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from 'src/app/interfaces/product';
 import { AuthUserService } from 'src/app/services/auth-user.service';
-import { ProductImage } from '../../interfaces/productimage';
 import * as CryptoJS from 'crypto-js';
 
 
@@ -15,12 +14,6 @@ import * as CryptoJS from 'crypto-js';
 export class NewProductComponent {
   validateOnLoad = true;
   loggedUser = this.authService.getLoggedUser();
-
-  productImages: ProductImage = {
-    id: 0,
-    imageUrl: '',
-    productId: 0,
-  };
 
   // Variable initialization
   product: Product = {
@@ -34,23 +27,9 @@ export class NewProductComponent {
     description: '',
     size: '',
     color: '',
-    type: '' // type for jewelry and ceramic
+    type: '',
+    image: ''
   };
-  
-  productsaved: Product = {
-    id: 0,
-    name: '',
-    price: 0,
-    sellerId: this.loggedUser.id,
-    stock: 0,
-    creationTime: '',
-    tag: '',
-    description: '',
-    size: '',
-    color: '',
-    type: '' 
-  };
-  
 
   // Value of the checkboxes
   clothingSizes = [
@@ -138,30 +117,6 @@ export class NewProductComponent {
     this.setInitialCategory();
 
   }
-
-  /* method to script url 
-  async onFileSelected(event: any) {
-    const imagenFile = event.target.files[0];
-    console.log('AQUI ESTA LA IMAGEN', imagenFile);
-    const urlUnica = await this.generarUrlUnica(imagenFile);
-    console.log('URL única para la imagen:', urlUnica);
-  }
-
-  // Method to generate a unique URL for an image
-  generarUrlUnica(imagen: File): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const imagenBytes = new Uint8Array(reader.result as ArrayBuffer);
-        const hash = CryptoJS.SHA256(CryptoJS.lib.WordArray.create(imagenBytes));
-        const hashString = hash.toString(CryptoJS.enc.Hex);
-        const urlUnica = `https://ejemplo.com/imagen/${hashString}`;
-        resolve(urlUnica);
-      };
-      reader.onerror = (error) => reject(error);
-      reader.readAsArrayBuffer(imagen);
-    });
-  }*/
 
   // Date method
   setCurrentDate() {
@@ -319,23 +274,12 @@ export class NewProductComponent {
         size: this.product.size, 
         type: this.product.type,
         color: this.product.color, 
-        tag: this.product.tag
+        tag: this.product.tag,
+        image: this.product.image
       };
 
-      // Envía los datos al backend
       this.ProductService.createProduct(productData).subscribe((product) => {
         console.log("Product added successfully." , product);
-        this.productsaved = product;
-      });
-
-      const productImages = {
-        id: 0,
-        imageUrl: '',
-        productId: this.product.id,
-      };
-      
-      this.ProductService.addProductImage(productImages).subscribe((productsaved) => {
-        console.log("Product with image", productsaved);
       });
 
       // Formulario en consola

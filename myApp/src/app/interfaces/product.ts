@@ -10,4 +10,5 @@ export interface Product {
   type: string;
   color: string;
   size: string;
+  image: string;
 }
