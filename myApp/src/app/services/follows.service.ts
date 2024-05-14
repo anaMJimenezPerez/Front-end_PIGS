@@ -14,11 +14,15 @@ export class FollowsService {
     return this.http.post<Follow>('http://localhost:8080/follows', follow);
   }
 
-  deleteFollow(userId: number): Observable<any>{
-    return this.http.delete('http://localhost:8080/delete?id=' + userId);
+  deleteFollow(follow: Follow): Observable<any>{
+    return this.http.delete('http://localhost:8080/follows', {body:follow});
   }
 
   isFollowed(follower: number, followed: number): Observable<any>{
     return this.http.get('http://localhost:8080/isFollowedBy?id=' + {follower,followed});
+  }
+
+  getAllFollowed(): Observable<any>{
+    return this.http.get('http://localhost:8080/follows/getAllFollowed');
   }
 }

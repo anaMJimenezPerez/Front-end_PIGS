@@ -11,7 +11,7 @@
           <div class="card-body" style="text-align:center;">
             <h5 class="card-title titelCard">{{product.name}}</h5>
             <p class="card-text">{{product.price}}</p>
-            <a href="#" class="buttonFormat addCard">Add to cart</a>
+            <a href="#" id="buttonFormat" (click)="addToCart($event, product)">Add to cart</a>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
       <div *ngFor="let user of users.slice(0, totalRowsToShowUser)" class="col-md-3">
         <div class="card mb-4" (click)="userDetails(user)">
           <img class="card-img-top imageCard" [src]="user.image" alt="Card image cap">
-          <i class="material-icons styleImage" (click)="toggleUserIcon($event,user)">{{ addedUsers.has(user) ? 'person_remove' : 'person_add' }}</i>
+          <i *ngIf="loggedInUser?.id !== user.id" class="material-icons styleImage" (click)="toggleUserIcon($event,user)">{{ addedUsers.has(user) ? 'person_remove' : 'person_add' }}</i>
           <div class="card-body" style="text-align:center;">
             <h5 class="card-title titelCard">{{user.name}}</h5>
           </div>
@@ -44,6 +44,29 @@
   <div class="container">
     <button class="buttonFormat" (click)="showMore(2, users, totalRowsToShowUser, showAllRowsUser)">
       {{ showAllRowsUser ? 'Show Less' : 'Show More' }}
+    </button>
+  </div>
+
+  <div class="title">From our best creators</div>
+  <div class="line"></div>
+
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let user of orderFollowers.slice(0, totalRowsToShowFollows)" class="col-md-3">
+        <div class="card mb-4" (click)="userDetails(user)">
+          <img class="card-img-top imageCard" [src]="user.image" alt="Card image cap">
+          <i class="material-icons styleImage">person_remove</i>
+          <div class="card-body" style="text-align:center;">
+            <h5 class="card-title titelCard">{{user.name}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <button class="buttonFormat" (click)="showMore(4, orderFollowers , totalRowsToShowFollows, showAllRowsFollows)">
+      {{ showAllRowsFollows ? 'Show Less' : 'Show More' }}
     </button>
   </div>
 
@@ -59,7 +82,7 @@
           <div class="card-body" style="text-align:center;">
             <h5 class="card-title titelCard">{{product.name}}</h5>
             <p class="card-text">{{product.price}}</p>
-            <a href="#" class="buttonFormat addCard">Add to cart</a>
+            <a href="javascript:void(0);" id="buttonFormat" (click)="addToCart($event, product)">Add to cart</a>
           </div>
         </div>
       </div>
@@ -71,29 +94,4 @@
       {{ showAllRowsNewProducts ? 'Show Less' : 'Show More' }}
     </button>
   </div>
-
-  <!--div *ngIf="isAuthenticated && followedUsers.length > 0">
-    <div class="title">From your favorities creator</div>
-    <div class="line"></div>
-
-    <div class="container">
-      <div class="row">
-        <div *ngFor="let user of followedUsers.slice(0, totalRowsToShowFollows)" class="col-md-3">
-          <div class="card mb-4" (click)="userDetails(user)">
-            <img class="card-img-top imageCard" [src]="user.image" alt="Card image cap">
-            <i class="material-icons styleImage">person_remove</i>
-            <div class="card-body" style="text-align:center;">
-              <h5 class="card-title titelCard">{{user.name}}</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <button class="buttonFormat" (click)="showMore(4, followedUsers , totalRowsToShowFollows, showAllRowsFollows)">
-        {{ showAllRowsFollows ? 'Show Less' : 'Show More' }}
-      </button>
-    </div>
-  </div-->
 </body>

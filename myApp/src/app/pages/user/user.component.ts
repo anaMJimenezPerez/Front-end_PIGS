@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { CartService } from 'src/app/services/cart.service';
 import { AuthUserService } from 'src/app/services/auth-user.service';
 import { Cart } from 'src/app/interfaces/cart';
+import { Follow } from 'src/app/interfaces/follow';
 
 @Component({
   selector: 'app-user',
@@ -16,11 +17,14 @@ import { Cart } from 'src/app/interfaces/cart';
 export class UserComponent implements OnInit{
 
   user: User | undefined;
+  loggedInUser: User;
   userProducts: Product[] = [];
   userCountProductos: any;
   productCounters: { [productId: string]: number } = {};
 
   loggedUser = this.authService.getLoggedUser();
+  followService: any;
+  addedUsers: Set<any> = new Set();
 
   constructor(
     private productService: ProductService,
@@ -28,7 +32,8 @@ export class UserComponent implements OnInit{
     private authService: AuthUserService,
     private cartService: CartService
   ) {
-    this.user = history.state.user;
+    this.user = history.state.user ;
+    this.loggedInUser = history.state.loggedInUser || null;
   }
 
   ngOnInit(): void {
@@ -76,5 +81,28 @@ export class UserComponent implements OnInit{
         console.error('User is not authenticated');
       }
     }
+  }
+
+  toggleFollow(event: Event, user: User) {
+    event.stopPropagation();
+    if (this.loggedInUser && this.loggedInUser.id !== user.id) {
+      if (this.isFollowing(user)) {
+        const follow: Follow = { follower: this.loggedInUser, followed: user };
+        this.followService.deleteFollow(follow).subscribe();
+        this.addedUsers.delete(user);
+        console.log("Dejar de seguir");
+      } else {
+        const follow: Follow = { follower: this.loggedInUser, followed: user };
+        this.followService.createFollow(follow).subscribe();
+        this.addedUsers.add(user);
+        console.log("Seguir");
+      }
+    } else {
+      console.log("No estás autenticado o intentas seguirte a ti mismo");
+    }
+  }
+
+  isFollowing(user: User): boolean {
+    return this.addedUsers.has(user);
   }
 }

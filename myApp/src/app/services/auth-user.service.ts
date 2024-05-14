@@ -58,9 +58,8 @@ export class AuthUserService {
     return currentUser ? of(currentUser.id) : of(null);
   }
 
-  getLoggedInUser(): Observable<User | null> {
-    const currentUser = this.getCurrentUser();
-    return currentUser ? of(currentUser) : of(null);
+  getLoggedUser(): User{
+    return this.getCurrentUser();
   }
 
   private setCurrentUser(user: any): void {
@@ -80,5 +79,10 @@ export class AuthUserService {
   private getCurrentUser(): any {
     const userJson = localStorage.getItem(this.currentUserKey);
     return userJson ? JSON.parse(userJson) : null;
+  }
+
+  getLoggedInUser(): Observable<User | null> {
+    const currentUser = this.getCurrentUser();
+    return currentUser ? of(currentUser) : of(null);
   }
 }

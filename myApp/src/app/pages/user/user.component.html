@@ -3,7 +3,7 @@
     <div class="row">
       <div class="d-flex">
         <img [src]="user?.image" class="image" alt="Image User">
-        <i class="material-icons" id="styleImage">person_remove</i>
+        <i class="material-icons" id="styleImage" (click)="user && toggleFollow($event, user)">{{ user ? (isFollowing(user) ? 'person_remove' : 'person_add') : '' }}</i>
         <h1 id="marginName">{{user?.name}}</h1>
       </div>
     </div>
