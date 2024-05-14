@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="containerButtom">
     <button class="buttonFormat" (click)="showMore(1, products, totalRowsToShow, showAllRows)">
       {{ showAllRows ? 'Show Less' : 'Show More' }}
     </button>
@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="containerButtom">
     <button class="buttonFormat" (click)="showMore(2, users, totalRowsToShowUser, showAllRowsUser)">
       {{ showAllRowsUser ? 'Show Less' : 'Show More' }}
     </button>
@@ -55,7 +55,7 @@
       <div *ngFor="let user of orderFollowers.slice(0, totalRowsToShowFollows)" class="col-md-3">
         <div class="card mb-4" (click)="userDetails(user)">
           <img class="card-img-top imageCard" [src]="user.image" alt="Card image cap">
-          <i class="material-icons styleImage">person_remove</i>
+          <i *ngIf="loggedInUser?.id !== user.id" class="material-icons styleImage" (click)="toggleUserIcon($event,user)">{{ addedUsers.has(user) ? 'person_remove' : 'person_add' }}</i>
           <div class="card-body" style="text-align:center;">
             <h5 class="card-title titelCard">{{user.name}}</h5>
           </div>
@@ -64,7 +64,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="containerButtom">
     <button class="buttonFormat" (click)="showMore(4, orderFollowers , totalRowsToShowFollows, showAllRowsFollows)">
       {{ showAllRowsFollows ? 'Show Less' : 'Show More' }}
     </button>
@@ -89,7 +89,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="containerButtom">
     <button class="buttonFormat" (click)="showMore(3, newProducts , totalRowsToShowNewProducts, showAllRowsNewProducts)" style="margin-bottom: 2rem;">
       {{ showAllRowsNewProducts ? 'Show Less' : 'Show More' }}
     </button>
