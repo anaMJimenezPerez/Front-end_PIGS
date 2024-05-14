@@ -6,7 +6,7 @@
             <!-- Name Field -->
             <div class="form-group">
                 <label for="productName">Name:</label>
-                <input type="text" class="form-control" id="productName" name="productName" required
+                <input type="text" class="form-control" id="name" name="name" required
                     [(ngModel)]="product.name" #productName="ngModel">
                 <div *ngIf="validateOnLoad && productName.invalid" class="error-message">
                     <img src="assets/images/exclamation-circle-fill.svg" alt="Error" class="error-icon">
@@ -14,26 +14,14 @@
                 </div>
             </div>
 
-            <!-- Photo -->
+         
             <div class="form-group">
-                <label for="photos">Upload Photos:</label>
-                <input type="file" class="form-control" id="photos" name="photos" multiple accept="image/*" required 
-                    (change)="previewPhotos($event)">
-                <div *ngIf="photos.length <= 0" class="error-message">
-                    <img src="assets/images/exclamation-circle-fill.svg" alt="Error" class="error-icon">
-                    At least one photo is required
-                </div>
-            </div>
+                <label for="image">Upload Photos:</label>
+                <input type="text" class="form-control" id="image" name="image"
+                [(ngModel)]="product.image" #productName="ngModel">
+            </div> 
 
-            <!-- Container review -->
-            <div class="preview-container">
-                <div *ngFor="let photo of photos; let index = index" class="preview-item">
-                    <img [src]="photo.src" [alt]="'Image ' + (index + 1)">
-                    <button class="delete-photo" (click)="removePhoto(index)">Delete</button>
-                </div>
-            </div>
-
-            <!-- Description Field -->
+          
             <div class="form-group">
                 <label for="description">Description:</label>
                 <textarea class="form-control" id="description" name="description" required
@@ -42,12 +30,12 @@
                     <img src="assets/images/exclamation-circle-fill.svg" alt="Error" class="error-icon">
                     Description is required
                 </div>
-            </div>
+            </div> 
 
             <!-- Price -->
             <div class="form-group">
                 <label for="price">Price:</label>
-                <input type="float" class="form-control" id="price" name="price" min="0.01" step="0.1" required
+                <input type="number" class="form-control" id="price" name="price" min="0.01" step="0.1" required
                     [(ngModel)]="product.price" #price="ngModel">
                 <div *ngIf="price.invalid && (price.dirty || price.touched) || price.value <= 0" class="error-message">
                     <img src="assets/images/exclamation-circle-fill.svg" alt="Error" class="error-icon">
@@ -70,7 +58,7 @@
             <!-- Date -->
             <div class="form-group">
                 <label for="createdDate">Creation Date:</label>
-                <input type="datetime" class="form-control" id="createdDate" name="createdDate" readonly
+                <input type="text" class="form-control" id="createdDate" name="createdDate" readonly
                     [(ngModel)]="product.creationTime">
             </div>
 

@@ -53,11 +53,15 @@ body{
     width: fit-content;
 }
 
+#fileInput{
+    display: none;
+}
+
 #form{
     width: fit-content;
     margin: auto;
 }
-.field{
+.field, .image_container{
     width: 19rem;
     padding: 1rem 0;
 }
@@ -77,7 +81,7 @@ label{
 }
 
 
-.button{
+.button, .buttonAddImage{
     border: none;
     background-color: #00ADB5;
     width: 19rem;
@@ -86,6 +90,13 @@ label{
     font-weight: bolder;
     transition: 0.2s;
     border-radius: 0.5rem;
+}
+
+.buttonAddImage{
+    width: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .button:hover{

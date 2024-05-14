@@ -6,21 +6,33 @@
                 <img src="../../../assets/images/login/shop1.png" alt="loginImage">
             </div>
             <div class="form_content">
-                <form id="formularioLogIn" (submit)="onSubmit()">
+                <form id="formularioLogIn" [formGroup]="logInForm" (ngSubmit)="onSubmit()">
                     <h2 id="title_log">Welcome</h2>
                     <div class="field">
                         <label>Email address:<br></label>
                         <input matInput class="text" id="email" name="email" type="email" placeholder="name@example.com" 
-                        [(ngModel)]="email">
+                        [(ngModel)]="email" formControlName="emailControl">
+                        <mat-error id="error-message" *ngIf="emailControl?.errors?.['required'] && emailControl?.['touched']">
+                            <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                            Enter an email
+                        </mat-error>
+                        <mat-error id="error-message" *ngIf="emailControl?.errors?.['email'] && emailControl?.['touched']">
+                            <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                            Enter a valid email
+                        </mat-error>
                     </div>
                     <div class="field">
                         <label>Password<br></label>
                         <input class="text" id="password" name="password" type="password" placeholder="••••••••••"
-                        [(ngModel)]="password" >
+                        [(ngModel)]="password" formControlName="passwordControl">
+                        <mat-error id="error-message" *ngIf="passwordControl?.errors?.['required'] && passwordControl?.['touched']">
+                            <img src="../../../assets/images/exclamation-circle-fill.svg" alt="errorIcon">
+                            Enter a password
+                        </mat-error>
                     </div>
                     <div class="options">
                         <div class="check">
-                            <input type="checkbox" id="miCheckbox" name="miCheckbox" [(ngModel)]="rememberMe">
+                            <input type="checkbox" id="miCheckbox" name="miCheckbox" [(ngModel)]="rememberMe" (click)="toggleRememberMe()">
                             <label for="miCheckbox">Remember me</label>
                         </div>
                             <a class="restore_pass" href="restorePass">Forgot password?</a>

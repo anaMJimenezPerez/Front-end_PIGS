@@ -3,23 +3,26 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAllProducts(): Observable<any> {
     return this.http.get('http://localhost:8080/products/getProducts');
   }
 
-  updateProduct(userId: number, product: Product): Observable<any>{
-    return this.http.put('http://localhost:8080/products?id=', {userId, product});
+  getAllProductsByUserId(sellerId: number): Observable<any> {
+    return this.http.get(`http://localhost:8080/products/getProducts?id=${sellerId}`);
   }
 
-  deleteProduct(userId: number): Observable<any>{
+  updateProduct(userId: number, product: Product): Observable<any> {
+    return this.http.put('http://localhost:8080/products?id=', { userId, product });
+  }
+
+  deleteProduct(userId: number): Observable<any> {
     return this.http.delete('http://localhost:8080/products?id=' + userId);
   }
 
@@ -30,4 +33,5 @@ export class ProductService {
   getAllProductImages(): Observable<any> {
     return this.http.get<any>('../.../../assets/data/product_images.json');
   }
+
 }

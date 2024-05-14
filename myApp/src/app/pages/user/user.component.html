@@ -17,7 +17,7 @@
       <div class="row" *ngIf="i % 4 === 0">
         <div class="col-md-3" *ngFor="let innerProduct of userProducts.slice(i, i + 4)">
           <div class="card" id="placeCard">
-            <img [src]="innerProduct.images_path[0]" class="card-img-top" id="imageCard" alt="Product Image">
+            <!--<img [src]="innerProduct.images_path[0]" class="card-img-top" id="imageCard" alt="Product Image">-->
             <i class="material-icons" id="styleImageFavorite">favorite_border</i>
             <div class="card-body">
               <h5 class="card-title" id="title">{{ innerProduct.name }}</h5>
